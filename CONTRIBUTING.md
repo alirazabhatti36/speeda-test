@@ -1,31 +1,33 @@
-# Contributing
+# 🤝 Contributing to Speeda Test
 
-Thank you for your interest in contributing to Speeda Test.
+First off, thanks for taking the time to contribute! 🎉
 
-## How to Contribute
+## 📋 How to Contribute
 
-1. Fork the repository.
-2. Create a feature branch from `main`.
-3. Make your changes with clear commits.
-4. Test changes locally.
-5. Open a pull request using the provided template.
+### 1. Report Bugs
 
-## Development Setup
+- Check if the bug already exists in [Issues](https://github.com/alirazabhatti36/speeda-test/issues)
+- If not, create a new issue with:
+	- Clear title and description
+	- Steps to reproduce
+	- Expected vs actual behavior
+	- Screenshots (if applicable)
+
+### 2. Suggest Features
+
+- Open a new issue with:
+	- Feature description
+	- Why it's useful
+	- How it should work
+
+### 3. Code Contribution
+
+#### Fork the Repository
 
 ```bash
-npm run install:all
-npm run dev
+git clone https://github.com/alirazabhatti36/speeda-test.git
 ```
 
-## Commit Guidelines
+## 🙏 Thank You!
 
-- Use clear, descriptive commit messages.
-- Keep commits focused on one concern.
-- Avoid mixing refactor and feature changes in one commit.
-
-## Pull Request Checklist
-
-- [ ] Code builds successfully
-- [ ] Relevant functionality is tested
-- [ ] No unrelated files are changed
-- [ ] Documentation updated where needed
+Every contribution, no matter how small, makes a difference!

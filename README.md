@@ -78,3 +78,34 @@ npm run install:all
 # Run development server
 npm run dev
 ```
+
+---
+
+## 🤝 Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🙏 Acknowledgments
+
+- Inspired by Ookla Speedtest and Cloudflare Speed Test
+- Built with React, Node.js, and AI technology
+
+---
+
+## 📧 Contact
+
+- **Email:** support@speedatest.com
+- **Twitter:** @speedatest
+- **GitHub:** [alirazabhatti36](https://github.com/alirazabhatti36)
+
+---
+
+⭐ Star this repository if you find it useful!

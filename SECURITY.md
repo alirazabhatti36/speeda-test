@@ -1,18 +1,30 @@
-# Security Policy
-
-## Supported Versions
-
-Security updates are currently provided for the latest `main` branch.
+# 🔒 Security Policy
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability, please do not open a public issue.
+If you discover a security vulnerability, please report it responsibly:
 
-Please report it privately to the project maintainer with:
+1. **Do NOT** create a public issue
+2. Email us at: **support@speedatest.com**
+3. Provide:
+	- Description of the vulnerability
+	- Steps to reproduce
+	- Potential impact
 
-- Description of the vulnerability
-- Steps to reproduce
-- Potential impact
-- Suggested fix (if available)
+## What to Expect
 
-We will review and respond as quickly as possible.
+- **24 hours:** Initial acknowledgment
+- **3-5 days:** Investigation and confirmation
+- **7-14 days:** Patch release (if needed)
+
+## Supported Versions
+
+| Version | Supported |
+|---------|-----------|
+| 1.x.x   | ✅ Yes    |
+| < 1.0.0 | ❌ No     |
+
+## Disclosure Policy
+
+- We will disclose vulnerabilities after a fix is available
+- We will credit the reporter (if desired)

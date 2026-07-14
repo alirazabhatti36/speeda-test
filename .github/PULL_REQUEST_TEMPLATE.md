@@ -1,22 +1,23 @@
-## Summary
+## 📋 Description
 
-Describe what this PR changes.
+What does this PR do?
 
-## Type of Change
+## 🔗 Related Issue
 
-- [ ] Bug fix
-- [ ] New feature
-- [ ] Refactor
-- [ ] Documentation update
+Fixes #(issue number)
 
-## Testing
+## ✅ Checklist
 
-- [ ] `npm run build` passes
-- [ ] Feature tested locally
+- [ ] Code works locally
+- [ ] No console errors
+- [ ] Responsive design works
+- [ ] Code is properly formatted
+- [ ] Comments added where necessary
 
-## Checklist
+## 📸 Screenshots
 
-- [ ] Code follows project style
-- [ ] Self-review completed
-- [ ] No unrelated changes included
-- [ ] Documentation updated if needed
+If UI changes, add screenshots.
+
+## 🧪 Testing
+
+Describe how you tested this PR.

@@ -1,25 +1,32 @@
-# Code of Conduct
+# 📜 Code of Conduct
 
 ## Our Pledge
 
-We are committed to making participation in this project a harassment-free experience for everyone.
+We as members, contributors, and leaders pledge to make participation in our
+community a harassment-free experience for everyone.
 
-## Expected Behavior
+## Our Standards
 
-- Be respectful and constructive.
-- Give and accept feedback professionally.
-- Focus on what is best for the community and project.
+Examples of behavior that contributes to a positive environment:
 
-## Unacceptable Behavior
+- Using welcoming and inclusive language
+- Being respectful of differing viewpoints
+- Gracefully accepting constructive criticism
+- Focusing on what is best for the community
 
-- Harassment, insults, or personal attacks
-- Discrimination in any form
-- Any conduct that could be considered inappropriate in a professional setting
+Examples of unacceptable behavior:
+
+- Trolling, insulting, or derogatory comments
+- Public or private harassment
+- Publishing others' private information
 
 ## Enforcement
 
-Project maintainers are responsible for clarifying and enforcing standards of acceptable behavior.
+Project maintainers have the right to remove, edit, or reject comments,
+commits, code, issues, and other contributions that don't align with this
+Code of Conduct.
 
 ## Reporting
 
-To report behavior issues, contact the maintainers through project communication channels.
+If you experience or witness unacceptable behavior, please contact:
+📧 support@speedatest.com

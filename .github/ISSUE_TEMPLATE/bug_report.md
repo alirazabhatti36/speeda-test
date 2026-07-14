@@ -1,33 +1,35 @@
 ---
-name: Bug report
-about: Create a report to help us improve
+name: 🐛 Bug Report
+about: Report a bug to help us improve
+title: "[BUG] "
 labels: bug
+assignees: ''
 ---
 
-## Bug Description
+## Describe the Bug
 
-Describe what happened.
+A clear and concise description of the bug.
 
-## Steps To Reproduce
+## Steps to Reproduce
 
-1. Go to ...
-2. Click on ...
-3. Observe ...
+1. Go to '...'
+2. Click on '...'
+3. See error
 
 ## Expected Behavior
 
-Describe what you expected to happen.
+What should have happened.
 
 ## Screenshots
 
-Add screenshots if applicable.
+If applicable, add screenshots.
 
 ## Environment
 
-- OS:
-- Browser:
-- Node.js version:
+- OS: [e.g. Windows 10]
+- Browser: [e.g. Chrome 120]
+- Version: [e.g. 1.0.0]
 
 ## Additional Context
 
-Any extra details.
+Add any other context about the problem here.
