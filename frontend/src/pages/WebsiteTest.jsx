@@ -1,5 +1,6 @@
 import SEO from '../components/SEO';
 import WebsiteTester from '../components/WebsiteTester';
+import './WebsiteTest.css';
 
 function WebsiteTest() {
   return (
@@ -10,7 +11,7 @@ function WebsiteTest() {
         canonical="/website-test"
       />
 
-      <div className="page-container">
+      <div className="page-container website-test-page">
         <WebsiteTester />
       </div>
     </>
