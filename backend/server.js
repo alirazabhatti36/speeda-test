@@ -3,6 +3,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const { exec } = require('child_process');
 const os = require('os');
+const axios = require('axios');
 
 dotenv.config();
 
@@ -147,6 +148,136 @@ class TurboSpeedTest {
 }
 
 // ============================================
+// NETWORK PROVIDER DETECTION
+// ============================================
+
+// Pakistani ISP Mapping with Logos
+const ispMapping = {
+    'Pakistan Telecommunication Company Limited': 'PTCL',
+    'Pakistan Telecommunication Company Ltd': 'PTCL',
+    'PTCL': 'PTCL',
+    'StormFiber': 'Storm Fiber',
+    'Storm Fiber': 'Storm Fiber',
+    'Supernet': 'Supernet',
+    'Supernet Limited': 'Supernet',
+    'Nayatel': 'Nayatel',
+    'Cyber Internet Services': 'Cybernet',
+    'Cybernet': 'Cybernet',
+    'WorldCall': 'WorldCall',
+    'Wateen Telecom': 'Wateen',
+    'Multinet': 'Multinet',
+    'Fiberlink': 'Fiberlink',
+    'Comsats': 'Comsats',
+    'Transworld': 'Transworld',
+    'DHA Cable': 'DHA Cable',
+    'Optix': 'Optix',
+    'Brain Telecommunication': 'Brain Tel',
+    'Root Internet': 'Root Internet',
+    'NayaTel': 'Nayatel',
+    'Cyber Internet Services (Pvt) Ltd.': 'Cybernet',
+    'WorldCall Telecom': 'WorldCall',
+    'Wateen Telecom Limited': 'Wateen',
+    'Multinet Pakistan': 'Multinet',
+    'Fiberlink (Pvt) Ltd.': 'Fiberlink',
+    'Comsats Internet Services': 'Comsats',
+    'Transworld Associates': 'Transworld'
+};
+
+// ISP Logo mapping
+function getIspLogo(isp) {
+    const logos = {
+        'PTCL': '🔵',
+        'Storm Fiber': '⚡',
+        'Supernet': '🟣',
+        'Nayatel': '🟢',
+        'Cybernet': '🟠',
+        'WorldCall': '📡',
+        'Wateen': '📶',
+        'Multinet': '🌐',
+        'Fiberlink': '🔗',
+        'Comsats': '🛰️',
+        'Transworld': '🌍',
+        'DHA Cable': '📺',
+        'Optix': '💡',
+        'Brain Tel': '🧠',
+        'Root Internet': '🌱'
+    };
+    return logos[isp] || '🌐';
+}
+
+// Network Info API
+app.get('/api/network-info', async (req, res) => {
+    try {
+        // Step 1: Get client IP address
+        const ipResponse = await axios.get('https://api.ipify.org?format=json', {
+            timeout: 5000
+        });
+        const userIp = ipResponse.data.ip;
+
+        // Step 2: Get ISP details from IP
+        const ispResponse = await axios.get(`http://ip-api.com/json/${userIp}`, {
+            timeout: 5000
+        });
+        const data = ispResponse.data;
+
+        if (data.status === 'success') {
+            // Map ISP to known Pakistani names
+            const displayIsp = ispMapping[data.isp] || data.isp;
+            const displayOrg = ispMapping[data.org] || data.org;
+
+            const networkInfo = {
+                ip: data.query,
+                isp: displayIsp,
+                ispRaw: data.isp,
+                organization: displayOrg,
+                organizationRaw: data.org,
+                asn: data.as || 'N/A',
+                city: data.city || 'Unknown',
+                region: data.regionName || 'Unknown',
+                country: data.country || 'Unknown',
+                timezone: data.timezone || 'Unknown',
+                ispLogo: getIspLogo(displayIsp),
+                ispColor: getIspColor(displayIsp)
+            };
+            res.json(networkInfo);
+        } else {
+            res.status(500).json({ 
+                error: 'Failed to fetch network information',
+                details: data.message || 'Unknown error'
+            });
+        }
+    } catch (error) {
+        console.error('Error fetching network info:', error.message);
+        res.status(500).json({ 
+            error: 'Network information service unavailable',
+            message: error.message
+        });
+    }
+});
+
+// ISP Color mapping for UI
+function getIspColor(isp) {
+    const colors = {
+        'PTCL': '#2563eb',
+        'Storm Fiber': '#f59e0b',
+        'Supernet': '#8b5cf6',
+        'Nayatel': '#22c55e',
+        'Cybernet': '#f97316',
+        'WorldCall': '#3b82f6',
+        'Wateen': '#ec4899',
+        'Multinet': '#14b8a6',
+        'Fiberlink': '#6366f1',
+        'Comsats': '#8b5cf6',
+        'Transworld': '#06b6d4',
+        'DHA Cable': '#ef4444',
+        'Optix': '#f59e0b',
+        'Brain Tel': '#8b5cf6',
+        'Root Internet': '#22c55e'
+    };
+    return colors[isp] || '#6b7280';
+}
+
+// ============================================
 // SPEED TEST API
 // ============================================
 
@@ -175,7 +306,7 @@ app.get('/api/speedtest', async (req, res) => {
 });
 
 // ============================================
-// ✅ WEBSITE SPEED TESTER - BASIC
+// WEBSITE SPEED TESTER - BASIC
 // ============================================
 
 app.get('/api/website-test', async (req, res) => {
@@ -242,7 +373,7 @@ app.get('/api/website-test', async (req, res) => {
 });
 
 // ============================================
-// ✅ WEBSITE SPEED TESTER - DETAILED
+// WEBSITE SPEED TESTER - DETAILED
 // ============================================
 
 app.get('/api/website-test-detailed', async (req, res) => {
@@ -352,7 +483,7 @@ app.get('/api/health', (req, res) => {
         status: 'ok', 
         timestamp: new Date().toISOString(),
         uptime: process.uptime(),
-        version: '2.0 - AI Powered'
+        version: '2.0 - AI Powered with Network Detection'
     });
 });
 
@@ -365,5 +496,6 @@ app.listen(PORT, () => {
     console.log(`📊 Speed Test: http://localhost:${PORT}/api/speedtest`);
     console.log(`🌐 Website Test: http://localhost:${PORT}/api/website-test?url=https://google.com`);
     console.log(`🔍 Detailed: http://localhost:${PORT}/api/website-test-detailed?url=https://google.com`);
+    console.log(`📡 Network Info: http://localhost:${PORT}/api/network-info`);
     console.log(`💚 Health: http://localhost:${PORT}/api/health`);
 });
