@@ -1,126 +1,136 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import SEO from '../components/SEO';
+import AdSlot from '../components/AdSlot';
 import './Contact.css';
 
-function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
+export default function Contact() {
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Email send karne ka logic (abhi simulate karte hain)
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
+    if (formData.name && formData.email && formData.message) {
+      setSubmitted(true);
+    }
   };
 
   return (
     <>
       <SEO 
         title="Contact Us"
-        description="Get in touch with Speeda Test. Have questions about our speed test tool? Reach out to our team for support."
+        description="Get in touch with the Speeda Test 360 team. Send inquiries, bug reports, or partnership requests."
         canonical="/contact"
       />
-      
-      <div className="page-container">
-        <div className="contact-section">
-          <h1>📧 Contact Us</h1>
-          <p className="tagline">Have questions? We'd love to hear from you!</p>
 
-          <div className="contact-grid">
-            <div className="contact-info">
-              <div className="info-card">
-                <span>📧</span>
-                <h4>Email</h4>
-                <p>support@speedatest.com</p>
+      <div className="contact-container">
+        <AdSlot slotId="contact-top-banner" type="banner" />
+
+        <div className="page-header">
+          <h1>📞 Contact <span className="gradient-text">Speeda Test 360</span></h1>
+          <p>Have questions, feedback, or business inquiries? We'd love to hear from you!</p>
+        </div>
+
+        <div className="contact-grid">
+          {/* Contact Info Card */}
+          <div className="glass-panel info-side">
+            <h2>📫 Get In Touch</h2>
+            <p>Our technical team is available to assist with network diagnostic questions or platform feedback.</p>
+
+            <div className="info-list">
+              <div className="info-item">
+                <span className="info-icon">📧</span>
+                <div>
+                  <strong>Email Us</strong>
+                  <p>support@speedatest360.com</p>
+                </div>
               </div>
-              <div className="info-card">
-                <span>🐦</span>
-                <h4>Twitter</h4>
-                <p>@speedatest</p>
+
+              <div className="info-item">
+                <span className="info-icon">⚡</span>
+                <div>
+                  <strong>Platform</strong>
+                  <p>Speeda Test 360 Web Engine</p>
+                </div>
               </div>
-              <div className="info-card">
-                <span>💬</span>
-                <h4>Response Time</h4>
-                <p>Usually within 24 hours</p>
+
+              <div className="info-item">
+                <span className="info-icon">🌐</span>
+                <div>
+                  <strong>Availability</strong>
+                  <p>24/7 Unlimited Free Diagnostic Tests</p>
+                </div>
               </div>
             </div>
+          </div>
 
-            <div className="contact-form-container">
+          {/* Form Side */}
+          <div className="glass-panel form-side">
+            {submitted ? (
+              <div className="success-message">
+                <span className="success-icon">✅</span>
+                <h3>Message Sent Successfully!</h3>
+                <p>Thank you for contacting Speeda Test 360. Our team will review your message shortly.</p>
+                <button onClick={() => setSubmitted(false)} className="btn-secondary">
+                  Send Another Message
+                </button>
+              </div>
+            ) : (
               <form onSubmit={handleSubmit} className="contact-form">
                 <div className="form-group">
-                  <label>Full Name *</label>
+                  <label htmlFor="name">Your Name</label>
                   <input
+                    id="name"
                     type="text"
-                    name="name"
-                    placeholder="John Doe"
+                    required
+                    placeholder="Ali Raza"
                     value={formData.name}
-                    onChange={handleChange}
-                    required
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   />
                 </div>
 
                 <div className="form-group">
-                  <label>Email Address *</label>
+                  <label htmlFor="email">Email Address</label>
                   <input
+                    id="email"
                     type="email"
-                    name="email"
-                    placeholder="john@example.com"
+                    required
+                    placeholder="ali@example.com"
                     value={formData.email}
-                    onChange={handleChange}
-                    required
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   />
                 </div>
 
                 <div className="form-group">
-                  <label>Subject *</label>
+                  <label htmlFor="subject">Subject</label>
                   <input
+                    id="subject"
                     type="text"
-                    name="subject"
-                    placeholder="How can we help?"
+                    placeholder="Feedback / ISP Query"
                     value={formData.subject}
-                    onChange={handleChange}
-                    required
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   />
                 </div>
 
                 <div className="form-group">
-                  <label>Message *</label>
+                  <label htmlFor="message">Message</label>
                   <textarea
-                    name="message"
-                    rows="5"
+                    id="message"
+                    rows="4"
+                    required
                     placeholder="Write your message here..."
                     value={formData.message}
-                    onChange={handleChange}
-                    required
-                  />
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  ></textarea>
                 </div>
 
-                <button type="submit" className="submit-btn">
-                  ✉️ Send Message
+                <button type="submit" className="btn-primary">
+                  📨 Send Message
                 </button>
-
-                {submitted && (
-                  <div className="success-msg">
-                    ✅ Thank you! We'll get back to you soon.
-                  </div>
-                )}
               </form>
-            </div>
+            )}
           </div>
         </div>
       </div>
     </>
   );
 }
-
-export default Contact;

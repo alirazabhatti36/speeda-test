@@ -1,0 +1,52 @@
+.ad-slot-container {
+  width: 100%;
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ad-label {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.3rem;
+}
+
+.ad-box {
+  position: relative;
+  width: 100%;
+  min-height: 90px;
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.ad-placeholder-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  font-weight: 500;
+  pointer-events: none;
+}
+
+.ad-icon {
+  font-size: 1.1rem;
+}
+
+.ad-rectangle .ad-box {
+  min-height: 250px;
+  max-width: 336px;
+}
+
+.ad-banner .ad-box {
+  min-height: 90px;
+  max-width: 728px;
+}

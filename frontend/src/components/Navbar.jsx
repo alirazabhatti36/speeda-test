@@ -1,105 +1,69 @@
-import { useEffect, useRef, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { NavLink, Link } from 'react-router-dom';
 import './Navbar.css';
 
-function Navbar() {
-  const location = useLocation();
-  const [menuOpen, setMenuOpen] = useState(false);
-  const navRef = useRef(null);
-
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [location.pathname]);
-
-  useEffect(() => {
-    if (!menuOpen) {
-      return;
-    }
-
-    const handlePointerDown = (event) => {
-      if (navRef.current && !navRef.current.contains(event.target)) {
-        setMenuOpen(false);
-      }
-    };
-
-    const handleKeyDown = (event) => {
-      if (event.key === 'Escape') {
-        setMenuOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handlePointerDown);
-    document.addEventListener('touchstart', handlePointerDown);
-    document.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      document.removeEventListener('mousedown', handlePointerDown);
-      document.removeEventListener('touchstart', handlePointerDown);
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [menuOpen]);
+export default function Navbar() {
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <nav className="navbar" ref={navRef}>
-      <div className="nav-container">
-        <div className="nav-header">
-          <Link to="/" className="nav-logo">
-            ⚡ Speeda Test
-          </Link>
-          <button
-            type="button"
-            className="nav-toggle"
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((prev) => !prev)}
-          >
-            <span className={`bar ${menuOpen ? 'open' : ''}`} />
-            <span className={`bar ${menuOpen ? 'open' : ''}`} />
-            <span className={`bar ${menuOpen ? 'open' : ''}`} />
-          </button>
-        </div>
+    <header className="navbar-header glass-panel">
+      <div className="navbar-container">
+        <Link to="/" className="brand-logo" onClick={() => setMobileOpen(false)}>
+          <span className="brand-icon">⚡</span>
+          <span className="brand-name">
+            Speeda Test <span className="brand-badge">360</span>
+          </span>
+        </Link>
 
-        <ul className={`nav-menu ${menuOpen ? 'open' : ''}`}>
-          <li className="nav-item">
-            <Link 
-              to="/" 
-              className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}
-              onClick={() => setMenuOpen(false)}
-            >
-              Speed Test
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link 
-              to="/website-test" 
-              className={`nav-link ${location.pathname === '/website-test' ? 'active' : ''}`}
-              onClick={() => setMenuOpen(false)}
-            >
-              Website Test
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link 
-              to="/about" 
-              className={`nav-link ${location.pathname === '/about' ? 'active' : ''}`}
-              onClick={() => setMenuOpen(false)}
-            >
-              About
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link 
-              to="/contact" 
-              className={`nav-link ${location.pathname === '/contact' ? 'active' : ''}`}
-              onClick={() => setMenuOpen(false)}
-            >
-              Contact
-            </Link>
-          </li>
-        </ul>
+        {/* Desktop Navigation Links */}
+        <nav className="nav-links">
+          <NavLink to="/" end className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}>
+            ⚡ Speed Test
+          </NavLink>
+          <NavLink to="/website-test" className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}>
+            🌐 Website Tester
+          </NavLink>
+          <NavLink to="/about" className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}>
+            ℹ️ About
+          </NavLink>
+          <NavLink to="/contact" className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}>
+            📞 Contact
+          </NavLink>
+        </nav>
+
+        {/* Mobile Hamburger Toggle */}
+        <button
+          className="mobile-toggle"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Toggle Navigation Menu"
+        >
+          {mobileOpen ? '✕' : '☰'}
+        </button>
       </div>
-    </nav>
+
+      {/* Mobile Drawer */}
+      {mobileOpen && (
+        <div className="mobile-menu glass-panel">
+          <NavLink to="/" end className="mobile-item" onClick={() => setMobileOpen(false)}>
+            ⚡ Speed Test
+          </NavLink>
+          <NavLink to="/website-test" className="mobile-item" onClick={() => setMobileOpen(false)}>
+            🌐 Website Tester
+          </NavLink>
+          <NavLink to="/about" className="mobile-item" onClick={() => setMobileOpen(false)}>
+            ℹ️ About Us
+          </NavLink>
+          <NavLink to="/contact" className="mobile-item" onClick={() => setMobileOpen(false)}>
+            📞 Contact Us
+          </NavLink>
+          <NavLink to="/privacy" className="mobile-item" onClick={() => setMobileOpen(false)}>
+            🔒 Privacy Policy
+          </NavLink>
+          <NavLink to="/terms" className="mobile-item" onClick={() => setMobileOpen(false)}>
+            📜 Terms of Service
+          </NavLink>
+        </div>
+      )}
+    </header>
   );
 }
-
-export default Navbar;

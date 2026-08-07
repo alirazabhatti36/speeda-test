@@ -1,67 +1,64 @@
+import React from 'react';
 import SEO from '../components/SEO';
+import AdSlot from '../components/AdSlot';
 import './About.css';
 
-function About() {
+export default function About() {
   return (
     <>
       <SEO 
         title="About Us"
-        description="Learn about Speeda Test - the most accurate internet speed test tool. AI-powered, fast, and completely free."
+        description="Learn about Speeda Test 360 — our mission, high-precision browser testing engine, and broadband diagnostic technology."
         canonical="/about"
       />
-      
-      <div className="page-container">
-        <div className="about-section">
-          <h1>About Speeda Test</h1>
-          <div className="about-content">
-            <div className="about-card">
-              <h2>⚡ Our Mission</h2>
-              <p>
-                We believe in providing <strong>real, accurate internet speed measurements</strong> 
-                without the fluff. Market tools often show inflated numbers. We show the truth.
-              </p>
+
+      <div className="about-container">
+        <AdSlot slotId="about-top-banner" type="banner" />
+
+        <div className="page-header">
+          <h1>ℹ️ About <span className="gradient-text">Speeda Test 360</span></h1>
+          <p>The Most Precise, Real-Time Broadband & Network Diagnostic Engine</p>
+        </div>
+
+        <div className="glass-panel about-card">
+          <section className="about-section">
+            <h2>🚀 Our Mission</h2>
+            <p>
+              Speeda Test 360 was built to provide internet users worldwide with transparent, unthrottled, and accurate network speed measurements. Unlike traditional speed tests that rely on server-side loops or ISP-sponsored routing, Speeda Test 360 runs 100% in your browser using direct Web performance streams.
+            </p>
+          </section>
+
+          <section className="about-section">
+            <h2>⚡ How 360° Testing Works</h2>
+            <div className="features-360-grid">
+              <div className="feat-box">
+                <span className="feat-icon">📶</span>
+                <h3>High-Precision Latency</h3>
+                <p>Measures millisecond ping and jitter stability over multiple round-trips to edge CDN nodes.</p>
+              </div>
+
+              <div className="feat-box">
+                <span className="feat-icon">📥</span>
+                <h3>Multi-Stream Throughput</h3>
+                <p>Downloads multi-megabyte payloads concurrently to saturate your full broadband pipe.</p>
+              </div>
+
+              <div className="feat-box">
+                <span className="feat-icon">🌐</span>
+                <h3>ISP & Location Detection</h3>
+                <p>Identifies your public IP address, Autonomous System (ASN), and Internet Service Provider instantly.</p>
+              </div>
             </div>
-            
-            <div className="about-card">
-              <h2>🧠 AI-Powered Testing</h2>
-              <p>
-                Our <strong>smart termination algorithm</strong> detects when your speed stabilizes 
-                and stops the test early. This means faster results with <strong>1.8-4.4x less data usage</strong> 
-                compared to traditional tools.
-              </p>
-            </div>
-            
-            <div className="about-card">
-              <h2>🔒 Privacy First</h2>
-              <p>
-                We don't store your data. Your speed test results are <strong>never saved</strong> 
-                on our servers. What happens in your browser stays in your browser.
-              </p>
-            </div>
-            
-            <div className="about-card">
-              <h2>🌐 Website Testing</h2>
-              <p>
-                Test any website's performance with our <strong>detailed analysis tool</strong>. 
-                Get insights on load time, page size, server response, and more.
-              </p>
-            </div>
-            
-            <div className="about-card highlight">
-              <h2>💡 Why Speeda Test?</h2>
-              <ul>
-                <li>✅ <strong>Accurate</strong> — Real download/upload measurement</li>
-                <li>✅ <strong>Fast</strong> — AI-powered early termination</li>
-                <li>✅ <strong>Free</strong> — No registration, no limits</li>
-                <li>✅ <strong>Private</strong> — No data stored</li>
-                <li>✅ <strong>Modern</strong> — Beautiful, responsive design</li>
-              </ul>
-            </div>
-          </div>
+          </section>
+
+          <section className="about-section">
+            <h2>💡 Built for Everyone</h2>
+            <p>
+              Whether you're a competitive gamer checking ping stability, a remote worker verifying Zoom call bandwidth, or a web developer analyzing site TTFB, Speeda Test 360 delivers instant insights without ads blocking your view or required software downloads.
+            </p>
+          </section>
         </div>
       </div>
     </>
   );
 }
-
-export default About;

@@ -1,63 +1,85 @@
-.footer {
-  background: #1a1a2e;
-  color: #ccc;
-  margin-top: 40px;
-  padding: clamp(24px, 4vw, 40px) clamp(12px, 3vw, 20px) 0;
+.footer-container {
+  margin-top: 4rem;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  padding: 3rem 2rem 1.5rem;
+  border-bottom: none;
 }
 
-.footer-container {
+.footer-content {
+  display: grid;
+  grid-template-columns: 1.4fr 2fr;
+  gap: 3rem;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.footer-logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.footer-tagline {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-top: 0.8rem;
+  line-height: 1.6;
+}
+
+.footer-links-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 40px;
-  padding-bottom: 30px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
 }
 
-.footer-section h3 {
-  color: white;
-  font-size: 1.3rem;
-  margin-bottom: 10px;
-}
-
-.footer-section h4 {
-  color: white;
+.footer-col h4 {
   font-size: 1rem;
-  margin-bottom: 12px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+  letter-spacing: 0.02em;
 }
 
-.footer-section a {
+.footer-col a {
   display: block;
-  color: #aaa;
-  text-decoration: none;
-  margin-bottom: 8px;
-  transition: color 0.3s;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 0.6rem;
+  transition: color var(--transition-fast);
 }
 
-.footer-section a:hover {
-  color: #667eea;
+.footer-col a:hover {
+  color: var(--primary-cyan);
 }
 
 .footer-bottom {
-  border-top: 1px solid #333;
-  padding: 20px;
+  max-width: 1200px;
+  margin: 2.5rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--glass-border);
   text-align: center;
-  font-size: 0.9rem;
-  color: #666;
+  color: var(--text-dim);
+  font-size: 0.85rem;
 }
 
-@media (max-width: 600px) {
-  .footer-container {
-    gap: 24px;
-  }
+.adsense-disclosure {
+  font-size: 0.78rem;
+  margin-top: 0.5rem;
+  opacity: 0.7;
+}
 
-  .footer-section h3,
-  .footer-section h4 {
-    text-align: center;
+@media (max-width: 868px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
+  .footer-links-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
-  .footer-section p,
-  .footer-section a {
-    text-align: center;
+@media (max-width: 480px) {
+  .footer-links-grid {
+    grid-template-columns: 1fr;
   }
 }

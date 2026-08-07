@@ -1,0 +1,48 @@
+.legal-page-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.legal-card {
+  padding: 2.5rem;
+  line-height: 1.8;
+}
+
+.legal-card h1 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.effective-date {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--glass-border);
+  padding-bottom: 1rem;
+}
+
+.legal-card section {
+  margin-bottom: 2rem;
+}
+
+.legal-card h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--primary-cyan);
+  margin-bottom: 0.8rem;
+}
+
+.legal-card p, .legal-card ul {
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.legal-card ul {
+  padding-left: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.legal-card li {
+  margin-bottom: 0.5rem;
+}

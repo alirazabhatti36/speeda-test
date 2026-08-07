@@ -1,31 +1,49 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 
-function Footer() {
+export default function Footer() {
   return (
-    <footer className="footer">
-      <div className="footer-container">
-        <div className="footer-section">
-          <h3>⚡ Speeda Test</h3>
-          <p>The Real Speed Test — Accurate, Fast, Reliable</p>
+    <footer className="footer-container glass-panel">
+      <div className="footer-content">
+        <div className="footer-brand">
+          <Link to="/" className="footer-logo">
+            ⚡ Speeda Test <span className="gradient-text">360</span>
+          </Link>
+          <p className="footer-tagline">
+            Next-Generation 360° Real-Time Speed & Broadband Analytics Engine. Fast, accurate, and 100% free.
+          </p>
         </div>
-        <div className="footer-section">
-          <h4>Quick Links</h4>
-          <a href="/">Speed Test</a>
-          <a href="/website-test">Website Test</a>
-          <a href="/about">About</a>
-          <a href="/privacy">Privacy Policy</a>
-        </div>
-        <div className="footer-section">
-          <h4>Connect</h4>
-          <p>📧 support@speedatest.com</p>
-          <p>🐦 Twitter: @speedatest</p>
+
+        <div className="footer-links-grid">
+          <div className="footer-col">
+            <h4>Features</h4>
+            <Link to="/">⚡ Broadband Speed Test</Link>
+            <Link to="/website-test">🌐 Website Analyzer</Link>
+            <Link to="/#faq">❓ Speed FAQ</Link>
+          </div>
+
+          <div className="footer-col">
+            <h4>Company</h4>
+            <Link to="/about">ℹ️ About Us</Link>
+            <Link to="/contact">📞 Contact Us</Link>
+          </div>
+
+          <div className="footer-col">
+            <h4>Legal & Policies</h4>
+            <Link to="/privacy">🔒 Privacy Policy</Link>
+            <Link to="/terms">📜 Terms of Service</Link>
+            <Link to="/cookies">🍪 Cookie Policy</Link>
+          </div>
         </div>
       </div>
+
       <div className="footer-bottom">
-        <p>© 2026 Speeda Test. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Speeda Test 360. All rights reserved. Powered by pure client-side Web APIs.</p>
+        <p className="adsense-disclosure">
+          Google AdSense Disclosures: Speeda Test 360 uses cookies and third-party vendor services to serve relevant ads based on prior website visits.
+        </p>
       </div>
     </footer>
   );
 }
-
-export default Footer;
