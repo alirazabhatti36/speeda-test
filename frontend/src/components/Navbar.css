@@ -19,18 +19,19 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  font-size: 1.35rem;
-  font-weight: 800;
-  color: var(--text-main);
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
 
 .brand-icon {
-  font-size: 1.5rem;
-  filter: drop-shadow(0 0 10px var(--primary-cyan));
+  font-size: 1.6rem;
+  filter: drop-shadow(0 0 12px var(--primary-cyan));
 }
 
 .brand-badge {
-  background: linear-gradient(135deg, var(--primary-cyan) 0%, var(--neon-purple) 100%);
+  background: linear-gradient(135deg, var(--primary-cyan) 0%, #c084fc 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 900;
@@ -39,35 +40,38 @@
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 1.8rem;
+  gap: 1.5rem;
 }
 
 .nav-item {
   color: var(--text-muted);
-  font-weight: 500;
-  font-size: 0.98rem;
-  padding: 0.4rem 0.8rem;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
   border-radius: var(--radius-full);
   transition: all var(--transition-fast);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .nav-item:hover {
-  color: var(--text-main);
-  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .nav-item.active {
-  color: var(--primary-cyan);
-  background: rgba(0, 242, 254, 0.1);
-  font-weight: 700;
+  color: #030712;
+  background: linear-gradient(135deg, var(--primary-cyan) 0%, var(--primary-blue) 100%);
+  font-weight: 800;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+  text-shadow: none;
 }
 
 .mobile-toggle {
   display: none;
   background: none;
   border: none;
-  color: var(--text-main);
-  font-size: 1.5rem;
+  color: #ffffff;
+  font-size: 1.6rem;
   cursor: pointer;
 }
 
@@ -90,7 +94,7 @@
 
 .mobile-item:hover, .mobile-item.active {
   color: var(--primary-cyan);
-  background: rgba(0, 242, 254, 0.08);
+  background: rgba(0, 242, 254, 0.12);
 }
 
 @media (max-width: 768px) {

@@ -7,19 +7,20 @@
 }
 
 .ad-label {
-  font-size: 0.72rem;
-  color: var(--text-dim);
+  font-size: 0.78rem;
+  color: #cbd5e1;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.4rem;
 }
 
 .ad-box {
   position: relative;
   width: 100%;
   min-height: 90px;
-  background: rgba(15, 23, 42, 0.4);
-  border: 1px dashed rgba(255, 255, 255, 0.1);
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
@@ -30,15 +31,15 @@
 .ad-placeholder-content {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  color: var(--text-dim);
-  font-size: 0.85rem;
-  font-weight: 500;
+  gap: 0.6rem;
+  color: #e2e8f0;
+  font-size: 0.95rem;
+  font-weight: 700;
   pointer-events: none;
 }
 
 .ad-icon {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .ad-rectangle .ad-box {

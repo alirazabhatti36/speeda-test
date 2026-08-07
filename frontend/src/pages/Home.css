@@ -12,14 +12,16 @@
 .network-panel {
   width: 100%;
   max-width: 900px;
-  padding: 1.25rem 1.8rem;
+  padding: 1.4rem 2rem;
   margin-bottom: 2rem;
+  background: rgba(15, 23, 42, 0.85);
 }
 
 .network-skeleton {
   text-align: center;
   color: var(--text-muted);
-  font-size: 0.95rem;
+  font-size: 1rem;
+  font-weight: 600;
   padding: 0.5rem 0;
 }
 
@@ -36,24 +38,28 @@
 }
 
 .net-icon {
-  font-size: 1.6rem;
+  font-size: 1.7rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
 }
 
 .net-label {
   display: block;
-  font-size: 0.75rem;
-  color: var(--text-dim);
+  font-size: 0.78rem;
+  color: #94a3b8;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.1rem;
 }
 
 .net-value {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--text-main);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ffffff;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .speed-arena {
@@ -65,7 +71,7 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  background: radial-gradient(circle at 50% 30%, rgba(0, 242, 254, 0.08) 0%, rgba(15, 23, 42, 0.7) 70%);
+  background: radial-gradient(circle at 50% 30%, rgba(0, 242, 254, 0.12) 0%, rgba(15, 23, 42, 0.85) 75%);
 }
 
 .test-control {
@@ -73,8 +79,8 @@
 }
 
 .start-btn {
-  font-size: 1.2rem;
-  padding: 1rem 3rem;
+  font-size: 1.25rem;
+  padding: 1.1rem 3.2rem;
 }
 
 .metrics-grid {
@@ -91,30 +97,32 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  background: rgba(15, 23, 42, 0.8);
 }
 
 .metric-icon-wrap {
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
-  background: rgba(255, 255, 255, 0.05);
+  font-size: 1.5rem;
+  background: rgba(255, 255, 255, 0.08);
   border: 1px solid var(--glass-border);
 }
 
-.icon-download { color: var(--primary-cyan); border-color: rgba(0, 242, 254, 0.3); }
-.icon-upload { color: var(--neon-green); border-color: rgba(0, 255, 135, 0.3); }
-.icon-ping { color: var(--sunset-orange); border-color: rgba(255, 128, 8, 0.3); }
-.icon-jitter { color: var(--neon-purple); border-color: rgba(112, 0, 255, 0.3); }
+.icon-download { color: var(--primary-cyan); border-color: rgba(0, 242, 254, 0.4); }
+.icon-upload { color: var(--neon-green); border-color: rgba(0, 255, 135, 0.4); }
+.icon-ping { color: var(--sunset-orange); border-color: rgba(255, 128, 8, 0.4); }
+.icon-jitter { color: #c084fc; border-color: rgba(192, 132, 252, 0.4); }
 
 .metric-title {
-  font-size: 0.8rem;
-  color: var(--text-muted);
+  font-size: 0.82rem;
+  color: #cbd5e1;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
 }
 
 .metric-val-group {
@@ -124,20 +132,23 @@
 }
 
 .metric-val {
-  font-size: 1.7rem;
+  font-size: 1.8rem;
   font-weight: 800;
-  color: var(--text-main);
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 .metric-unit {
-  font-size: 0.85rem;
-  color: var(--text-dim);
+  font-size: 0.9rem;
+  color: #94a3b8;
+  font-weight: 600;
 }
 
 .metric-rating {
   display: block;
-  font-size: 0.78rem;
-  color: var(--text-muted);
+  font-size: 0.82rem;
+  color: #e2e8f0;
+  font-weight: 600;
   margin-top: 0.2rem;
 }
 
