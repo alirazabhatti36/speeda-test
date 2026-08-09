@@ -1,15 +1,13 @@
 {
   "name": "speeda-test",
   "version": "1.0.0",
-  "description": "Speeda Test - Real Internet Speed Testing Tool",
+  "description": "Speeda Test 360 - Real-Time Internet Speed Testing Tool",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
-    "dev:backend": "cd backend && npm run dev",
-    "dev:frontend": "cd frontend && npm run dev",
-    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "dev": "cd frontend && npm run dev",
     "build": "cd frontend && npm run build",
-    "preview": "cd frontend && npm run preview"
+    "preview": "cd frontend && npm run preview",
+    "deploy": "cd frontend && npm run build && npx gh-pages -d dist"
   },
   "keywords": [
     "speed-test",
