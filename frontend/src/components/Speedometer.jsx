@@ -2,16 +2,12 @@ import React from 'react';
 import './Speedometer.css';
 
 export default function Speedometer({ value = 0, max = 200, unit = 'Mbps', label = 'READY', isTesting = false }) {
-  // Clamp value between 0 and max
   const clampedValue = Math.min(Math.max(value, 0), max);
-  
-  // Calculate needle angle (-90deg to +90deg, total 180deg sweep)
   const angle = (clampedValue / max) * 180 - 90;
 
-  // Arc calculations (Radius 120, Center 150, 150)
   const radius = 110;
   const strokeWidth = 14;
-  const circumference = Math.PI * radius; // Half circle circumference
+  const circumference = Math.PI * radius;
   const progressOffset = circumference - (clampedValue / max) * circumference;
 
   return (
@@ -19,15 +15,15 @@ export default function Speedometer({ value = 0, max = 200, unit = 'Mbps', label
       <svg className="speedometer-svg" viewBox="0 0 300 200">
         <defs>
           <linearGradient id="speedArcGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#00f2fe" />
-            <stop offset="50%" stopColor="#00ff87" />
-            <stop offset="85%" stopColor="#ff8008" />
-            <stop offset="100%" stopColor="#7000ff" />
+            <stop offset="0%" stopColor="#38bdf8" />
+            <stop offset="45%" stopColor="#818cf8" />
+            <stop offset="75%" stopColor="#34d399" />
+            <stop offset="100%" stopColor="#fb923c" />
           </linearGradient>
 
           <radialGradient id="needleGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#00f2fe" stopOpacity="1" />
-            <stop offset="100%" stopColor="#00f2fe" stopOpacity="0" />
+            <stop offset="0%" stopColor="#38bdf8" stopOpacity="1" />
+            <stop offset="100%" stopColor="#38bdf8" stopOpacity="0" />
           </radialGradient>
 
           <filter id="glowFilter" x="-20%" y="-20%" width="140%" height="140%">
@@ -40,7 +36,7 @@ export default function Speedometer({ value = 0, max = 200, unit = 'Mbps', label
         <path
           d="M 40 160 A 110 110 0 0 1 260 160"
           fill="none"
-          stroke="rgba(255, 255, 255, 0.07)"
+          stroke="rgba(255, 255, 255, 0.08)"
           strokeWidth={strokeWidth}
           strokeLinecap="round"
         />
@@ -74,9 +70,9 @@ export default function Speedometer({ value = 0, max = 200, unit = 'Mbps', label
               <text
                 x={tx}
                 y={ty}
-                fill="rgba(255,255,255,0.4)"
+                fill="rgba(255,255,255,0.5)"
                 fontSize="10"
-                fontFamily="Outfit, sans-serif"
+                fontFamily="Inter, sans-serif"
                 textAnchor="middle"
                 dominantBaseline="central"
               >
@@ -88,11 +84,9 @@ export default function Speedometer({ value = 0, max = 200, unit = 'Mbps', label
 
         {/* Center Needle */}
         <g transform={`translate(150, 160) rotate(${angle})`} style={{ transition: 'transform 0.25s cubic-bezier(0.2, 0, 0, 1)' }}>
-          {/* Needle Line */}
-          <polygon points="-3,0 0,-115 3,0" fill="#00f2fe" filter="url(#glowFilter)" />
-          {/* Center Hub */}
-          <circle cx="0" cy="0" r="10" fill="#050b14" stroke="#00f2fe" strokeWidth="4" />
-          <circle cx="0" cy="0" r="4" fill="#00ff87" />
+          <polygon points="-3,0 0,-115 3,0" fill="#38bdf8" filter="url(#glowFilter)" />
+          <circle cx="0" cy="0" r="10" fill="#0f172a" stroke="#38bdf8" strokeWidth="4" />
+          <circle cx="0" cy="0" r="4" fill="#34d399" />
         </g>
       </svg>
 
