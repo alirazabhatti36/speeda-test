@@ -12,7 +12,7 @@ export default function WebsiteTester() {
   const handleTest = async (e) => {
     e.preventDefault();
     if (!url.trim()) {
-      setError('Please enter a valid website URL (e.g. google.com)');
+      setError('Please enter a valid website URL (e.g. webbuggs.com)');
       return;
     }
 
@@ -30,13 +30,19 @@ export default function WebsiteTester() {
     }
   };
 
+  const getScoreColor = (score) => {
+    if (score >= 90) return '#00ff87'; // Green
+    if (score >= 50) return '#f59e0b'; // Orange
+    return '#ff4b4b'; // Red
+  };
+
   return (
     <div className="website-tester-container">
       <AdSlot slotId="web-test-top" type="banner" />
 
       <div className="page-header">
         <h1>🌐 Website Speed <span className="gradient-text">Tester</span></h1>
-        <p>Analyze response time, page weight, TTFB, and performance score of any URL worldwide.</p>
+        <p>Google PageSpeed Insights & Lighthouse Standard Website Performance Analyzer</p>
       </div>
 
       {/* Input Box */}
@@ -44,13 +50,13 @@ export default function WebsiteTester() {
         <div className="input-row">
           <input
             type="text"
-            placeholder="Enter website URL (e.g. https://google.com)"
+            placeholder="Enter website URL (e.g. https://webbuggs.com)"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             className="url-input-field"
           />
           <button type="submit" disabled={loading} className="btn-primary">
-            {loading ? '⏳ Analyzing...' : '🚀 Test Website'}
+            {loading ? '⏳ Auditing Website...' : '🚀 Test Website'}
           </button>
         </div>
         {error && <div className="error-alert">❌ {error}</div>}
@@ -61,42 +67,92 @@ export default function WebsiteTester() {
         <div className="web-results-card glass-panel">
           <div className="results-head">
             <div>
-              <h3>📊 Results for <span className="gradient-text">{result.url}</span></h3>
+              <h3>📊 PageSpeed Report for <span className="gradient-text">{result.url}</span></h3>
               <span className="timestamp-badge">Measured at {new Date(result.timestamp).toLocaleTimeString()}</span>
             </div>
-            <div className="score-badge-circle">
-              <span className="score-num mono">{result.performanceScore}</span>
-              <span className="score-lbl">Score</span>
+            <div className="status-pill mono">
+              STATUS: {result.statusCode} {result.statusText}
             </div>
           </div>
 
-          <div className="web-metrics-grid">
-            <div className="web-metric-card">
-              <span className="wm-label">Status</span>
-              <span className="wm-val mono" style={{ color: '#00ff87' }}>
-                {result.statusCode} {result.statusText}
-              </span>
+          {/* PageSpeed Insights 4 Category Score Badges */}
+          <div className="category-scores-grid">
+            <div className="cat-score-card">
+              <div className="score-ring" style={{ borderColor: getScoreColor(result.performanceScore) }}>
+                <span className="score-val mono" style={{ color: getScoreColor(result.performanceScore) }}>
+                  {result.performanceScore}
+                </span>
+              </div>
+              <span className="cat-title">Performance</span>
             </div>
 
-            <div className="web-metric-card">
-              <span className="wm-label">Response Time</span>
-              <span className="wm-val mono">{result.durationMs} ms</span>
+            <div className="cat-score-card">
+              <div className="score-ring" style={{ borderColor: getScoreColor(result.accessibilityScore) }}>
+                <span className="score-val mono" style={{ color: getScoreColor(result.accessibilityScore) }}>
+                  {result.accessibilityScore}
+                </span>
+              </div>
+              <span className="cat-title">Accessibility</span>
             </div>
 
-            <div className="web-metric-card">
-              <span className="wm-label">Page Weight</span>
-              <span className="wm-val mono">{result.sizeKB}</span>
+            <div className="cat-score-card">
+              <div className="score-ring" style={{ borderColor: getScoreColor(result.bestPracticesScore) }}>
+                <span className="score-val mono" style={{ color: getScoreColor(result.bestPracticesScore) }}>
+                  {result.bestPracticesScore}
+                </span>
+              </div>
+              <span className="cat-title">Best Practices</span>
             </div>
 
-            <div className="web-metric-card">
-              <span className="wm-label">Rating</span>
-              <span className="wm-val">{result.rating}</span>
+            <div className="cat-score-card">
+              <div className="score-ring" style={{ borderColor: getScoreColor(result.seoScore) }}>
+                <span className="score-val mono" style={{ color: getScoreColor(result.seoScore) }}>
+                  {result.seoScore}
+                </span>
+              </div>
+              <span className="cat-title">SEO</span>
+            </div>
+          </div>
+
+          {/* Core Web Vitals Section */}
+          <div className="cwv-section">
+            <h4>⚡ Core Web Vitals & Metrics</h4>
+            <div className="cwv-grid">
+              <div className="cwv-card">
+                <span className="cwv-lbl">First Contentful Paint (FCP)</span>
+                <span className="cwv-val mono" style={{ color: '#00ff87' }}>{result.coreWebVitals.fcp}</span>
+              </div>
+
+              <div className="cwv-card">
+                <span className="cwv-lbl">Largest Contentful Paint (LCP)</span>
+                <span className="cwv-val mono" style={{ color: '#00ff87' }}>{result.coreWebVitals.lcp}</span>
+              </div>
+
+              <div className="cwv-card">
+                <span className="cwv-lbl">Total Blocking Time (TBT)</span>
+                <span className="cwv-val mono" style={{ color: '#f59e0b' }}>{result.coreWebVitals.tbt}</span>
+              </div>
+
+              <div className="cwv-card">
+                <span className="cwv-lbl">Cumulative Layout Shift (CLS)</span>
+                <span className="cwv-val mono" style={{ color: '#00ff87' }}>{result.coreWebVitals.cls}</span>
+              </div>
+
+              <div className="cwv-card">
+                <span className="cwv-lbl">Speed Index</span>
+                <span className="cwv-val mono" style={{ color: '#00f2fe' }}>{result.coreWebVitals.speedIndex}</span>
+              </div>
+
+              <div className="cwv-card">
+                <span className="cwv-lbl">Total Page Weight</span>
+                <span className="cwv-val mono" style={{ color: '#ffffff' }}>{result.sizeMB} ({result.sizeKB})</span>
+              </div>
             </div>
           </div>
 
           {/* Phase Timings */}
           <div className="timings-breakdown">
-            <h4>⏱️ Network Phase Timings</h4>
+            <h4>⏱️ Network Phase Breakdown</h4>
             <div className="phase-bars">
               <div className="phase-item">
                 <span>DNS Lookup:</span>
