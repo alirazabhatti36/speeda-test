@@ -4,8 +4,7 @@ import './AdSlot.css';
 export default function AdSlot({ slotId = '1234567890', format = 'auto', type = 'banner', label = 'Advertisement' }) {
   useEffect(() => {
     try {
-      // Execute AdSense script if adsbygoogle is defined
-      if (window.adsbygoogle && process.env.NODE_ENV === 'production') {
+      if (window.adsbygoogle) {
         (window.adsbygoogle = window.adsbygoogle || []).push({});
       }
     } catch (e) {
@@ -17,11 +16,10 @@ export default function AdSlot({ slotId = '1234567890', format = 'auto', type = 
     <div className={`ad-slot-container ad-${type}`}>
       <span className="ad-label">{label}</span>
       <div className="ad-box">
-        {/* Placeholder rendered for smooth layout & AdSense readiness review */}
         <ins
           className="adsbygoogle"
           style={{ display: 'block' }}
-          data-ad-client="ca-pub-0000000000000000" // Replace with client AdSense ID
+          data-ad-client="ca-pub-1373118680696037"
           data-ad-slot={slotId}
           data-ad-format={format}
           data-full-width-responsive="true"
