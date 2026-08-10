@@ -12,6 +12,7 @@ import Contact from './pages/Contact';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import CookiePolicy from './pages/CookiePolicy';
+import Guide from './pages/Guide';
 import './App.css';
 
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/website-test" element={<WebsiteTest />} />
+              <Route path="/guide" element={<Guide />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/privacy" element={<Privacy />} />

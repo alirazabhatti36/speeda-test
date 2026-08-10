@@ -1,0 +1,76 @@
+.guide-container {
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.guide-card {
+  padding: 2.5rem;
+  line-height: 1.8;
+}
+
+.guide-article {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.guide-article:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.guide-article h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--primary-cyan);
+  margin-bottom: 1rem;
+}
+
+.guide-article p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+}
+
+.guide-article ul, .guide-article ol {
+  color: var(--text-muted);
+  font-size: 1rem;
+  padding-left: 1.6rem;
+  margin-bottom: 1.2rem;
+}
+
+.guide-article li {
+  margin-bottom: 0.6rem;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.guide-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.guide-table th, .guide-table td {
+  padding: 1rem 1.2rem;
+  text-align: left;
+  border-bottom: 1px solid var(--glass-border);
+  font-size: 0.95rem;
+}
+
+.guide-table th {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.guide-table td {
+  color: var(--text-muted);
+}

@@ -23,6 +23,9 @@ export default function Navbar() {
           <NavLink to="/website-test" className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}>
             🌐 Website Tester
           </NavLink>
+          <NavLink to="/guide" className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}>
+            📖 Speed Guide
+          </NavLink>
           <NavLink to="/about" className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}>
             ℹ️ About
           </NavLink>
@@ -49,6 +52,9 @@ export default function Navbar() {
           </NavLink>
           <NavLink to="/website-test" className="mobile-item" onClick={() => setMobileOpen(false)}>
             🌐 Website Tester
+          </NavLink>
+          <NavLink to="/guide" className="mobile-item" onClick={() => setMobileOpen(false)}>
+            📖 Speed Guide
           </NavLink>
           <NavLink to="/about" className="mobile-item" onClick={() => setMobileOpen(false)}>
             ℹ️ About Us

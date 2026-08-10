@@ -17,9 +17,10 @@ export default function Footer() {
 
         <div className="footer-links-grid">
           <div className="footer-col">
-            <h4>Features</h4>
+            <h4>Features & Guides</h4>
             <Link to="/">⚡ Broadband Speed Test</Link>
             <Link to="/website-test">🌐 Website Analyzer</Link>
+            <Link to="/guide">📖 Speed Optimization Guide</Link>
             <Link to="/#faq">❓ Speed FAQ</Link>
           </div>
 
