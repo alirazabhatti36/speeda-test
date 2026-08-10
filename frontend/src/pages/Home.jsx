@@ -6,6 +6,29 @@ import FAQSection from '../components/FAQSection';
 import { getNetworkInfo, measureLatency, measureDownload, measureUpload } from '../utils/speedEngine';
 import './Home.css';
 
+const FAQS_LIST = [
+  {
+    q: 'How does Speeda Test 360 measure my internet speed?',
+    a: 'Speeda Test 360 sends multi-stream encrypted HTTP requests directly between your browser and global high-speed edge CDN nodes (such as Cloudflare). It measures latency (ping), jitter, download throughput, and upload throughput using high-precision Web performance APIs.'
+  },
+  {
+    q: 'What is a good Ping, Download, and Upload speed?',
+    a: 'For smooth 4K video streaming and online gaming: Ping under 30ms is excellent, Download speed above 50 Mbps is ideal for families, and Upload speed above 15 Mbps ensures crisp video calls and fast file sharing.'
+  },
+  {
+    q: 'Why does my speed test differ from my internet plan?',
+    a: 'Speed test results can be impacted by Wi-Fi distance, router load, background app downloads, browser extensions, VPNs, or network congestion from your Internet Service Provider (ISP).'
+  },
+  {
+    q: 'What is Jitter and why does it matter?',
+    a: 'Jitter measures the stability of your network latency over time. Low jitter (under 5ms) ensures smooth video calls (Zoom/Teams) and lag-free online multiplayer gaming without rubber-banding.'
+  },
+  {
+    q: 'Is Speeda Test 360 completely free?',
+    a: 'Yes! Speeda Test 360 is 100% free with unlimited tests, zero registration, and complete privacy.'
+  }
+];
+
 export default function Home() {
   const [networkInfo, setNetworkInfo] = useState(null);
   const [networkLoading, setNetworkLoading] = useState(true);
@@ -77,9 +100,11 @@ export default function Home() {
   return (
     <>
       <SEO 
-        title="360° Real-Time Speed Test"
-        description="Free real-time internet speed test. Measure download speed, upload speed, ping, jitter, and network ISP performance instantly."
+        title="Real-Time Internet Speed Test & Broadband Analytics"
+        description="Free real-time internet speed test. Measure download speed, upload speed, ping latency, and jitter for PTCL, StormFiber, Nayatel, Cybernet, Transworld & global ISPs."
+        keywords="internet speed test, speed test, wifi speed test, broadband speed test, ping test, download speed, upload speed, jitter test, PTCL speed test, StormFiber speed test, Nayatel speed test, Cybernet speed test"
         canonical="/"
+        faqs={FAQS_LIST}
       />
 
       <div className="home-container">
@@ -91,7 +116,7 @@ export default function Home() {
           <h1>
             ⚡ Speeda Test <span className="gradient-text">360</span>
           </h1>
-          <p>Real-Time Internet Speed & 360° Broadband Analytics</p>
+          <p>Real-Time Internet Speed Test & 360° Broadband Analytics Engine</p>
         </div>
 
         {/* Network Detector Card */}
@@ -156,7 +181,7 @@ export default function Home() {
               className="btn-primary start-btn"
             >
               {status === 'idle'
-                ? '▶ Start 360° Test'
+                ? '▶ Start 360° Speed Test'
                 : status === 'complete'
                 ? '🔄 Test Again'
                 : `⏳ Testing (${testProgress}%)`}
@@ -225,6 +250,36 @@ export default function Home() {
 
         {/* In-Feed AdSlot */}
         <AdSlot slotId="home-mid-banner" type="banner" />
+
+        {/* SEO Article & Content Guide */}
+        <section className="seo-content-section glass-panel">
+          <h2>🌐 Why Test Your Internet Speed with Speeda Test 360?</h2>
+          <p>
+            Speeda Test 360 is an advanced, 100% free broadband speed testing platform designed to give internet users real-time insights into their connection performance. Whether you use <strong>PTCL, StormFiber, Nayatel, Cybernet, Transworld, Wateen, WorldCall</strong>, or any mobile 4G/5G carrier, Speeda Test 360 accurately measures your download throughput, upload rate, ping latency, and jitter.
+          </p>
+
+          <div className="seo-article-grid">
+            <article className="seo-card">
+              <h3>📥 Download Speed (Mbps)</h3>
+              <p>Download speed measures how quickly data transfers from the internet to your device. A download speed of 25+ Mbps is recommended for HD video streaming, while 100+ Mbps is ideal for 4K streaming and large file downloads.</p>
+            </article>
+
+            <article className="seo-card">
+              <h3>📤 Upload Speed (Mbps)</h3>
+              <p>Upload speed indicates how fast your device sends data to external servers. High upload speeds (20+ Mbps) are vital for video conferencing (Zoom, Google Meet, Teams), cloud backups, and live streaming.</p>
+            </article>
+
+            <article className="seo-card">
+              <h3>📶 Ping & Latency (ms)</h3>
+              <p>Ping measures network response time in milliseconds (ms). Lower ping (under 30ms) ensures instant responsiveness for online gaming, VoIP calls, and real-time multiplayer applications.</p>
+            </article>
+
+            <article className="seo-card">
+              <h3>〰️ Network Jitter (ms)</h3>
+              <p>Jitter measures the stability and variance of your ping over time. Low jitter (under 5ms) prevents buffering, voice dropouts, and sudden lag spikes during online activities.</p>
+            </article>
+          </div>
+        </section>
 
         {/* FAQ Accordion Section */}
         <FAQSection />
