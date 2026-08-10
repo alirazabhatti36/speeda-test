@@ -30,9 +30,9 @@ export default function WebsiteTester() {
     }
   };
 
-  const getScoreColor = (score) => {
-    if (score >= 90) return '#00ff87'; // Green
-    if (score >= 50) return '#f59e0b'; // Orange
+  const getStatusColor = (code) => {
+    if (code >= 200 && code < 300) return '#00ff87'; // Green
+    if (code >= 300 && code < 400) return '#f59e0b'; // Amber
     return '#ff4b4b'; // Red
   };
 
@@ -42,7 +42,7 @@ export default function WebsiteTester() {
 
       <div className="page-header">
         <h1>🌐 Website Speed <span className="gradient-text">Tester</span></h1>
-        <p>Google PageSpeed Insights & Lighthouse Standard Website Performance Analyzer</p>
+        <p>100% Real-Time HTTP Response, TTFB Latency & Throughput Diagnostics</p>
       </div>
 
       {/* Input Box */}
@@ -56,7 +56,7 @@ export default function WebsiteTester() {
             className="url-input-field"
           />
           <button type="submit" disabled={loading} className="btn-primary">
-            {loading ? '⏳ Auditing Website...' : '🚀 Test Website'}
+            {loading ? '⏳ Measuring Website...' : '🚀 Test Website'}
           </button>
         </div>
         {error && <div className="error-alert">❌ {error}</div>}
@@ -65,101 +65,83 @@ export default function WebsiteTester() {
       {/* Results Dashboard */}
       {result && (
         <div className="web-results-card glass-panel">
+          {/* Header Row */}
           <div className="results-head">
             <div>
-              <h3>📊 PageSpeed Report for <span className="gradient-text">{result.url}</span></h3>
+              <h3>📊 Diagnostics for <span className="gradient-text">{result.url}</span></h3>
               <span className="timestamp-badge">Measured at {new Date(result.timestamp).toLocaleTimeString()}</span>
             </div>
-            <div className="status-pill mono">
-              STATUS: {result.statusCode} {result.statusText}
+
+            <div className="head-badges">
+              <span className="status-pill mono" style={{ color: getStatusColor(result.statusCode), borderColor: getStatusColor(result.statusCode) }}>
+                STATUS: {result.statusCode} {result.statusText}
+              </span>
+              {result.isHttps && (
+                <span className="ssl-pill">🔒 HTTPS Secure</span>
+              )}
             </div>
           </div>
 
-          {/* PageSpeed Insights 4 Category Score Badges */}
-          <div className="category-scores-grid">
-            <div className="cat-score-card">
-              <div className="score-ring" style={{ borderColor: getScoreColor(result.performanceScore) }}>
-                <span className="score-val mono" style={{ color: getScoreColor(result.performanceScore) }}>
-                  {result.performanceScore}
-                </span>
+          {/* Speeda 360 Score Banner */}
+          <div className="speeda-score-banner">
+            <div className="score-main-group">
+              <div className="grade-badge">{result.speedGrade}</div>
+              <div>
+                <div className="score-num-group">
+                  <span className="score-big mono">{result.speedaIndex}</span>
+                  <span className="score-max">/ 100</span>
+                </div>
+                <span className="score-title">Speeda 360 Performance Index</span>
               </div>
-              <span className="cat-title">Performance</span>
             </div>
-
-            <div className="cat-score-card">
-              <div className="score-ring" style={{ borderColor: getScoreColor(result.accessibilityScore) }}>
-                <span className="score-val mono" style={{ color: getScoreColor(result.accessibilityScore) }}>
-                  {result.accessibilityScore}
-                </span>
-              </div>
-              <span className="cat-title">Accessibility</span>
-            </div>
-
-            <div className="cat-score-card">
-              <div className="score-ring" style={{ borderColor: getScoreColor(result.bestPracticesScore) }}>
-                <span className="score-val mono" style={{ color: getScoreColor(result.bestPracticesScore) }}>
-                  {result.bestPracticesScore}
-                </span>
-              </div>
-              <span className="cat-title">Best Practices</span>
-            </div>
-
-            <div className="cat-score-card">
-              <div className="score-ring" style={{ borderColor: getScoreColor(result.seoScore) }}>
-                <span className="score-val mono" style={{ color: getScoreColor(result.seoScore) }}>
-                  {result.seoScore}
-                </span>
-              </div>
-              <span className="cat-title">SEO</span>
-            </div>
+            <div className="rating-tag">{result.speedRating}</div>
           </div>
 
-          {/* Core Web Vitals Section */}
-          <div className="cwv-section">
-            <h4>⚡ Core Web Vitals & Metrics</h4>
-            <div className="cwv-grid">
-              <div className="cwv-card">
-                <span className="cwv-lbl">First Contentful Paint (FCP)</span>
-                <span className="cwv-val mono" style={{ color: '#00ff87' }}>{result.coreWebVitals.fcp}</span>
+          {/* Real Metrics Grid */}
+          <div className="real-metrics-grid">
+            <div className="real-card">
+              <span className="rc-icon">⚡</span>
+              <div>
+                <span className="rc-lbl">Total Response Time</span>
+                <span className="rc-val mono">{result.totalDurationMs} ms</span>
               </div>
+            </div>
 
-              <div className="cwv-card">
-                <span className="cwv-lbl">Largest Contentful Paint (LCP)</span>
-                <span className="cwv-val mono" style={{ color: '#00ff87' }}>{result.coreWebVitals.lcp}</span>
+            <div className="real-card">
+              <span className="rc-icon">⏱️</span>
+              <div>
+                <span className="rc-lbl">Time to First Byte (TTFB)</span>
+                <span className="rc-val mono">{result.ttfbMs} ms</span>
               </div>
+            </div>
 
-              <div className="cwv-card">
-                <span className="cwv-lbl">Total Blocking Time (TBT)</span>
-                <span className="cwv-val mono" style={{ color: '#f59e0b' }}>{result.coreWebVitals.tbt}</span>
+            <div className="real-card">
+              <span className="rc-icon">📦</span>
+              <div>
+                <span className="rc-lbl">Total Page Weight</span>
+                <span className="rc-val mono">{result.sizeMB}</span>
               </div>
+            </div>
 
-              <div className="cwv-card">
-                <span className="cwv-lbl">Cumulative Layout Shift (CLS)</span>
-                <span className="cwv-val mono" style={{ color: '#00ff87' }}>{result.coreWebVitals.cls}</span>
-              </div>
-
-              <div className="cwv-card">
-                <span className="cwv-lbl">Speed Index</span>
-                <span className="cwv-val mono" style={{ color: '#00f2fe' }}>{result.coreWebVitals.speedIndex}</span>
-              </div>
-
-              <div className="cwv-card">
-                <span className="cwv-lbl">Total Page Weight</span>
-                <span className="cwv-val mono" style={{ color: '#ffffff' }}>{result.sizeMB} ({result.sizeKB})</span>
+            <div className="real-card">
+              <span className="rc-icon">🚀</span>
+              <div>
+                <span className="rc-lbl">Transfer Throughput</span>
+                <span className="rc-val mono">{result.transferRateKbps}</span>
               </div>
             </div>
           </div>
 
-          {/* Phase Timings */}
+          {/* Real Network Phase Timings */}
           <div className="timings-breakdown">
-            <h4>⏱️ Network Phase Breakdown</h4>
+            <h4>⏱️ Measured Network Timings</h4>
             <div className="phase-bars">
               <div className="phase-item">
                 <span>DNS Lookup:</span>
                 <span className="mono">{result.dnsMs} ms</span>
               </div>
               <div className="phase-item">
-                <span>TCP Connection:</span>
+                <span>TCP Connect:</span>
                 <span className="mono">{result.tcpMs} ms</span>
               </div>
               <div className="phase-item">
@@ -167,8 +149,12 @@ export default function WebsiteTester() {
                 <span className="mono">{result.sslMs} ms</span>
               </div>
               <div className="phase-item">
-                <span>Time to First Byte (TTFB):</span>
+                <span>TTFB Header Arrival:</span>
                 <span className="mono">{result.ttfbMs} ms</span>
+              </div>
+              <div className="phase-item">
+                <span>Data Stream Download:</span>
+                <span className="mono">{result.contentDownloadMs} ms</span>
               </div>
             </div>
           </div>

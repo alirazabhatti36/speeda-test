@@ -51,7 +51,7 @@
   justify-content: space-between;
   padding-bottom: 1.2rem;
   border-bottom: 1px solid var(--glass-border);
-  margin-bottom: 2rem;
+  margin-bottom: 1.8rem;
 }
 
 .timestamp-badge {
@@ -61,96 +61,127 @@
   margin-top: 0.2rem;
 }
 
+.head-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
 .status-pill {
-  padding: 0.5rem 1.2rem;
+  padding: 0.4rem 1rem;
   border-radius: var(--radius-full);
-  background: rgba(0, 255, 135, 0.12);
-  border: 1px solid rgba(0, 255, 135, 0.3);
-  color: #00ff87;
-  font-size: 0.9rem;
+  background: rgba(0, 255, 135, 0.1);
+  border: 1px solid #00ff87;
+  font-size: 0.88rem;
   font-weight: 800;
 }
 
-/* PageSpeed Insights 4 Category Rings */
-.category-scores-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 2.5rem;
+.ssl-pill {
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-full);
+  background: rgba(0, 242, 254, 0.1);
+  border: 1px solid var(--primary-cyan);
+  color: var(--primary-cyan);
+  font-size: 0.85rem;
+  font-weight: 700;
 }
 
-.cat-score-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--glass-border);
+/* Speeda 360 Score Banner */
+.speeda-score-banner {
+  background: radial-gradient(circle at 10% 50%, rgba(0, 242, 254, 0.15) 0%, rgba(15, 23, 42, 0.7) 100%);
+  border: 1px solid rgba(0, 242, 254, 0.3);
   border-radius: var(--radius-md);
-  padding: 1.4rem 1rem;
+  padding: 1.6rem 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.score-ring {
-  width: 76px;
-  height: 76px;
+.score-main-group {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.grade-badge {
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  border: 4px solid #00ff87;
+  background: linear-gradient(135deg, var(--primary-cyan) 0%, var(--primary-blue) 100%);
+  color: #030712;
+  font-size: 2rem;
+  font-weight: 900;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 0.8rem;
-  background: rgba(15, 23, 42, 0.6);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 25px rgba(0, 242, 254, 0.4);
 }
 
-.score-val {
-  font-size: 1.7rem;
+.score-num-group {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.score-big {
+  font-size: 2.4rem;
   font-weight: 900;
-  line-height: 1;
+  color: #ffffff;
 }
 
-.cat-title {
-  font-size: 0.9rem;
+.score-max {
+  font-size: 1rem;
+  color: var(--text-dim);
+}
+
+.score-title {
+  display: block;
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  font-weight: 600;
+}
+
+.rating-tag {
+  font-size: 1.1rem;
   font-weight: 700;
   color: #ffffff;
 }
 
-/* Core Web Vitals */
-.cwv-section {
-  margin-bottom: 2.5rem;
-}
-
-.cwv-section h4 {
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: #ffffff;
-  margin-bottom: 1.2rem;
-}
-
-.cwv-grid {
+/* Real Metrics Grid */
+.real-metrics-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.2rem;
+  margin-bottom: 2rem;
 }
 
-.cwv-card {
+.real-card {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-md);
-  padding: 1.1rem 1.4rem;
+  padding: 1.2rem;
   display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
+  align-items: center;
+  gap: 1rem;
 }
 
-.cwv-lbl {
-  font-size: 0.8rem;
+.rc-icon {
+  font-size: 1.6rem;
+}
+
+.rc-lbl {
+  display: block;
+  font-size: 0.76rem;
   color: var(--text-dim);
   font-weight: 600;
+  text-transform: uppercase;
 }
 
-.cwv-val {
-  font-size: 1.4rem;
+.rc-val {
+  font-size: 1.2rem;
   font-weight: 800;
+  color: #ffffff;
 }
 
 /* Timings Breakdown */
@@ -185,22 +216,25 @@
 }
 
 @media (max-width: 868px) {
-  .category-scores-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .cwv-grid {
+  .real-metrics-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 580px) {
   .input-row {
     flex-direction: column;
   }
-  .category-scores-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .speeda-score-banner {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
   }
-  .cwv-grid {
+  .score-main-group {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .real-metrics-grid {
     grid-template-columns: 1fr;
   }
   .phase-bars {
