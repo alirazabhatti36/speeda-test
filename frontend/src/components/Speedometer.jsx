@@ -1,12 +1,48 @@
 import React, { useState, useEffect } from 'react';
-import { setAudioEnabled, getAudioEnabled, updateEngineRPM } from '../utils/soundEffects';
+import { setAudioEnabled, updateEngineRPM } from '../utils/soundEffects';
 import './Speedometer.css';
 
-export default function Speedometer({ value = 0, max = 200, unit = 'Mbps', label = 'READY', isTesting = false }) {
+const GAUGE_THEMES = {
+  cyber: {
+    id: 'cyber',
+    label: '🩵 Cyber Neon',
+    stops: ['#00f2fe', '#38bdf8', '#818cf8', '#c084fc'],
+    needle: '#00f2fe',
+    badgeBg: 'rgba(0, 242, 254, 0.14)',
+    badgeBorder: 'rgba(0, 242, 254, 0.4)',
+    textColor: '#00f2fe'
+  },
+  volcanic: {
+    id: 'volcanic',
+    label: '🟧 Volcanic Amber',
+    stops: ['#ffb545', '#f59e0b', '#fb923c', '#ef4444'],
+    needle: '#ffb545',
+    badgeBg: 'rgba(255, 181, 69, 0.14)',
+    badgeBorder: 'rgba(255, 181, 69, 0.4)',
+    textColor: '#ffb545'
+  },
+  purple: {
+    id: 'purple',
+    label: '🟣 Deep Purple',
+    stops: ['#c084fc', '#a855f7', '#818cf8', '#34d399'],
+    needle: '#c084fc',
+    badgeBg: 'rgba(192, 132, 252, 0.14)',
+    badgeBorder: 'rgba(192, 132, 252, 0.4)',
+    textColor: '#c084fc'
+  }
+};
+
+export default function Speedometer({ value = 0, max = 200, unit = 'Mbps', label = 'READY', isTesting = false, onThemeChange }) {
   const [soundOn, setSoundOn] = useState(() => {
     const saved = localStorage.getItem('speeda_sound_enabled');
     return saved !== null ? JSON.parse(saved) : true;
   });
+
+  const [activeThemeKey, setActiveThemeKey] = useState(() => {
+    return localStorage.getItem('speeda_gauge_theme') || 'cyber';
+  });
+
+  const currentTheme = GAUGE_THEMES[activeThemeKey] || GAUGE_THEMES.cyber;
 
   useEffect(() => {
     setAudioEnabled(soundOn);
@@ -18,6 +54,14 @@ export default function Speedometer({ value = 0, max = 200, unit = 'Mbps', label
       updateEngineRPM(value, max);
     }
   }, [value, max, isTesting]);
+
+  const switchTheme = (key) => {
+    setActiveThemeKey(key);
+    localStorage.setItem('speeda_gauge_theme', key);
+    if (onThemeChange) {
+      onThemeChange(GAUGE_THEMES[key]?.textColor || '#00f2fe');
+    }
+  };
 
   const toggleSound = () => {
     setSoundOn((prev) => !prev);
@@ -42,18 +86,32 @@ export default function Speedometer({ value = 0, max = 200, unit = 'Mbps', label
         {soundOn ? '🏎️ Engine Sound: ON' : '🔇 Muted'}
       </button>
 
+      {/* Theme Switcher Capsule Pills */}
+      <div className="gauge-theme-row">
+        {Object.values(GAUGE_THEMES).map((t) => (
+          <button
+            key={t.id}
+            onClick={() => switchTheme(t.id)}
+            className={`gauge-theme-pill ${activeThemeKey === t.id ? 'active' : ''}`}
+            style={activeThemeKey === t.id ? { borderColor: t.needle, color: t.textColor } : {}}
+          >
+            {t.label}
+          </button>
+        ))}
+      </div>
+
       <svg className="speedometer-svg" viewBox="0 0 300 200">
         <defs>
           <linearGradient id="speedArcGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#00f2fe" />
-            <stop offset="45%" stopColor="#38bdf8" />
-            <stop offset="75%" stopColor="#818cf8" />
-            <stop offset="100%" stopColor="#c084fc" />
+            <stop offset="0%" stopColor={currentTheme.stops[0]} />
+            <stop offset="35%" stopColor={currentTheme.stops[1]} />
+            <stop offset="70%" stopColor={currentTheme.stops[2]} />
+            <stop offset="100%" stopColor={currentTheme.stops[3]} />
           </linearGradient>
 
           <radialGradient id="needleGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#00f2fe" stopOpacity="1" />
-            <stop offset="100%" stopColor="#00f2fe" stopOpacity="0" />
+            <stop offset="0%" stopColor={currentTheme.needle} stopOpacity="1" />
+            <stop offset="100%" stopColor={currentTheme.needle} stopOpacity="0" />
           </radialGradient>
 
           <filter id="glowFilter" x="-20%" y="-20%" width="140%" height="140%">
@@ -114,18 +172,33 @@ export default function Speedometer({ value = 0, max = 200, unit = 'Mbps', label
 
         {/* Center Needle */}
         <g transform={`translate(150, 160) rotate(${angle})`} style={{ transition: 'transform 0.25s cubic-bezier(0.2, 0, 0, 1)' }}>
-          <polygon points="-3,0 0,-115 3,0" fill="#00f2fe" filter="url(#glowFilter)" />
-          <circle cx="0" cy="0" r="10" fill="#0b0f19" stroke="#00f2fe" strokeWidth="4" />
-          <circle cx="0" cy="0" r="4" fill="#34d399" />
+          <polygon points="-3,0 0,-115 3,0" fill={currentTheme.needle} filter="url(#glowFilter)" />
+          <circle cx="0" cy="0" r="10" fill="#0b0f19" stroke={currentTheme.needle} strokeWidth="4" />
+          <circle cx="0" cy="0" r="4" fill="#ffffff" />
         </g>
       </svg>
 
       {/* Digital Speed Display */}
       <div className="speed-readout">
-        <span className="speed-value mono">{value.toFixed(1)}</span>
+        <span className="speed-value mono" style={{
+          background: `linear-gradient(135deg, #ffffff 0%, ${currentTheme.needle} 100%)`,
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent'
+        }}>
+          {value.toFixed(1)}
+        </span>
         <span className="speed-unit">{unit}</span>
       </div>
-      <div className="speed-status-badge">{label}</div>
+      <div 
+        className="speed-status-badge"
+        style={{
+          background: currentTheme.badgeBg,
+          borderColor: currentTheme.badgeBorder,
+          color: currentTheme.textColor
+        }}
+      >
+        {label}
+      </div>
     </div>
   );
 }

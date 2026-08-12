@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Speedometer from '../components/Speedometer';
+import LiveSparkline from '../components/LiveSparkline';
 import ShareResultCard from '../components/ShareResultCard';
 import SpeedInterpretation from '../components/SpeedInterpretation';
 import ComparePackage from '../components/ComparePackage';
@@ -57,6 +58,8 @@ export default function Home() {
   // Test states
   const [status, setStatus] = useState('idle');
   const [currentSpeed, setCurrentSpeed] = useState(0);
+  const [sparklineData, setSparklineData] = useState([]);
+  const [activeThemeColor, setActiveThemeColor] = useState('#00f2fe');
 
   // Results
   const [pingData, setPingData] = useState(null);
@@ -78,6 +81,7 @@ export default function Home() {
     startEngineSound();
     setStatus('pinging');
     setCurrentSpeed(0);
+    setSparklineData([0]);
     setPingData(null);
     setDownloadSpeed(null);
     setUploadSpeed(null);
@@ -91,6 +95,7 @@ export default function Home() {
     setStatus('downloading');
     const dlResult = await measureDownload((speed) => {
       setCurrentSpeed(speed);
+      setSparklineData((prev) => [...prev.slice(-35), speed]);
     });
     setDownloadSpeed(dlResult.downloadMbps);
 
@@ -98,6 +103,7 @@ export default function Home() {
     setStatus('uploading');
     const ulResult = await measureUpload((speed) => {
       setCurrentSpeed(speed);
+      setSparklineData((prev) => [...prev.slice(-35), speed]);
     });
     setUploadSpeed(ulResult.uploadMbps);
 
@@ -155,6 +161,7 @@ export default function Home() {
             unit="Mbps"
             label={getSpeedLabel()}
             isTesting={status !== 'idle' && status !== 'complete'}
+            onThemeChange={(col) => setActiveThemeColor(col)}
           />
 
           <div className="test-control">
@@ -263,6 +270,14 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* Live Real-Time Throughput Graph */}
+        <LiveSparkline 
+          dataPoints={sparklineData} 
+          maxVal={200} 
+          color={activeThemeColor}
+          label="Real-Time Network Throughput Graph" 
+        />
 
         {/* Shareable Speed Result Card */}
         {currentResultObj && (
