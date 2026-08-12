@@ -11,27 +11,47 @@ export default function Footer() {
             ⚡ Speeda Test <span className="gradient-text">360</span>
           </Link>
           <p className="footer-tagline">
-            Next-Generation 360° Real-Time Speed & Broadband Analytics Engine. Fast, accurate, and 100% free.
+            Pakistan’s premier 360° Internet Speed Test & Broadband Network Analytics Engine. Measure download, upload, ping, and jitter accurately.
           </p>
         </div>
 
         <div className="footer-links-grid">
           <div className="footer-col">
-            <h4>Features & Guides</h4>
-            <Link to="/">⚡ Broadband Speed Test</Link>
-            <Link to="/website-test">🌐 Website Analyzer</Link>
-            <Link to="/guide">📖 Speed Optimization Guide</Link>
-            <Link to="/#faq">❓ Speed FAQ</Link>
+            <h4>Pakistan Speed Tests</h4>
+            <Link to="/ptcl-speed-test">🔵 PTCL Speed Test</Link>
+            <Link to="/stormfiber-speed-test">⚡ StormFiber Speed Test</Link>
+            <Link to="/nayatel-speed-test">🟢 Nayatel Speed Test</Link>
+            <Link to="/transworld-speed-test">🌍 Transworld Speed Test</Link>
+            <Link to="/jazz-speed-test">📶 Jazz 4G Speed Test</Link>
+            <Link to="/zong-speed-test">🟢 Zong 4G Speed Test</Link>
+            <Link to="/isp-rankings">🏆 ISP Rankings</Link>
           </div>
 
           <div className="footer-col">
-            <h4>Company</h4>
+            <h4>City Speed Tests</h4>
+            <Link to="/internet-speed-test-lahore">📍 Lahore Speed Test</Link>
+            <Link to="/internet-speed-test-karachi">📍 Karachi Speed Test</Link>
+            <Link to="/internet-speed-test-islamabad">📍 Islamabad Speed Test</Link>
+            <Link to="/internet-speed-test-rawalpindi">📍 Rawalpindi Speed Test</Link>
+            <Link to="/internet-speed-test-faisalabad">📍 Faisalabad Speed Test</Link>
+          </div>
+
+          <div className="footer-col">
+            <h4>Tools & Resources</h4>
+            <Link to="/gaming-speed-test">🎮 Gaming Speed Test</Link>
+            <Link to="/streaming-speed-test">📺 Streaming Speed Test</Link>
+            <Link to="/mobile-speed-test">📱 Mobile Speed Test</Link>
+            <Link to="/website-test">🌐 Website Analyzer</Link>
+            <Link to="/ping-test">🛰️ Ping Test</Link>
+            <Link to="/ip-lookup">🔍 IP Lookup</Link>
+            <Link to="/how-speed-test-works">🔬 How It Works</Link>
+            <Link to="/guide">📖 Speed Guide</Link>
+          </div>
+
+          <div className="footer-col">
+            <h4>Company & Legal</h4>
             <Link to="/about">ℹ️ About Us</Link>
             <Link to="/contact">📞 Contact Us</Link>
-          </div>
-
-          <div className="footer-col">
-            <h4>Legal & Policies</h4>
             <Link to="/privacy">🔒 Privacy Policy</Link>
             <Link to="/terms">📜 Terms of Service</Link>
             <Link to="/cookies">🍪 Cookie Policy</Link>

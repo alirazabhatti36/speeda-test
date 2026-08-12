@@ -1,0 +1,84 @@
+.gaming-page-container {
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.gaming-scorecard {
+  padding: 2.2rem;
+  margin-top: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.score-badge-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.2) 0%, rgba(15, 23, 42, 0.8) 100%);
+  border: 2px solid var(--primary-cyan);
+  border-radius: 50%;
+  width: 130px;
+  height: 130px;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.3);
+}
+
+.score-num {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.score-max {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.score-lbl {
+  font-size: 0.72rem;
+  color: var(--primary-cyan);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.game-status-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+  flex: 1;
+}
+
+.game-item-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.g-title {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.g-status {
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+@media (max-width: 768px) {
+  .gaming-scorecard {
+    flex-direction: column;
+    text-align: center;
+  }
+  .game-status-grid {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+}

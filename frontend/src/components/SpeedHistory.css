@@ -1,0 +1,114 @@
+.speed-history-container {
+  width: 100%;
+  max-width: 900px;
+  padding: 1.8rem;
+  margin-top: 2rem;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.history-header h3 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.history-sub {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+}
+
+.btn-sm {
+  padding: 0.4rem 0.9rem;
+  font-size: 0.82rem;
+}
+
+.history-chart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  height: 140px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.chart-bar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  height: 100%;
+  flex: 1;
+}
+
+.chart-val {
+  font-size: 0.75rem;
+  color: var(--primary-cyan);
+  font-weight: 700;
+}
+
+.chart-bar-wrap {
+  flex: 1;
+  width: 24px;
+  display: flex;
+  align-items: flex-end;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.chart-bar {
+  width: 100%;
+  background: linear-gradient(to top, var(--primary-cyan), var(--primary-blue));
+  border-radius: 4px;
+  transition: height 0.4s ease;
+}
+
+.chart-label {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.history-table-wrap {
+  overflow-x: auto;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.history-table th, .history-table td {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.history-table th {
+  color: var(--text-dim);
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.isp-tag {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  color: #ffffff;
+}
+
+.text-cyan { color: var(--primary-cyan); }
+.text-green { color: var(--neon-green); }
+.text-orange { color: var(--sunset-orange); }
+.text-purple { color: var(--neon-purple); }
+.font-bold { font-weight: 700; }

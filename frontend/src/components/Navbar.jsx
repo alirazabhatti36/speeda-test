@@ -20,17 +20,20 @@ export default function Navbar() {
           <NavLink to="/" end className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}>
             ⚡ Speed Test
           </NavLink>
+          <NavLink to="/gaming-speed-test" className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}>
+            🎮 Gaming Ping
+          </NavLink>
+          <NavLink to="/isp-rankings" className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}>
+            🏆 ISP Rankings
+          </NavLink>
           <NavLink to="/website-test" className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}>
             🌐 Website Tester
           </NavLink>
+          <NavLink to="/ping-test" className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}>
+            🛰️ Ping Test
+          </NavLink>
           <NavLink to="/guide" className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}>
-            📖 Speed Guide
-          </NavLink>
-          <NavLink to="/about" className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}>
-            ℹ️ About
-          </NavLink>
-          <NavLink to="/contact" className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}>
-            📞 Contact
+            📖 Guide
           </NavLink>
         </nav>
 
@@ -50,8 +53,26 @@ export default function Navbar() {
           <NavLink to="/" end className="mobile-item" onClick={() => setMobileOpen(false)}>
             ⚡ Speed Test
           </NavLink>
+          <NavLink to="/gaming-speed-test" className="mobile-item" onClick={() => setMobileOpen(false)}>
+            🎮 Gaming Ping Test
+          </NavLink>
+          <NavLink to="/streaming-speed-test" className="mobile-item" onClick={() => setMobileOpen(false)}>
+            📺 Streaming Speed Test
+          </NavLink>
+          <NavLink to="/isp-rankings" className="mobile-item" onClick={() => setMobileOpen(false)}>
+            🏆 Pakistan ISP Rankings
+          </NavLink>
           <NavLink to="/website-test" className="mobile-item" onClick={() => setMobileOpen(false)}>
             🌐 Website Tester
+          </NavLink>
+          <NavLink to="/ping-test" className="mobile-item" onClick={() => setMobileOpen(false)}>
+            🛰️ Ping Test
+          </NavLink>
+          <NavLink to="/ip-lookup" className="mobile-item" onClick={() => setMobileOpen(false)}>
+            🔍 IP Lookup
+          </NavLink>
+          <NavLink to="/how-speed-test-works" className="mobile-item" onClick={() => setMobileOpen(false)}>
+            🔬 How It Works
           </NavLink>
           <NavLink to="/guide" className="mobile-item" onClick={() => setMobileOpen(false)}>
             📖 Speed Guide
@@ -61,12 +82,6 @@ export default function Navbar() {
           </NavLink>
           <NavLink to="/contact" className="mobile-item" onClick={() => setMobileOpen(false)}>
             📞 Contact Us
-          </NavLink>
-          <NavLink to="/privacy" className="mobile-item" onClick={() => setMobileOpen(false)}>
-            🔒 Privacy Policy
-          </NavLink>
-          <NavLink to="/terms" className="mobile-item" onClick={() => setMobileOpen(false)}>
-            📜 Terms of Service
           </NavLink>
         </div>
       )}

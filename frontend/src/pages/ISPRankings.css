@@ -1,0 +1,43 @@
+.rankings-container {
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.rankings-card {
+  padding: 1.8rem;
+}
+
+.rankings-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.rankings-table th, .rankings-table td {
+  padding: 1rem 1.2rem;
+  text-align: left;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.rankings-table th {
+  background: rgba(255, 255, 255, 0.04);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.rank-num {
+  color: var(--primary-cyan);
+  font-size: 1.1rem;
+}
+
+.isp-name-cell {
+  color: #ffffff;
+}
+
+.tech-badge {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}

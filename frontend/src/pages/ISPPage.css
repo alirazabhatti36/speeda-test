@@ -1,0 +1,76 @@
+.isp-page-container {
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.isp-content-card {
+  padding: 2.2rem;
+  margin-top: 2.5rem;
+  line-height: 1.8;
+}
+
+.isp-content-card h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary-cyan);
+  margin-bottom: 1rem;
+}
+
+.isp-content-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 1.5rem 0 0.8rem 0;
+}
+
+.pkg-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  list-style: none;
+  margin-bottom: 1.5rem;
+}
+
+.pkg-tag {
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #ffffff;
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.trouble-list {
+  padding-left: 1.4rem;
+  color: var(--text-muted);
+  font-size: 0.98rem;
+}
+
+.trouble-list li {
+  margin-bottom: 0.6rem;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.faq-item {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 1.2rem;
+}
+
+.faq-item h4 {
+  font-size: 1.05rem;
+  color: #ffffff;
+  margin-bottom: 0.4rem;
+}
+
+.faq-item p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}

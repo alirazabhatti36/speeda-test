@@ -9,6 +9,16 @@
   margin-top: 1rem;
 }
 
+.hero-trust-pills {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--primary-cyan);
+}
+
 .network-panel {
   width: 100%;
   max-width: 900px;
@@ -150,6 +160,61 @@
   margin-top: 0.2rem;
 }
 
+/* Quick Links Directory Card */
+.quick-links-card {
+  width: 100%;
+  max-width: 900px;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.quick-links-card h3 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.3rem;
+}
+
+.ql-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.ql-section {
+  margin-bottom: 1.4rem;
+}
+
+.ql-section h4 {
+  font-size: 0.95rem;
+  color: var(--primary-cyan);
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+
+.ql-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.ql-grid a {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glass-border);
+  color: var(--text-main);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.ql-grid a:hover {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: var(--primary-cyan);
+  color: #ffffff;
+}
+
 .seo-content-section {
   width: 100%;
   max-width: 900px;
@@ -206,6 +271,10 @@
   }
   .seo-article-grid {
     grid-template-columns: 1fr;
+  }
+  .hero-trust-pills {
+    flex-direction: column;
+    gap: 0.3rem;
   }
 }
 

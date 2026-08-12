@@ -1,0 +1,47 @@
+.ping-page-container {
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.ping-card {
+  padding: 2rem;
+}
+
+.ping-ctrl-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1.5rem;
+}
+
+.servers-ping-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.server-ping-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--glass-border);
+  padding: 1.2rem 1.6rem;
+  border-radius: var(--radius-md);
+}
+
+.srv-name {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.srv-reg {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+}
+
+.srv-val {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
