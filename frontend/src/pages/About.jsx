@@ -7,8 +7,9 @@ export default function About() {
   return (
     <>
       <SEO 
-        title="About Us"
+        title="About Us — Speeda Test 360"
         description="Learn about Speeda Test 360 — our mission, high-precision browser testing engine, and broadband diagnostic technology."
+        keywords="about speeda test 360, internet speed test technology, browser speed test engine"
         canonical="/about"
       />
 
@@ -55,6 +56,9 @@ export default function About() {
             <h2>💡 Built for Everyone</h2>
             <p>
               Whether you're a competitive gamer checking ping stability, a remote worker verifying Zoom call bandwidth, or a web developer analyzing site TTFB, Speeda Test 360 delivers instant insights without ads blocking your view or required software downloads.
+            </p>
+            <p>
+              For partnership or press inquiries, reach out to <a href="mailto:partners@speedatest360.online" className="email">partners@speedatest360.online</a>.
             </p>
           </section>
         </div>

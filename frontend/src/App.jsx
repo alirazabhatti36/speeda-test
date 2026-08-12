@@ -34,6 +34,7 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/website-test" element={<WebsiteTest />} />
+              <Route path="/website-test.html" element={<WebsiteTest />} />
               
               {/* Global & Regional ISP Landing Pages */}
               <Route path="/global-speed-test" element={<ISPPage />} />
@@ -46,6 +47,7 @@ export default function App() {
               <Route path="/du-speed-test" element={<ISPPage />} />
               <Route path="/jio-speed-test" element={<ISPPage />} />
               <Route path="/ptcl-speed-test" element={<ISPPage />} />
+              <Route path="/isp/ptcl-speed-test.html" element={<ISPPage />} />
               <Route path="/stormfiber-speed-test" element={<ISPPage />} />
               <Route path="/nayatel-speed-test" element={<ISPPage />} />
               <Route path="/transworld-speed-test" element={<ISPPage />} />
@@ -54,6 +56,8 @@ export default function App() {
               <Route path="/ufone-speed-test" element={<ISPPage />} />
               <Route path="/telenor-speed-test" element={<ISPPage />} />
               <Route path="/wateen-speed-test" element={<ISPPage />} />
+              <Route path="/us-speed-test" element={<ISPPage />} />
+              <Route path="/country/us-speed-test.html" element={<ISPPage />} />
 
               {/* Global & Regional City Landing Pages */}
               <Route path="/internet-speed-test-new-york" element={<CityPage />} />
@@ -76,11 +80,16 @@ export default function App() {
               <Route path="/how-speed-test-works" element={<HowItWorks />} />
               <Route path="/guide" element={<Guide />} />
 
-              {/* Legal & Company Pages */}
+              {/* Legal & Company Pages (with .html aliases) */}
               <Route path="/about" element={<About />} />
+              <Route path="/about.html" element={<About />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/contact.html" element={<Contact />} />
               <Route path="/privacy" element={<Privacy />} />
+              <Route path="/privacy-policy.html" element={<Privacy />} />
+              <Route path="/privacy.html" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
+              <Route path="/terms.html" element={<Terms />} />
               <Route path="/cookies" element={<CookiePolicy />} />
             </Routes>
           </main>

@@ -17,8 +17,9 @@ export default function Contact() {
   return (
     <>
       <SEO 
-        title="Contact Us"
+        title="Contact Us — Speeda Test 360"
         description="Get in touch with the Speeda Test 360 team. Send inquiries, bug reports, or partnership requests."
+        keywords="contact speeda test 360, support@speedatest360.online, speed test support"
         canonical="/contact"
       />
 
@@ -41,7 +42,7 @@ export default function Contact() {
                 <span className="info-icon">📧</span>
                 <div>
                   <strong>Email Us</strong>
-                  <p>support@speedatest360.com</p>
+                  <p><a href="mailto:support@speedatest360.online" className="email">support@speedatest360.online</a></p>
                 </div>
               </div>
 
@@ -82,7 +83,7 @@ export default function Contact() {
                     id="name"
                     type="text"
                     required
-                    placeholder="Ali Raza"
+                    placeholder="Your Name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   />
@@ -94,7 +95,7 @@ export default function Contact() {
                     id="email"
                     type="email"
                     required
-                    placeholder="ali@example.com"
+                    placeholder="you@example.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   />

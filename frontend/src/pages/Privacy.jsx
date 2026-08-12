@@ -7,8 +7,9 @@ export default function Privacy() {
   return (
     <>
       <SEO 
-        title="Privacy Policy"
+        title="Privacy Policy — Speeda Test 360"
         description="Speeda Test 360 Privacy Policy. Information on data collection, privacy protection, and Google AdSense compliance."
+        keywords="privacy policy, speeda test 360 privacy, google adsense privacy"
         canonical="/privacy"
       />
 
@@ -17,12 +18,12 @@ export default function Privacy() {
 
         <div className="glass-panel legal-card">
           <h1>🔒 Privacy Policy</h1>
-          <p className="effective-date">Last Updated: August 8, 2026</p>
+          <p className="effective-date">Last Updated: August 2026</p>
 
           <section>
             <h2>1. Introduction</h2>
             <p>
-              At Speeda Test 360, accessible from speedatest360.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Speeda Test 360 and how we use it.
+              At Speeda Test 360, accessible from speedatest360.online, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Speeda Test 360 and how we use it.
             </p>
           </section>
 
@@ -36,7 +37,7 @@ export default function Privacy() {
           <section>
             <h2>3. Google DoubleClick DART Cookie & AdSense Policies</h2>
             <p>
-              Google is a third-party vendor on our site. It uses cookies, known as DART cookies, to serve ads to our site visitors based upon their visit to www.website.com and other sites on the internet.
+              Google is a third-party vendor on our site. It uses cookies, known as DART cookies, to serve ads to our site visitors based upon their visit to speedatest360.online and other sites on the internet.
             </p>
             <ul>
               <li>Google's use of advertising cookies enables it and its partners to serve ads to your users based on their visit to your sites and/or other sites on the Internet.</li>
@@ -54,7 +55,7 @@ export default function Privacy() {
           <section>
             <h2>5. Contact Information</h2>
             <p>
-              If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us through our <a href="/contact">Contact Page</a>.
+              If you have additional questions or require more information about our Privacy Policy, contact us at <a className="email" href="mailto:privacy@speedatest360.online">privacy@speedatest360.online</a> or visit our <a href="/contact">Contact Page</a>.
             </p>
           </section>
         </div>
