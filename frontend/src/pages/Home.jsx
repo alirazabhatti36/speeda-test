@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Speedometer from '../components/Speedometer';
+import ShareResultCard from '../components/ShareResultCard';
 import SpeedInterpretation from '../components/SpeedInterpretation';
 import ComparePackage from '../components/ComparePackage';
 import SpeedHistory from '../components/SpeedHistory';
 import AdSlot from '../components/AdSlot';
 import FAQSection from '../components/FAQSection';
 import { getNetworkInfo, measureLatency, measureDownload, measureUpload } from '../utils/speedEngine';
+import { startEngineSound, stopEngineSound, playCompletionSound } from '../utils/soundEffects';
 import './Home.css';
 
 const FAQS_LIST = [
@@ -73,6 +75,7 @@ export default function Home() {
   }, []);
 
   const runFullTest = async () => {
+    startEngineSound();
     setStatus('pinging');
     setCurrentSpeed(0);
     setPingData(null);
@@ -99,6 +102,8 @@ export default function Home() {
     setUploadSpeed(ulResult.uploadMbps);
 
     // Step 4: Complete
+    stopEngineSound();
+    playCompletionSound();
     setStatus('complete');
     setCurrentSpeed(dlResult.downloadMbps);
 
@@ -258,6 +263,11 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* Shareable Speed Result Card */}
+        {currentResultObj && (
+          <ShareResultCard result={currentResultObj} networkInfo={networkInfo} />
+        )}
 
         {/* 4. Sponsor Space / AdSlot */}
         <AdSlot slotId="home-after-results-banner" type="banner" />

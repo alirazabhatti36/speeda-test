@@ -1,7 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { setAudioEnabled, getAudioEnabled, updateEngineRPM } from '../utils/soundEffects';
 import './Speedometer.css';
 
 export default function Speedometer({ value = 0, max = 200, unit = 'Mbps', label = 'READY', isTesting = false }) {
+  const [soundOn, setSoundOn] = useState(() => {
+    const saved = localStorage.getItem('speeda_sound_enabled');
+    return saved !== null ? JSON.parse(saved) : true;
+  });
+
+  useEffect(() => {
+    setAudioEnabled(soundOn);
+    localStorage.setItem('speeda_sound_enabled', JSON.stringify(soundOn));
+  }, [soundOn]);
+
+  useEffect(() => {
+    if (isTesting) {
+      updateEngineRPM(value, max);
+    }
+  }, [value, max, isTesting]);
+
+  const toggleSound = () => {
+    setSoundOn((prev) => !prev);
+  };
+
   const clampedValue = Math.min(Math.max(value, 0), max);
   const angle = (clampedValue / max) * 180 - 90;
 
@@ -12,18 +33,27 @@ export default function Speedometer({ value = 0, max = 200, unit = 'Mbps', label
 
   return (
     <div className={`speedometer-container ${isTesting ? 'active-glow' : ''}`}>
+      {/* Sound FX Toggle Button */}
+      <button 
+        onClick={toggleSound} 
+        className={`sound-toggle-btn ${soundOn ? 'active' : ''}`}
+        title={soundOn ? 'Mute Engine SFX' : 'Enable Engine RPM SFX'}
+      >
+        {soundOn ? '🏎️ Engine Sound: ON' : '🔇 Muted'}
+      </button>
+
       <svg className="speedometer-svg" viewBox="0 0 300 200">
         <defs>
           <linearGradient id="speedArcGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#38bdf8" />
-            <stop offset="45%" stopColor="#818cf8" />
-            <stop offset="75%" stopColor="#34d399" />
-            <stop offset="100%" stopColor="#fb923c" />
+            <stop offset="0%" stopColor="#00f2fe" />
+            <stop offset="45%" stopColor="#38bdf8" />
+            <stop offset="75%" stopColor="#818cf8" />
+            <stop offset="100%" stopColor="#c084fc" />
           </linearGradient>
 
           <radialGradient id="needleGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#38bdf8" stopOpacity="1" />
-            <stop offset="100%" stopColor="#38bdf8" stopOpacity="0" />
+            <stop offset="0%" stopColor="#00f2fe" stopOpacity="1" />
+            <stop offset="100%" stopColor="#00f2fe" stopOpacity="0" />
           </radialGradient>
 
           <filter id="glowFilter" x="-20%" y="-20%" width="140%" height="140%">
@@ -84,8 +114,8 @@ export default function Speedometer({ value = 0, max = 200, unit = 'Mbps', label
 
         {/* Center Needle */}
         <g transform={`translate(150, 160) rotate(${angle})`} style={{ transition: 'transform 0.25s cubic-bezier(0.2, 0, 0, 1)' }}>
-          <polygon points="-3,0 0,-115 3,0" fill="#38bdf8" filter="url(#glowFilter)" />
-          <circle cx="0" cy="0" r="10" fill="#0f172a" stroke="#38bdf8" strokeWidth="4" />
+          <polygon points="-3,0 0,-115 3,0" fill="#00f2fe" filter="url(#glowFilter)" />
+          <circle cx="0" cy="0" r="10" fill="#0b0f19" stroke="#00f2fe" strokeWidth="4" />
           <circle cx="0" cy="0" r="4" fill="#34d399" />
         </g>
       </svg>

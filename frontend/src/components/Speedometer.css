@@ -10,6 +10,36 @@
   padding: 1rem;
 }
 
+.sound-toggle-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--glass-border);
+  color: var(--text-dim);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(10px);
+}
+
+.sound-toggle-btn:hover {
+  background: rgba(0, 242, 254, 0.15);
+  color: var(--primary-cyan);
+  border-color: var(--primary-cyan);
+}
+
+.sound-toggle-btn.active {
+  background: rgba(0, 242, 254, 0.15);
+  color: var(--primary-cyan);
+  border-color: rgba(0, 242, 254, 0.4);
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.25);
+}
+
 .speedometer-svg {
   width: 100%;
   height: auto;
