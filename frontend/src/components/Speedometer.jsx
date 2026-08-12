@@ -5,7 +5,7 @@ import './Speedometer.css';
 const GAUGE_THEMES = {
   cyber: {
     id: 'cyber',
-    label: '🩵 Cyber Neon',
+    label: '🩵 Cyber',
     stops: ['#00f2fe', '#38bdf8', '#818cf8', '#c084fc'],
     needle: '#00f2fe',
     badgeBg: 'rgba(0, 242, 254, 0.14)',
@@ -15,7 +15,7 @@ const GAUGE_THEMES = {
   },
   volcanic: {
     id: 'volcanic',
-    label: '🟧 Volcanic Amber',
+    label: '🟧 Amber',
     stops: ['#ffb545', '#f59e0b', '#fb923c', '#ef4444'],
     needle: '#ffb545',
     badgeBg: 'rgba(255, 181, 69, 0.14)',
@@ -25,7 +25,7 @@ const GAUGE_THEMES = {
   },
   purple: {
     id: 'purple',
-    label: '🟣 Deep Purple',
+    label: '🟣 Purple',
     stops: ['#c084fc', '#a855f7', '#818cf8', '#34d399'],
     needle: '#c084fc',
     badgeBg: 'rgba(192, 132, 252, 0.14)',
@@ -80,14 +80,14 @@ export default function Speedometer({ value = 0, max = 200, unit = 'Mbps', label
 
   return (
     <div className={`speedometer-container ${isTesting ? 'active-glow' : ''}`}>
-      {/* Aligned Control Toolbar (Sound FX + Themes in 1 horizontal row) */}
+      {/* 100% Single Straight Horizontal Line Toolbar */}
       <div className="speedometer-toolbar">
         <button 
           onClick={toggleSound} 
           className={`control-pill sound-pill ${soundOn ? 'active' : ''}`}
           title={soundOn ? 'Mute Engine Sound' : 'Enable Engine Sound'}
         >
-          {soundOn ? '🏎️ Engine Sound: ON' : '🔇 Muted'}
+          {soundOn ? '🔊 Sound: ON' : '🔇 Muted'}
         </button>
 
         {Object.values(GAUGE_THEMES).map((t) => (
