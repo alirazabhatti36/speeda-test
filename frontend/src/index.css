@@ -1,7 +1,7 @@
 :root {
   --bg-dark: #0f172a;
-  --bg-card: rgba(15, 23, 42, 0.82);
-  --bg-card-hover: rgba(30, 41, 59, 0.9);
+  --bg-card: rgba(15, 23, 42, 0.88);
+  --bg-card-hover: rgba(30, 41, 59, 0.95);
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-border-glow: rgba(56, 189, 248, 0.35);
   
@@ -36,24 +36,23 @@
   box-sizing: border-box;
 }
 
-html {
+html, body, #root {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-dark) !important;
+  color: var(--text-main);
   overflow-x: hidden;
-  scroll-behavior: smooth;
 }
 
 body {
   font-family: var(--font-main);
-  background-color: var(--bg-dark);
-  color: var(--text-main);
-  min-height: 100vh;
-  overflow-x: hidden;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   position: relative;
 }
 
-/* Signature Ambient Glowing Orbs (matching AuraToolkit360 & Goat360AI) */
+/* Ambient Glowing Orbs */
 body::before {
   content: '';
   position: fixed;
@@ -108,6 +107,8 @@ a:hover {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  width: 100%;
+  background-color: var(--bg-dark);
 }
 
 .main-content {
@@ -150,6 +151,7 @@ a:hover {
   align-items: center;
   gap: 0.6rem;
   text-shadow: none;
+  white-space: nowrap;
 }
 
 .btn-primary:hover {
@@ -178,6 +180,7 @@ a:hover {
   border: 1px solid var(--glass-border);
   cursor: pointer;
   transition: all var(--transition-fast);
+  white-space: nowrap;
 }
 
 .btn-secondary:hover {
@@ -185,16 +188,9 @@ a:hover {
   border-color: var(--primary-cyan);
 }
 
-/* Typography Utilities (Signature 360 Blue to Indigo Gradient) */
+/* Typography Utilities */
 .gradient-text {
   background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 800;
-}
-
-.gradient-text-purple {
-  background: linear-gradient(135deg, #c084fc 0%, #38bdf8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 800;
@@ -224,7 +220,6 @@ a:hover {
   font-weight: 500;
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 768px) {
   .main-content {
     padding: 1.25rem 1rem;

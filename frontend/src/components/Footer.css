@@ -1,61 +1,67 @@
 .footer-container {
   margin-top: 4rem;
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  padding: 3rem 2rem 1.5rem;
+  padding: 3.5rem 2rem 1.8rem;
   border-bottom: none;
+  width: 100%;
 }
 
 .footer-content {
   display: grid;
-  grid-template-columns: 1.4fr 2fr;
-  gap: 3rem;
-  max-width: 1200px;
+  grid-template-columns: 1.3fr repeat(3, 1fr);
+  gap: 2.5rem;
+  max-width: 1240px;
   margin: 0 auto;
+  align-items: start;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
 }
 
 .footer-logo {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 800;
   color: var(--text-main);
 }
 
 .footer-tagline {
   color: var(--text-muted);
-  font-size: 0.95rem;
-  margin-top: 0.8rem;
+  font-size: 0.92rem;
   line-height: 1.6;
 }
 
-.footer-links-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-}
-
 .footer-col h4 {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--text-main);
-  margin-bottom: 1rem;
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: var(--primary-cyan);
+  margin-bottom: 1.1rem;
   letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 
 .footer-col a {
   display: block;
   color: var(--text-muted);
-  font-size: 0.9rem;
-  margin-bottom: 0.6rem;
+  font-size: 0.88rem;
+  margin-bottom: 0.65rem;
+  font-weight: 500;
   transition: color var(--transition-fast);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .footer-col a:hover {
-  color: var(--primary-cyan);
+  color: #ffffff;
 }
 
 .footer-bottom {
-  max-width: 1200px;
-  margin: 2.5rem auto 0;
-  padding-top: 1.5rem;
+  max-width: 1240px;
+  margin: 3rem auto 0;
+  padding-top: 1.6rem;
   border-top: 1px solid var(--glass-border);
   text-align: center;
   color: var(--text-dim);
@@ -68,18 +74,16 @@
   opacity: 0.7;
 }
 
-@media (max-width: 868px) {
+@media (max-width: 1024px) {
   .footer-content {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-  .footer-links-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
   }
 }
 
-@media (max-width: 480px) {
-  .footer-links-grid {
+@media (max-width: 580px) {
+  .footer-content {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
 }
