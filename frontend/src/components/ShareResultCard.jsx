@@ -174,19 +174,19 @@ export default function ShareResultCard({ result, networkInfo }) {
 
       <div className="share-actions-row">
         <button onClick={downloadResultImage} className="btn-share btn-download-img">
-          📸 Download Result Image
+          📸 Download Image
         </button>
 
         <button onClick={copyToClipboard} className="btn-share btn-copy-text">
-          {copied ? '✅ Copied to Clipboard!' : '📋 Copy Result Link'}
+          {copied ? '✅ Copied!' : '📋 Copy Link'}
         </button>
 
         <button onClick={shareOnWhatsApp} className="btn-share btn-whatsapp">
-          💬 Share on WhatsApp
+          💬 WhatsApp
         </button>
 
         <button onClick={shareOnTwitter} className="btn-share btn-twitter">
-          🐦 Share on X (Twitter)
+          🐦 Share on X
         </button>
       </div>
     </div>
