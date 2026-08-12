@@ -1,79 +1,68 @@
 .speedometer-container {
   position: relative;
   width: 100%;
-  max-width: 380px;
+  max-width: 440px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 0.5rem 1rem 1rem;
 }
 
-.sound-toggle-btn {
-  position: absolute;
-  top: 5px;
-  right: 5px;
+/* Single Aligned Control Toolbar */
+.speedometer-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
   z-index: 10;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--glass-border);
-  color: var(--text-dim);
+  width: 100%;
+}
+
+.control-pill {
+  height: 32px;
+  padding: 0 0.85rem;
+  border-radius: var(--radius-full);
   font-size: 0.78rem;
   font-weight: 700;
-  padding: 0.35rem 0.8rem;
-  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-dim);
   cursor: pointer;
   transition: all var(--transition-fast);
   backdrop-filter: blur(10px);
 }
 
-.sound-toggle-btn:hover {
-  background: rgba(0, 242, 254, 0.15);
-  color: var(--primary-cyan);
-  border-color: var(--primary-cyan);
+.control-pill:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
-.sound-toggle-btn.active {
-  background: rgba(0, 242, 254, 0.15);
+.control-pill.active {
+  background: rgba(255, 255, 255, 0.1);
+  font-weight: 800;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+}
+
+.sound-pill.active {
+  background: rgba(0, 242, 254, 0.14);
   color: var(--primary-cyan);
   border-color: rgba(0, 242, 254, 0.4);
   box-shadow: 0 0 15px rgba(0, 242, 254, 0.25);
 }
 
-.gauge-theme-row {
-  display: flex;
-  gap: 0.4rem;
-  margin-bottom: 0.4rem;
-  margin-top: 1.2rem;
-  z-index: 5;
-}
-
-.gauge-theme-pill {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--text-dim);
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 0.25rem 0.6rem;
-  border-radius: var(--radius-full);
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  white-space: nowrap;
-}
-
-.gauge-theme-pill:hover {
-  background: rgba(255, 255, 255, 0.12);
-  color: #ffffff;
-}
-
-.gauge-theme-pill.active {
-  background: rgba(255, 255, 255, 0.1);
-  font-weight: 800;
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
-}
-
 .speedometer-svg {
   width: 100%;
+  max-width: 380px;
   height: auto;
   overflow: visible;
   filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.6));
@@ -100,11 +89,30 @@
   gap: 0.4rem;
 }
 
+/* Bulletproof CSS Gradient Text (Eliminates React Inline Style Gradient Box Glitch) */
 .speed-value {
   font-size: 3.4rem;
   font-weight: 900;
   line-height: 1;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.speed-value.theme-text-cyber {
+  background-image: linear-gradient(135deg, #ffffff 0%, #00f2fe 60%, #818cf8 100%);
   text-shadow: 0 0 25px rgba(0, 242, 254, 0.4);
+}
+
+.speed-value.theme-text-volcanic {
+  background-image: linear-gradient(135deg, #ffffff 0%, #ffb545 60%, #ef4444 100%);
+  text-shadow: 0 0 25px rgba(255, 181, 69, 0.4);
+}
+
+.speed-value.theme-text-purple {
+  background-image: linear-gradient(135deg, #ffffff 0%, #c084fc 60%, #34d399 100%);
+  text-shadow: 0 0 25px rgba(192, 132, 252, 0.4);
 }
 
 .speed-unit {
@@ -125,4 +133,14 @@
   text-transform: uppercase;
   box-shadow: 0 0 20px rgba(0, 242, 254, 0.25);
   transition: all var(--transition-fast);
+}
+
+@media (max-width: 480px) {
+  .speedometer-toolbar {
+    gap: 0.35rem;
+  }
+  .control-pill {
+    font-size: 0.72rem;
+    padding: 0 0.6rem;
+  }
 }

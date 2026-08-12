@@ -10,7 +10,8 @@ const GAUGE_THEMES = {
     needle: '#00f2fe',
     badgeBg: 'rgba(0, 242, 254, 0.14)',
     badgeBorder: 'rgba(0, 242, 254, 0.4)',
-    textColor: '#00f2fe'
+    textColor: '#00f2fe',
+    textClass: 'theme-text-cyber'
   },
   volcanic: {
     id: 'volcanic',
@@ -19,7 +20,8 @@ const GAUGE_THEMES = {
     needle: '#ffb545',
     badgeBg: 'rgba(255, 181, 69, 0.14)',
     badgeBorder: 'rgba(255, 181, 69, 0.4)',
-    textColor: '#ffb545'
+    textColor: '#ffb545',
+    textClass: 'theme-text-volcanic'
   },
   purple: {
     id: 'purple',
@@ -28,7 +30,8 @@ const GAUGE_THEMES = {
     needle: '#c084fc',
     badgeBg: 'rgba(192, 132, 252, 0.14)',
     badgeBorder: 'rgba(192, 132, 252, 0.4)',
-    textColor: '#c084fc'
+    textColor: '#c084fc',
+    textClass: 'theme-text-purple'
   }
 };
 
@@ -77,22 +80,21 @@ export default function Speedometer({ value = 0, max = 200, unit = 'Mbps', label
 
   return (
     <div className={`speedometer-container ${isTesting ? 'active-glow' : ''}`}>
-      {/* Sound FX Toggle Button */}
-      <button 
-        onClick={toggleSound} 
-        className={`sound-toggle-btn ${soundOn ? 'active' : ''}`}
-        title={soundOn ? 'Mute Engine SFX' : 'Enable Engine RPM SFX'}
-      >
-        {soundOn ? '🏎️ Engine Sound: ON' : '🔇 Muted'}
-      </button>
+      {/* Aligned Control Toolbar (Sound FX + Themes in 1 horizontal row) */}
+      <div className="speedometer-toolbar">
+        <button 
+          onClick={toggleSound} 
+          className={`control-pill sound-pill ${soundOn ? 'active' : ''}`}
+          title={soundOn ? 'Mute Engine Sound' : 'Enable Engine Sound'}
+        >
+          {soundOn ? '🏎️ Engine Sound: ON' : '🔇 Muted'}
+        </button>
 
-      {/* Theme Switcher Capsule Pills */}
-      <div className="gauge-theme-row">
         {Object.values(GAUGE_THEMES).map((t) => (
           <button
             key={t.id}
             onClick={() => switchTheme(t.id)}
-            className={`gauge-theme-pill ${activeThemeKey === t.id ? 'active' : ''}`}
+            className={`control-pill theme-pill ${activeThemeKey === t.id ? 'active' : ''}`}
             style={activeThemeKey === t.id ? { borderColor: t.needle, color: t.textColor } : {}}
           >
             {t.label}
@@ -108,11 +110,6 @@ export default function Speedometer({ value = 0, max = 200, unit = 'Mbps', label
             <stop offset="70%" stopColor={currentTheme.stops[2]} />
             <stop offset="100%" stopColor={currentTheme.stops[3]} />
           </linearGradient>
-
-          <radialGradient id="needleGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor={currentTheme.needle} stopOpacity="1" />
-            <stop offset="100%" stopColor={currentTheme.needle} stopOpacity="0" />
-          </radialGradient>
 
           <filter id="glowFilter" x="-20%" y="-20%" width="140%" height="140%">
             <feGaussianBlur stdDeviation="6" result="blur" />
@@ -180,15 +177,12 @@ export default function Speedometer({ value = 0, max = 200, unit = 'Mbps', label
 
       {/* Digital Speed Display */}
       <div className="speed-readout">
-        <span className="speed-value mono" style={{
-          background: `linear-gradient(135deg, #ffffff 0%, ${currentTheme.needle} 100%)`,
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent'
-        }}>
+        <span className={`speed-value mono ${currentTheme.textClass}`}>
           {value.toFixed(1)}
         </span>
         <span className="speed-unit">{unit}</span>
       </div>
+      
       <div 
         className="speed-status-badge"
         style={{
