@@ -4,6 +4,10 @@
   padding: 3.5rem 2rem 1.8rem;
   border-bottom: none;
   width: 100%;
+  background: rgba(11, 18, 32, 0.92);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.6);
 }
 
 .footer-content {
@@ -23,7 +27,7 @@
 
 .footer-logo {
   font-size: 1.5rem;
-  font-weight: 800;
+  font-weight: 900;
   color: var(--text-main);
 }
 
@@ -40,6 +44,7 @@
   margin-bottom: 1.1rem;
   letter-spacing: 0.02em;
   white-space: nowrap;
+  text-shadow: 0 0 15px rgba(0, 242, 254, 0.25);
 }
 
 .footer-col a {
@@ -55,7 +60,7 @@
 }
 
 .footer-col a:hover {
-  color: #ffffff;
+  color: var(--primary-cyan-light);
 }
 
 .footer-bottom {
