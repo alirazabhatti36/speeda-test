@@ -33,6 +33,21 @@ const FAQS_LIST = [
   }
 ];
 
+const GLOBAL_RANKINGS = [
+  { rank: 1, name: 'AT&T Fiber', country: '🇺🇸 USA', type: 'Symmetric FTTH', avgDownload: '940 Mbps', avgUpload: '935 Mbps', avgPing: '4 ms' },
+  { rank: 2, name: 'Verizon Fios', country: '🇺🇸 USA', type: 'FTTH Fiber', avgDownload: '890 Mbps', avgUpload: '880 Mbps', avgPing: '5 ms' },
+  { rank: 3, name: 'Etisalat eLife', country: '🇦🇪 UAE', type: 'FTTH Fiber', avgDownload: '500 Mbps', avgUpload: '250 Mbps', avgPing: '3 ms' },
+  { rank: 4, name: 'Virgin Media Gig1', country: '🇬🇧 UK', type: 'DOCSIS 3.1', avgDownload: '1130 Mbps', avgUpload: '104 Mbps', avgPing: '12 ms' },
+  { rank: 5, name: 'JioFiber 1G', country: '🇮🇳 India', type: 'FTTH Fiber', avgDownload: '880 Mbps', avgUpload: '850 Mbps', avgPing: '6 ms' }
+];
+
+const PAKISTAN_RANKINGS = [
+  { rank: 1, name: 'Nayatel Fiber', country: '🇵🇰 Pakistan', type: 'FTTH Fiber', avgDownload: '58.4 Mbps', avgUpload: '48.2 Mbps', avgPing: '8 ms' },
+  { rank: 2, name: 'StormFiber (Cybernet)', country: '🇵🇰 Pakistan', type: 'FTTH Fiber', avgDownload: '52.8 Mbps', avgUpload: '44.5 Mbps', avgPing: '10 ms' },
+  { rank: 3, name: 'Transworld Home', country: '🇵🇰 Pakistan', type: 'Subsea FTTH', avgDownload: '49.1 Mbps', avgUpload: '42.0 Mbps', avgPing: '11 ms' },
+  { rank: 4, name: 'PTCL Flash Fiber', country: '🇵🇰 Pakistan', type: 'GPON Fiber', avgDownload: '41.5 Mbps', avgUpload: '35.0 Mbps', avgPing: '14 ms' }
+];
+
 export default function Home() {
   const [networkInfo, setNetworkInfo] = useState(null);
   const [networkLoading, setNetworkLoading] = useState(true);
@@ -40,7 +55,6 @@ export default function Home() {
   // Test states
   const [status, setStatus] = useState('idle');
   const [currentSpeed, setCurrentSpeed] = useState(0);
-  const [testProgress, setTestProgress] = useState(0);
 
   // Results
   const [pingData, setPingData] = useState(null);
@@ -61,7 +75,6 @@ export default function Home() {
   const runFullTest = async () => {
     setStatus('pinging');
     setCurrentSpeed(0);
-    setTestProgress(5);
     setPingData(null);
     setDownloadSpeed(null);
     setUploadSpeed(null);
@@ -70,28 +83,24 @@ export default function Home() {
     // Step 1: Latency & Jitter
     const latency = await measureLatency();
     setPingData(latency);
-    setTestProgress(20);
 
     // Step 2: Download Speed
     setStatus('downloading');
-    const dlResult = await measureDownload((speed, progress) => {
+    const dlResult = await measureDownload((speed) => {
       setCurrentSpeed(speed);
-      setTestProgress(20 + Math.round(progress * 0.4));
     });
     setDownloadSpeed(dlResult.downloadMbps);
 
     // Step 3: Upload Speed
     setStatus('uploading');
-    const ulResult = await measureUpload((speed, progress) => {
+    const ulResult = await measureUpload((speed) => {
       setCurrentSpeed(speed);
-      setTestProgress(60 + Math.round(progress * 0.4));
     });
     setUploadSpeed(ulResult.uploadMbps);
 
     // Step 4: Complete
     setStatus('complete');
     setCurrentSpeed(dlResult.downloadMbps);
-    setTestProgress(100);
 
     setCurrentResultObj({
       downloadMbps: dlResult.downloadMbps,
@@ -113,27 +122,46 @@ export default function Home() {
   return (
     <>
       <SEO 
-        title="Speeda Test 360 — Free Global Internet Speed Test & ISP Network Analytics"
-        description="Free global internet speed test. Measure real download speed, upload speed, ping, and jitter worldwide for US, UK, UAE, India, Europe & global ISPs."
-        keywords="speed test, internet speed test, free speed test, wifi speed test, global speed test, comcast speed test, att speed test, bt speed test, etisalat speed test, ptcl speed test, Speeda Test 360"
+        title="Speeda Test 360 — Free Internet Speed Test & Global ISP Analytics"
+        description="Free internet speed test. Measure real download speed, upload speed, ping, and jitter worldwide. Compare speeds for Xfinity, AT&T, Verizon, BT, Etisalat, PTCL, StormFiber & Nayatel."
+        keywords="speed test, internet speed test, free speed test, wifi speed test, global speed test, comcast speed test, att speed test, ptcl speed test, stormfiber speed test, Speeda Test 360"
         canonical="/"
       />
 
       <div className="home-container">
-        <AdSlot slotId="home-top-banner" type="banner" />
-
-        {/* Hero Section */}
+        {/* 1. ⚡ Internet Speed Test Hero Section (NO ADS ABOVE HERO) */}
         <section className="hero-section text-center">
           <div className="page-header">
             <h1>Free Internet <span className="gradient-text">Speed Test</span></h1>
-            <p>Check your real download speed, upload speed, ping & jitter worldwide</p>
+            <p>Check your real download speed, upload speed, ping & jitter in real-time</p>
             <div className="hero-trust-pills">
-              <span>✓ 100% Free Worldwide</span>
-              <span>✓ No Sign-up Required</span>
-              <span>✓ Mobile & Desktop Friendly</span>
+              <span>✓ Free</span>
+              <span>✓ No Sign-up</span>
+              <span>✓ Mobile Friendly</span>
             </div>
           </div>
         </section>
+
+        {/* 2. Speedometer + [ START SPEED TEST ] */}
+        <div className="glass-panel speed-arena">
+          <Speedometer
+            value={currentSpeed}
+            max={200}
+            unit="Mbps"
+            label={getSpeedLabel()}
+            isTesting={status !== 'idle' && status !== 'complete'}
+          />
+
+          <div className="test-control">
+            <button
+              onClick={runFullTest}
+              disabled={status !== 'idle' && status !== 'complete'}
+              className="btn-primary start-btn"
+            >
+              {status === 'idle' || status === 'complete' ? '▶ START SPEED TEST' : '⏳ Testing Speed...'}
+            </button>
+          </div>
+        </div>
 
         {/* Network & ISP Info Bar */}
         <div className="glass-panel network-panel">
@@ -180,28 +208,7 @@ export default function Home() {
           )}
         </div>
 
-        {/* Interactive Speedometer Test Arena */}
-        <div className="glass-panel speed-arena">
-          <Speedometer
-            value={currentSpeed}
-            max={200}
-            unit="Mbps"
-            label={getSpeedLabel()}
-            isTesting={status !== 'idle' && status !== 'complete'}
-          />
-
-          <div className="test-control">
-            <button
-              onClick={runFullTest}
-              disabled={status !== 'idle' && status !== 'complete'}
-              className="btn-primary start-btn"
-            >
-              {status === 'idle' || status === 'complete' ? '▶ Start Speed Test' : '⏳ Testing Speed...'}
-            </button>
-          </div>
-        </div>
-
-        {/* Metrics Grid */}
+        {/* 3. Download / Upload / Ping / Jitter Metrics Grid */}
         <div className="metrics-grid">
           <div className="glass-panel metric-card">
             <div className="metric-icon-wrap icon-download">⬇️</div>
@@ -252,66 +259,154 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Results Interpretation, Package Comparison & History */}
+        {/* 4. Sponsor Space / AdSlot (Placed AFTER Test Results) */}
+        <AdSlot slotId="home-after-results-banner" type="banner" />
+
+        {/* 5. "Is my internet good?" Interpretation */}
         {currentResultObj && (
-          <>
-            <SpeedInterpretation 
-              download={currentResultObj.downloadMbps}
-              upload={currentResultObj.uploadMbps}
-              ping={currentResultObj.ping}
-              jitter={currentResultObj.jitter}
-            />
-            <ComparePackage 
-              currentDownload={currentResultObj.downloadMbps} 
-              currentIsp={networkInfo?.isp || ''} 
-            />
-          </>
+          <SpeedInterpretation 
+            download={currentResultObj.downloadMbps}
+            upload={currentResultObj.uploadMbps}
+            ping={currentResultObj.ping}
+            jitter={currentResultObj.jitter}
+          />
         )}
 
+        {/* 6. Package Delivery Calculator */}
+        {currentResultObj && (
+          <ComparePackage 
+            currentDownload={currentResultObj.downloadMbps} 
+            currentIsp={networkInfo?.isp || ''} 
+          />
+        )}
+
+        {/* 7. Speed History */}
         <SpeedHistory currentResult={currentResultObj} />
 
-        {/* Quick Links Directory Card - Global & Regional */}
-        <div className="glass-panel quick-links-card">
-          <h3>🌍 Global ISP & City Speed Test Directory</h3>
-          <p className="ql-desc">Select your specific global internet provider or city for localized speed benchmarks:</p>
-          
-          <div className="ql-section">
-            <h4>Global Broadband ISPs:</h4>
-            <div className="ql-grid">
-              <Link to="/xfinity-speed-test">🇺🇸 Xfinity Speed Test</Link>
-              <Link to="/att-speed-test">🇺🇸 AT&T Fiber Test</Link>
-              <Link to="/verizon-speed-test">🇺🇸 Verizon Fios Test</Link>
-              <Link to="/bt-speed-test">🇬🇧 BT Broadband Test</Link>
-              <Link to="/virgin-media-speed-test">🇬🇧 Virgin Media Test</Link>
-              <Link to="/etisalat-speed-test">🇦🇪 Etisalat eLife Test</Link>
-              <Link to="/du-speed-test">🇦🇪 du Home Test</Link>
-              <Link to="/jio-speed-test">🇮🇳 JioFiber Test</Link>
-              <Link to="/ptcl-speed-test">🇵🇰 PTCL Speed Test</Link>
-              <Link to="/stormfiber-speed-test">🇵🇰 StormFiber Test</Link>
-              <Link to="/nayatel-speed-test">🇵🇰 Nayatel Speed Test</Link>
-              <Link to="/isp-rankings">🏆 Global ISP Rankings</Link>
-            </div>
-          </div>
+        {/* 8. Gaming / Streaming / Mobile Quick Tests Grid */}
+        <div className="glass-panel section-card">
+          <h3>⚡ Specialized Speed & Performance Tests</h3>
+          <p className="section-sub">Select a dedicated testing tool for your specific online activity:</p>
 
-          <div className="ql-section">
-            <h4>Global Cities:</h4>
-            <div className="ql-grid">
-              <Link to="/internet-speed-test-new-york">📍 New York City</Link>
-              <Link to="/internet-speed-test-london">📍 London</Link>
-              <Link to="/internet-speed-test-dubai">📍 Dubai</Link>
-              <Link to="/internet-speed-test-toronto">📍 Toronto</Link>
-              <Link to="/internet-speed-test-lahore">📍 Lahore</Link>
-              <Link to="/internet-speed-test-karachi">📍 Karachi</Link>
-              <Link to="/internet-speed-test-islamabad">📍 Islamabad</Link>
-            </div>
+          <div className="quick-tools-grid">
+            <Link to="/gaming-speed-test" className="tool-box">
+              <span className="tb-icon">🎮</span>
+              <div>
+                <h4>Gaming Speed & Ping Test</h4>
+                <p>Test ultra-low ping latency for Valorant, PUBG & CS2</p>
+              </div>
+            </Link>
+
+            <Link to="/streaming-speed-test" className="tool-box">
+              <span className="tb-icon">📺</span>
+              <div>
+                <h4>4K Video Streaming Test</h4>
+                <p>Verify YouTube 4K & Netflix Ultra HD buffering capacity</p>
+              </div>
+            </Link>
+
+            <Link to="/mobile-speed-test" className="tool-box">
+              <span className="tb-icon">📱</span>
+              <div>
+                <h4>Mobile 4G & 5G Speed Test</h4>
+                <p>Test mobile data throughput for Jazz, Zong & 5G networks</p>
+              </div>
+            </Link>
+
+            <Link to="/website-test" className="tool-box">
+              <span className="tb-icon">🌐</span>
+              <div>
+                <h4>Website Speed Analyzer</h4>
+                <p>Test website load times, page weight & response codes</p>
+              </div>
+            </Link>
           </div>
         </div>
 
-        {/* SEO Educational Content Section */}
+        {/* 9. 🌍 Global ISP Rankings */}
+        <div className="glass-panel section-card">
+          <div className="sec-head-row">
+            <h3>🌍 Global ISP Speed Rankings</h3>
+            <Link to="/isp-rankings" className="view-all-link">View Full Rankings →</Link>
+          </div>
+          
+          <div className="table-responsive">
+            <table className="home-rank-table">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>ISP</th>
+                  <th>Country</th>
+                  <th>Download</th>
+                  <th>Upload</th>
+                  <th>Ping</th>
+                </tr>
+              </thead>
+              <tbody>
+                {GLOBAL_RANKINGS.map((item) => (
+                  <tr key={item.rank}>
+                    <td className="mono font-bold text-cyan">#{item.rank}</td>
+                    <td className="font-bold text-white">{item.name}</td>
+                    <td>{item.country}</td>
+                    <td className="mono text-cyan font-bold">{item.avgDownload}</td>
+                    <td className="mono text-green font-bold">{item.avgUpload}</td>
+                    <td className="mono text-orange">{item.avgPing}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* 10. 🇵🇰 Pakistan ISP Rankings */}
+        <div className="glass-panel section-card">
+          <div className="sec-head-row">
+            <h3>🇵🇰 Pakistan Broadband ISP Rankings</h3>
+            <Link to="/isp-rankings" className="view-all-link">View Full Rankings →</Link>
+          </div>
+
+          <div className="table-responsive">
+            <table className="home-rank-table">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Broadband ISP</th>
+                  <th>Download</th>
+                  <th>Upload</th>
+                  <th>Ping</th>
+                </tr>
+              </thead>
+              <tbody>
+                {PAKISTAN_RANKINGS.map((item) => (
+                  <tr key={item.rank}>
+                    <td className="mono font-bold text-cyan">#{item.rank}</td>
+                    <td className="font-bold text-white">{item.name}</td>
+                    <td className="mono text-cyan font-bold">{item.avgDownload}</td>
+                    <td className="mono text-green font-bold">{item.avgUpload}</td>
+                    <td className="mono text-orange">{item.avgPing}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* 11. 🛠 Network Tools Directory */}
+        <div className="glass-panel section-card">
+          <h3>🛠️ Free Network & Connectivity Tools</h3>
+          <div className="tools-dir-grid">
+            <Link to="/ping-test" className="dir-item">🛰️ Live Ping Test</Link>
+            <Link to="/ip-lookup" className="dir-item">🔍 Public IP & ISP Lookup</Link>
+            <Link to="/how-speed-test-works" className="dir-item">🔬 Test Methodology & Transparency</Link>
+            <Link to="/guide" className="dir-item">📖 Speed Optimization Guide</Link>
+          </div>
+        </div>
+
+        {/* 12. 📚 Internet Guides & FAQs */}
         <div className="glass-panel seo-content-section">
           <h2>⚡ Global Broadband Speed & Network Analytics</h2>
           <p>
-            Welcome to <strong>Speeda Test 360</strong>, the premier global real-time internet speed test single-page application. Whether you are running a Comcast Xfinity speed check in New York, testing BT Broadband in London, checking Etisalat eLife in Dubai, Jio 5G in India, or testing PTCL/StormFiber/Nayatel in Pakistan, Speeda Test 360 delivers instant, unthrottled performance measurements.
+            Welcome to <strong>Speeda Test 360</strong>, the premier global real-time internet speed test application. Whether you are running a Comcast Xfinity speed check in New York, testing BT Broadband in London, checking Etisalat eLife in Dubai, Jio 5G in India, or testing PTCL/StormFiber/Nayatel in Pakistan, Speeda Test 360 delivers instant, unthrottled performance measurements.
           </p>
 
           <div className="seo-article-grid">

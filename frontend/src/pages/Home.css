@@ -75,7 +75,7 @@
   width: 100%;
   max-width: 900px;
   padding: 2.5rem 2rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -160,59 +160,118 @@
   margin-top: 0.2rem;
 }
 
-/* Quick Links Directory Card */
-.quick-links-card {
+/* Section Card */
+.section-card {
   width: 100%;
   max-width: 900px;
   padding: 2rem;
   margin-top: 2rem;
 }
 
-.quick-links-card h3 {
+.sec-head-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.section-card h3 {
   font-size: 1.3rem;
   font-weight: 800;
   color: #ffffff;
-  margin-bottom: 0.3rem;
 }
 
-.ql-desc {
+.section-sub {
   font-size: 0.9rem;
   color: var(--text-muted);
   margin-bottom: 1.5rem;
 }
 
-.ql-section {
-  margin-bottom: 1.4rem;
-}
-
-.ql-section h4 {
-  font-size: 0.95rem;
-  color: var(--primary-cyan);
-  font-weight: 700;
-  margin-bottom: 0.8rem;
-}
-
-.ql-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-}
-
-.ql-grid a {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--glass-border);
-  color: var(--text-main);
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-full);
+.view-all-link {
   font-size: 0.88rem;
-  font-weight: 600;
+  font-weight: 700;
+  color: var(--primary-cyan);
+}
+
+.quick-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+}
+
+.tool-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
   transition: all var(--transition-fast);
 }
 
-.ql-grid a:hover {
-  background: rgba(56, 189, 248, 0.15);
+.tool-box:hover {
+  background: rgba(56, 189, 248, 0.1);
   border-color: var(--primary-cyan);
+  transform: translateY(-2px);
+}
+
+.tb-icon {
+  font-size: 2rem;
+}
+
+.tool-box h4 {
+  font-size: 1.05rem;
   color: #ffffff;
+  margin-bottom: 0.2rem;
+}
+
+.tool-box p {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.home-rank-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.home-rank-table th, .home-rank-table td {
+  padding: 0.85rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.home-rank-table th {
+  color: var(--text-dim);
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.text-white { color: #ffffff; }
+
+.tools-dir-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1.2rem;
+}
+
+.dir-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  padding: 1rem 1.4rem;
+  border-radius: var(--radius-md);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+}
+
+.dir-item:hover {
+  background: rgba(56, 189, 248, 0.12);
+  border-color: var(--primary-cyan);
 }
 
 .seo-content-section {
@@ -270,6 +329,12 @@
     grid-template-columns: repeat(2, 1fr);
   }
   .seo-article-grid {
+    grid-template-columns: 1fr;
+  }
+  .quick-tools-grid {
+    grid-template-columns: 1fr;
+  }
+  .tools-dir-grid {
     grid-template-columns: 1fr;
   }
   .hero-trust-pills {
