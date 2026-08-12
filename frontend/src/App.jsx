@@ -35,8 +35,16 @@ export default function App() {
               <Route path="/" element={<Home />} />
               <Route path="/website-test" element={<WebsiteTest />} />
               
-              {/* Pakistan ISP Dedicated Pages */}
-              <Route path="/speed-test-pakistan" element={<ISPPage />} />
+              {/* Global & Regional ISP Landing Pages */}
+              <Route path="/global-speed-test" element={<ISPPage />} />
+              <Route path="/xfinity-speed-test" element={<ISPPage />} />
+              <Route path="/att-speed-test" element={<ISPPage />} />
+              <Route path="/verizon-speed-test" element={<ISPPage />} />
+              <Route path="/bt-speed-test" element={<ISPPage />} />
+              <Route path="/virgin-media-speed-test" element={<ISPPage />} />
+              <Route path="/etisalat-speed-test" element={<ISPPage />} />
+              <Route path="/du-speed-test" element={<ISPPage />} />
+              <Route path="/jio-speed-test" element={<ISPPage />} />
               <Route path="/ptcl-speed-test" element={<ISPPage />} />
               <Route path="/stormfiber-speed-test" element={<ISPPage />} />
               <Route path="/nayatel-speed-test" element={<ISPPage />} />
@@ -47,7 +55,11 @@ export default function App() {
               <Route path="/telenor-speed-test" element={<ISPPage />} />
               <Route path="/wateen-speed-test" element={<ISPPage />} />
 
-              {/* Pakistan City Dedicated Pages */}
+              {/* Global & Regional City Landing Pages */}
+              <Route path="/internet-speed-test-new-york" element={<CityPage />} />
+              <Route path="/internet-speed-test-london" element={<CityPage />} />
+              <Route path="/internet-speed-test-dubai" element={<CityPage />} />
+              <Route path="/internet-speed-test-toronto" element={<CityPage />} />
               <Route path="/internet-speed-test-lahore" element={<CityPage />} />
               <Route path="/internet-speed-test-karachi" element={<CityPage />} />
               <Route path="/internet-speed-test-islamabad" element={<CityPage />} />

@@ -12,7 +12,7 @@ import './Home.css';
 
 const FAQS_LIST = [
   {
-    q: 'How does Speeda Test 360 measure my internet speed?',
+    q: 'How does Speeda Test 360 measure my global internet speed?',
     a: 'Speeda Test 360 sends multi-stream encrypted HTTP requests directly between your browser and global high-speed edge CDN nodes. It measures latency (ping), jitter, download throughput, and upload throughput using high-precision Web performance APIs.'
   },
   {
@@ -28,8 +28,8 @@ const FAQS_LIST = [
     a: 'Jitter measures the stability of your network latency over time. Low jitter (under 5ms) ensures smooth video calls (Zoom/Teams) and lag-free online multiplayer gaming without rubber-banding.'
   },
   {
-    q: 'Is Speeda Test 360 completely free?',
-    a: 'Yes! Speeda Test 360 is 100% free with unlimited tests, zero registration, and complete privacy.'
+    q: 'Is Speeda Test 360 completely free worldwide?',
+    a: 'Yes! Speeda Test 360 is 100% free globally with unlimited tests, zero registration, and complete privacy.'
   }
 ];
 
@@ -113,9 +113,9 @@ export default function Home() {
   return (
     <>
       <SEO 
-        title="Speeda Test 360 — Free Internet Speed Test & ISP Network Analytics"
-        description="Free internet speed test. Measure real download speed, upload speed, ping, and jitter. Compare speeds for PTCL, StormFiber, Nayatel, Transworld, Jazz & Zong."
-        keywords="speed test, internet speed test, free speed test, wifi speed test, ptcl speed test, stormfiber speed test, nayatel speed test, transworld speed test, jazz speed test, zong speed test, Speeda Test 360"
+        title="Speeda Test 360 — Free Global Internet Speed Test & ISP Network Analytics"
+        description="Free global internet speed test. Measure real download speed, upload speed, ping, and jitter worldwide for US, UK, UAE, India, Europe & global ISPs."
+        keywords="speed test, internet speed test, free speed test, wifi speed test, global speed test, comcast speed test, att speed test, bt speed test, etisalat speed test, ptcl speed test, Speeda Test 360"
         canonical="/"
       />
 
@@ -126,9 +126,9 @@ export default function Home() {
         <section className="hero-section text-center">
           <div className="page-header">
             <h1>Free Internet <span className="gradient-text">Speed Test</span></h1>
-            <p>Check your real download speed, upload speed, ping & jitter in real-time</p>
+            <p>Check your real download speed, upload speed, ping & jitter worldwide</p>
             <div className="hero-trust-pills">
-              <span>✓ 100% Free</span>
+              <span>✓ 100% Free Worldwide</span>
               <span>✓ No Sign-up Required</span>
               <span>✓ Mobile & Desktop Friendly</span>
             </div>
@@ -270,41 +270,48 @@ export default function Home() {
 
         <SpeedHistory currentResult={currentResultObj} />
 
-        {/* Quick Links Navigation for ISP & City Pages */}
+        {/* Quick Links Directory Card - Global & Regional */}
         <div className="glass-panel quick-links-card">
-          <h3>🇵🇰 Pakistan ISP & City Speed Test Directory</h3>
-          <p className="ql-desc">Select your specific internet provider or city for localized speed benchmarks:</p>
+          <h3>🌍 Global ISP & City Speed Test Directory</h3>
+          <p className="ql-desc">Select your specific global internet provider or city for localized speed benchmarks:</p>
           
           <div className="ql-section">
-            <h4>Broadband ISPs:</h4>
+            <h4>Global Broadband ISPs:</h4>
             <div className="ql-grid">
-              <Link to="/ptcl-speed-test">🔵 PTCL Speed Test</Link>
-              <Link to="/stormfiber-speed-test">⚡ StormFiber Speed Test</Link>
-              <Link to="/nayatel-speed-test">🟢 Nayatel Speed Test</Link>
-              <Link to="/transworld-speed-test">🌍 Transworld Speed Test</Link>
-              <Link to="/jazz-speed-test">📶 Jazz 4G Speed Test</Link>
-              <Link to="/zong-speed-test">🟢 Zong 4G Speed Test</Link>
-              <Link to="/isp-rankings">🏆 Pakistan ISP Rankings</Link>
+              <Link to="/xfinity-speed-test">🇺🇸 Xfinity Speed Test</Link>
+              <Link to="/att-speed-test">🇺🇸 AT&T Fiber Test</Link>
+              <Link to="/verizon-speed-test">🇺🇸 Verizon Fios Test</Link>
+              <Link to="/bt-speed-test">🇬🇧 BT Broadband Test</Link>
+              <Link to="/virgin-media-speed-test">🇬🇧 Virgin Media Test</Link>
+              <Link to="/etisalat-speed-test">🇦🇪 Etisalat eLife Test</Link>
+              <Link to="/du-speed-test">🇦🇪 du Home Test</Link>
+              <Link to="/jio-speed-test">🇮🇳 JioFiber Test</Link>
+              <Link to="/ptcl-speed-test">🇵🇰 PTCL Speed Test</Link>
+              <Link to="/stormfiber-speed-test">🇵🇰 StormFiber Test</Link>
+              <Link to="/nayatel-speed-test">🇵🇰 Nayatel Speed Test</Link>
+              <Link to="/isp-rankings">🏆 Global ISP Rankings</Link>
             </div>
           </div>
 
           <div className="ql-section">
-            <h4>City Speed Tests:</h4>
+            <h4>Global Cities:</h4>
             <div className="ql-grid">
-              <Link to="/internet-speed-test-lahore">📍 Lahore Speed Test</Link>
-              <Link to="/internet-speed-test-karachi">📍 Karachi Speed Test</Link>
-              <Link to="/internet-speed-test-islamabad">📍 Islamabad Speed Test</Link>
-              <Link to="/internet-speed-test-rawalpindi">📍 Rawalpindi Speed Test</Link>
-              <Link to="/internet-speed-test-faisalabad">📍 Faisalabad Speed Test</Link>
+              <Link to="/internet-speed-test-new-york">📍 New York City</Link>
+              <Link to="/internet-speed-test-london">📍 London</Link>
+              <Link to="/internet-speed-test-dubai">📍 Dubai</Link>
+              <Link to="/internet-speed-test-toronto">📍 Toronto</Link>
+              <Link to="/internet-speed-test-lahore">📍 Lahore</Link>
+              <Link to="/internet-speed-test-karachi">📍 Karachi</Link>
+              <Link to="/internet-speed-test-islamabad">📍 Islamabad</Link>
             </div>
           </div>
         </div>
 
         {/* SEO Educational Content Section */}
         <div className="glass-panel seo-content-section">
-          <h2>⚡ Comprehensive Broadband Speed & Network Diagnostics</h2>
+          <h2>⚡ Global Broadband Speed & Network Analytics</h2>
           <p>
-            Welcome to <strong>Speeda Test 360</strong>, Pakistan’s leading free real-time internet speed test application. Whether you are running a PTCL Flash Fiber speed check, testing StormFiber gaming ping, checking Nayatel FTTH upload throughput, or testing Jazz/Zong 4G LTE mobile data, Speeda Test 360 delivers instant, unthrottled performance measurements.
+            Welcome to <strong>Speeda Test 360</strong>, the premier global real-time internet speed test single-page application. Whether you are running a Comcast Xfinity speed check in New York, testing BT Broadband in London, checking Etisalat eLife in Dubai, Jio 5G in India, or testing PTCL/StormFiber/Nayatel in Pakistan, Speeda Test 360 delivers instant, unthrottled performance measurements.
           </p>
 
           <div className="seo-article-grid">

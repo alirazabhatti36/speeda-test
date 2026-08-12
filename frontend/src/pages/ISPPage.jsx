@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Speedometer from '../components/Speedometer';
 import SpeedHistory from '../components/SpeedHistory';
@@ -9,118 +9,149 @@ import AdSlot from '../components/AdSlot';
 import { getNetworkInfo, measureLatency, measureDownload, measureUpload } from '../utils/speedEngine';
 import './ISPPage.css';
 
-const ISP_DETAILS = {
-  'ptcl-speed-test': {
-    name: 'PTCL (Pakistan Telecommunication Company Limited)',
-    title: 'PTCL Speed Test — Official Broadband & Flash Fiber Test',
-    logo: '🔵',
-    metaDesc: 'Test your PTCL Broadband, VDSL & Flash Fiber download speed, upload speed, ping, and jitter accurately online with Speeda Test 360.',
-    keywords: 'ptcl speed test, ptcl flash fiber speed test, ptcl vdsl speed test, ptcl broadband test, ptcl internet speed',
-    packages: ['10 Mbps Broadband', '20 Mbps Flash Fiber', '30 Mbps Flash Fiber', '50 Mbps Flash Fiber', '100 Mbps Ultra Fiber'],
+const GLOBAL_ISP_DETAILS = {
+  // Global & US
+  'xfinity-speed-test': {
+    name: 'Xfinity (Comcast USA)',
+    title: 'Xfinity Speed Test — Official Comcast Internet Speed Check',
+    logo: '🇺🇸',
+    metaDesc: 'Test your Comcast Xfinity internet download speed, upload speed, ping, and latency in real-time.',
+    keywords: 'xfinity speed test, comcast speed test, xfinity internet test, comcast speed check',
+    packages: ['Connect 75 Mbps', 'Fast 300 Mbps', 'Superfast 800 Mbps', 'Gigabit 1000 Mbps', 'Gigabit Extra 1200 Mbps'],
     troubleshoot: [
-      'For VDSL/ADSL connections: Inspect your physical line splitter and telephone wire noise filters.',
-      'For Flash Fiber GPON ONUs: Check the PON LED light. A blinking red LOS light indicates fiber optic attenuation or cable cut.',
-      'Change DNS resolver on your PTCL router to Google DNS (8.8.8.8) or Cloudflare (1.1.1.1) to resolve slow domain loading.'
+      'Restart your Xfinity xFi Gateway router using the Xfinity App.',
+      'Check coaxial cable tightness on the back of your modem.'
     ],
-    faqs: [
-      { q: 'How to check PTCL internet speed online?', a: 'Click the "Start Speed Test" button above. Speeda Test 360 measures real-time download speed, upload speed, and ping directly to Pakistani edge servers.' },
-      { q: 'Why is PTCL Flash Fiber faster than VDSL?', a: 'Flash Fiber uses Fiber-to-the-Home (FTTH) technology with light impulses, whereas VDSL relies on copper wires susceptible to distance degradation.' }
-    ]
+    faqs: [{ q: 'What is typical Xfinity download speed?', a: 'Xfinity plans range from 75 Mbps up to 1200 Mbps depending on your residential tier.' }]
+  },
+  'att-speed-test': {
+    name: 'AT&T Fiber',
+    title: 'AT&T Fiber Speed Test — Ultra-Fast Gigabit Internet Test',
+    logo: '🇺🇸',
+    metaDesc: 'Test AT&T Fiber symmetric download and upload speeds. Measure ping latency for AT&T Internet 300, 500, and 1000.',
+    keywords: 'att speed test, at&t fiber speed test, att internet speed check',
+    packages: ['AT&T Fiber 300', 'AT&T Fiber 500', 'AT&T Fiber 1000', 'AT&T Fiber 2000', 'AT&T Fiber 5000'],
+    troubleshoot: ['Connect via Ethernet to the AT&T BGW320 Gateway for full 1Gbps test validation.'],
+    faqs: [{ q: 'Is AT&T Fiber symmetric?', a: 'Yes! AT&T Fiber provides equal 100% symmetric download and upload speeds.' }]
+  },
+  'verizon-speed-test': {
+    name: 'Verizon Fios & 5G Home',
+    title: 'Verizon Fios Speed Test — Fiber & 5G Home Internet Diagnostics',
+    logo: '🇺🇸',
+    metaDesc: 'Test Verizon Fios Gigabit & 5G Home Internet speed, ping, and jitter live.',
+    keywords: 'verizon speed test, verizon fios speed test, verizon 5g home speed test',
+    packages: ['Fios 300 Mbps', 'Fios 500 Mbps', 'Fios Gigabit Connection', 'Verizon 5G Home'],
+    troubleshoot: ['Check for wall obstructions if using Verizon 5G Home Receiver.'],
+    faqs: [{ q: 'What is average Verizon Fios ping?', a: 'Verizon Fios averages sub-10ms ping latency on fiber.' }]
+  },
+
+  // UK & Europe
+  'bt-speed-test': {
+    name: 'BT Broadband (UK)',
+    title: 'BT Broadband Speed Test — UK Full Fibre Speed Check',
+    logo: '🇬🇧',
+    metaDesc: 'Test BT Broadband & Full Fibre 100/500/900 download and upload speeds across the UK.',
+    keywords: 'bt speed test, bt broadband speed test, bt full fibre speed test',
+    packages: ['Fibre Essentials 36 Mbps', 'Fibre 1 50 Mbps', 'Full Fibre 100', 'Full Fibre 500', 'Full Fibre 900'],
+    troubleshoot: ['Restart your BT Smart Hub 2 and verify Openreach ONT lights.'],
+    faqs: [{ q: 'How to test BT Full Fibre speed?', a: 'Use Speeda Test 360 to measure unthrottled BT Broadband throughput.' }]
+  },
+  'virgin-media-speed-test': {
+    name: 'Virgin Media (UK)',
+    title: 'Virgin Media Speed Test — M125 to Gig1 Broadband Diagnostics',
+    logo: '🇬🇧',
+    metaDesc: 'Test Virgin Media Fibre Broadband speed live. Accurate download and upload test for M125, M250, M500, and Gig1.',
+    keywords: 'virgin media speed test, virgin speed check, virgin gig1 test',
+    packages: ['M125 Fibre', 'M250 Fibre', 'M500 Fibre', 'Gig1 Fibre Broadband'],
+    troubleshoot: ['Check Virgin Media Hub 3/4/5 cable connections.'],
+    faqs: [{ q: 'Why is Virgin Media fast for downloading?', a: 'Virgin Media uses DOCSIS 3.1 coax-fiber hybrid technology delivering up to 1130 Mbps.' }]
+  },
+
+  // UAE & Middle East
+  'etisalat-speed-test': {
+    name: 'Etisalat by e& (UAE)',
+    title: 'Etisalat Speed Test — eLife Fiber Speed Check UAE',
+    logo: '🇦🇪',
+    metaDesc: 'Test Etisalat eLife Fiber internet download and upload speed in Dubai, Abu Dhabi, and across UAE.',
+    keywords: 'etisalat speed test, elife speed test, etisalat uae speed check',
+    packages: ['eLife Starter 250 Mbps', 'eLife Unlimited 500 Mbps', 'eLife Ultra 1G'],
+    troubleshoot: ['Ensure your Wi-Fi router is connected to the Etisalat Optical Network Terminal (ONT).'],
+    faqs: [{ q: 'What is average Etisalat ping in UAE?', a: 'Etisalat eLife averages 2ms to 8ms ping locally in Dubai & Abu Dhabi.' }]
+  },
+  'du-speed-test': {
+    name: 'du Home (UAE)',
+    title: 'du Home Speed Test — UAE High-Speed Fiber Diagnostics',
+    logo: '🇦🇪',
+    metaDesc: 'Test du Home Fiber & 5G Home Wireless internet speed live in UAE.',
+    keywords: 'du speed test, du home speed check, du uae speed test',
+    packages: ['du Home Starter 250 Mbps', 'du Home Advanced 500 Mbps', 'du 5G Home Wireless'],
+    troubleshoot: ['Place your du 5G router near a window facing the cellular tower.'],
+    faqs: [{ q: 'Is du 5G good for gaming?', a: 'du 5G delivers ultra-low ping for online gaming in UAE.' }]
+  },
+
+  // India
+  'jio-speed-test': {
+    name: 'JioFiber & Jio 5G (India)',
+    title: 'JioFiber Speed Test — Jio 5G & Fiber Broadband Diagnostics',
+    logo: '🇮🇳',
+    metaDesc: 'Test JioFiber broadband download, upload, ping, and jitter. Accurate speed test for Jio 30Mbps, 100Mbps, 300Mbps & 1Gbps plans.',
+    keywords: 'jio speed test, jiofiber speed test, jio 5g speed test',
+    packages: ['JioFiber 30 Mbps', 'JioFiber 100 Mbps', 'JioFiber 300 Mbps', 'JioFiber 1 Gbps'],
+    troubleshoot: ['Connect to JioFiber 5GHz Wi-Fi SSID for full speed throughput.'],
+    faqs: [{ q: 'Is Jio 5G speed test accurate?', a: 'Yes! Speeda Test 360 measures true unthrottled Jio 5G data speeds.' }]
+  },
+
+  // Pakistan
+  'ptcl-speed-test': {
+    name: 'PTCL (Pakistan)',
+    title: 'PTCL Speed Test — Official Broadband & Flash Fiber Test',
+    logo: '🇵🇰',
+    metaDesc: 'Test your PTCL Broadband, VDSL & Flash Fiber download speed, upload speed, ping, and jitter online.',
+    keywords: 'ptcl speed test, ptcl flash fiber speed test, ptcl vdsl speed test',
+    packages: ['10 Mbps Broadband', '20 Mbps Flash Fiber', '50 Mbps Flash Fiber', '100 Mbps Ultra Fiber'],
+    troubleshoot: ['For Flash Fiber GPON ONUs: Check the PON LED light for fiber signal integrity.'],
+    faqs: [{ q: 'How to check PTCL internet speed online?', a: 'Click the "Start Speed Test" button above for instant measurement.' }]
   },
   'stormfiber-speed-test': {
-    name: 'StormFiber (Cybernet FTTH)',
+    name: 'StormFiber (Pakistan)',
     title: 'StormFiber Speed Test — Ultra-Fast Fiber Broadband Diagnostics',
-    logo: '⚡',
-    metaDesc: 'Test StormFiber FTTH internet speeds, download, upload, ping, and jitter. Accurate speed test for StormFiber 20Mbps, 50Mbps & 100Mbps plans.',
-    keywords: 'stormfiber speed test, stormfiber speed check, storm fiber test, cybernet speed test, ftth pakistan speed test',
-    packages: ['20 Mbps Cyclone', '30 Mbps Typhoon', '40 Mbps Hurricane', '50 Mbps Tornado', '100 Mbps Tsunami'],
-    troubleshoot: [
-      'Connect your laptop via Gigabit Ethernet cable to WAN Port 1 on the StormFiber router for 100% full speed validation.',
-      'Dual-band routers emit 2.4 GHz and 5 GHz SSIDs. Always connect to the 5 GHz Wi-Fi band when testing speeds above 30 Mbps.',
-      'Reboot the StormFiber dual-band ONU router every 14 days to clear internal buffer cache.'
-    ],
-    faqs: [
-      { q: 'What is typical ping on StormFiber for gaming?', a: 'StormFiber typically delivers 5ms to 15ms local ping in Karachi, Lahore, Islamabad, and Faisalabad.' }
-    ]
+    logo: '🇵🇰',
+    metaDesc: 'Test StormFiber FTTH internet speeds, download, upload, ping, and jitter live.',
+    keywords: 'stormfiber speed test, stormfiber speed check, storm fiber test',
+    packages: ['20 Mbps Cyclone', '50 Mbps Tornado', '100 Mbps Tsunami'],
+    troubleshoot: ['Connect via Gigabit Ethernet cable for full speed validation.'],
+    faqs: [{ q: 'What is typical ping on StormFiber for gaming?', a: 'StormFiber typically delivers 5ms to 15ms local ping.' }]
   },
   'nayatel-speed-test': {
-    name: 'Nayatel',
+    name: 'Nayatel (Pakistan)',
     title: 'Nayatel Speed Test — FTTH Fiber Internet & Ping Checker',
-    logo: '🟢',
-    metaDesc: 'Official Nayatel Fiber internet speed test. Test download, upload, ping latency, and jitter for Nayatel Home & Corporate fiber connections.',
-    keywords: 'nayatel speed test, nayatel speed check, nayatel fiber speed, nayatel islamabad speed test, nayatel rawalpindi speed test',
-    packages: ['15 Mbps Home', '25 Mbps Premium', '50 Mbps Ultra', '70 Mbps Extreme', '100 Mbps Giga'],
-    troubleshoot: [
-      'Ensure the optical patch cord fiber cable is not tightly bent or pinched behind your ONT box.',
-      'Use Nayatel Optimus gaming route optimization features if experiencing high ping on gaming servers.'
-    ],
-    faqs: [
-      { q: 'Is Nayatel upload speed symmetric?', a: 'Yes! Nayatel offers high symmetric upload speeds matching download speeds on fiber connections.' }
-    ]
-  },
-  'transworld-speed-test': {
-    name: 'Transworld Home',
-    title: 'Transworld Speed Test — International Fiber Backbone Diagnostics',
-    logo: '🌍',
-    metaDesc: 'Test Transworld Home fiber internet speed. Measure low latency ping, jitter, download, and upload speeds across Transworld undersea cables.',
-    keywords: 'transworld speed test, transworld home speed check, transworld fiber speed, TW1 speed test',
-    packages: ['20 Mbps Fiber', '30 Mbps Fiber', '50 Mbps Fiber', '100 Mbps Fiber'],
-    troubleshoot: [
-      'Check if your device supports Wi-Fi 5 (802.11ac) or Wi-Fi 6 (802.11ax) for high throughput.'
-    ],
-    faqs: [
-      { q: 'Why is Transworld ping lower for gaming?', a: 'Transworld owns private submarine optic cables (TW1 & SEA-ME-WE 5) directly connecting Pakistan to UAE and Europe.' }
-    ]
-  },
-  'jazz-speed-test': {
-    name: 'Jazz 4G / Super 4G',
-    title: 'Jazz 4G Speed Test — Mobile Broadband & Wi-Fi Device Diagnostics',
-    logo: '📶',
-    metaDesc: 'Test Jazz 4G LTE mobile data speed and Jazz Digit/Wingle device download, upload, and ping speeds live.',
-    keywords: 'jazz speed test, jazz 4g speed test, jazz internet speed check, jazz wingle speed test',
-    packages: ['4G Mobile Data', 'Jazz Super 4G Wingle', 'Jazz Digit 4G Device'],
-    troubleshoot: [
-      'Place your 4G device near a window to increase RSRP signal strength.'
-    ],
-    faqs: [
-      { q: 'How to increase Jazz 4G speed?', a: 'Set APN to "jazzconnect.mr" and lock network mode to "LTE Only".' }
-    ]
-  },
-  'zong-speed-test': {
-    name: 'Zong 4G LTE',
-    title: 'Zong 4G Speed Test — Mobile Broadband & MBB Router Diagnostics',
-    logo: '🟢',
-    metaDesc: 'Test Zong 4G LTE mobile data speed and Zong MBB Router download, upload, ping, and jitter across Pakistan.',
-    keywords: 'zong speed test, zong 4g speed test, zong mbb speed check, zong 4g router test',
-    packages: ['Zong 4G Mobile Data', 'Zong MBB Device (Huawei/ZTE)', 'Zong 5G Ready'],
-    troubleshoot: [
-      'Check signal bars on your Zong MBB router screen. 4-5 bars ensure maximum 4G carrier aggregation.'
-    ],
-    faqs: [
-      { q: 'What is average Zong 4G download speed?', a: 'Zong 4G average download speed ranges between 15 Mbps to 45 Mbps depending on tower load.' }
-    ]
-  },
-  'speed-test-pakistan': {
-    name: 'Pakistan All ISPs & Mobile Networks',
-    title: 'Pakistan Speed Test — PTCL, StormFiber, Nayatel, Jazz, Zong Analytics',
     logo: '🇵🇰',
-    metaDesc: 'National Pakistan Internet Speed Test. Compare speeds across PTCL, StormFiber, Nayatel, Transworld, Jazz, Zong, Telenor, and Ufone.',
-    keywords: 'pakistan speed test, internet speed test pakistan, isp ranking pakistan, fastest internet in pakistan',
-    packages: ['Broadband Fiber (10-100 Mbps)', '4G Mobile LTE (10-50 Mbps)', '5G Cellular Networks'],
-    troubleshoot: ['Run speed tests during off-peak hours (morning) vs peak hours (8 PM - 11 PM) to evaluate ISP throttling.'],
-    faqs: [{ q: 'Which is the fastest internet provider in Pakistan?', a: 'Based on 2026 user speed test data, Nayatel and StormFiber lead FTTH fiber speeds, while Zong and Jazz lead 4G mobile speeds.' }]
+    metaDesc: 'Official Nayatel Fiber internet speed test. Test download, upload, ping latency, and jitter.',
+    keywords: 'nayatel speed test, nayatel speed check, nayatel fiber speed',
+    packages: ['15 Mbps Home', '25 Mbps Premium', '50 Mbps Ultra', '100 Mbps Giga'],
+    troubleshoot: ['Ensure the optical patch cord fiber cable is not tightly bent.'],
+    faqs: [{ q: 'Is Nayatel upload speed symmetric?', a: 'Yes! Nayatel offers high symmetric upload speeds matching download speeds.' }]
+  },
+  'global-speed-test': {
+    name: 'Global Internet Speed Test',
+    title: 'Global Internet Speed Test — Test Any ISP Worldwide',
+    logo: '🌍',
+    metaDesc: 'Global Internet Speed Test for US, UK, UAE, India, Europe, Canada, Australia & Worldwide ISPs.',
+    keywords: 'global speed test, worldwide speed test, international internet speed test',
+    packages: ['Fiber Optic (100 - 1000 Mbps)', '5G Cellular Data', 'Satellite Starlink Internet'],
+    troubleshoot: ['Run speed test across different times of day to check global routing throughput.'],
+    faqs: [{ q: 'Can Speeda Test 360 test any ISP in the world?', a: 'Yes! Speeda Test 360 automatically connects to the nearest global edge CDN server worldwide.' }]
   }
 };
 
 export default function ISPPage() {
   const { ispSlug } = useParams();
-  const currentSlug = ispSlug || 'ptcl-speed-test';
-  const ispInfo = ISP_DETAILS[currentSlug] || ISP_DETAILS['speed-test-pakistan'];
+  const currentSlug = ispSlug || 'global-speed-test';
+  const ispInfo = GLOBAL_ISP_DETAILS[currentSlug] || GLOBAL_ISP_DETAILS['global-speed-test'];
 
   const [testing, setTesting] = useState(false);
   const [testPhase, setTestPhase] = useState('IDLE');
   const [speedVal, setSpeedVal] = useState(0);
-  const [netInfo, setNetInfo] = useState(null);
   const [results, setResults] = useState(null);
 
   const startTest = async () => {
@@ -129,20 +160,14 @@ export default function ISPPage() {
     setTestPhase('FETCHING_IP');
 
     const networkData = await getNetworkInfo();
-    setNetInfo(networkData);
-
     setTestPhase('MEASURING_PING');
     const latencyData = await measureLatency();
 
     setTestPhase('MEASURING_DOWNLOAD');
-    const downloadData = await measureDownload((currentMbps) => {
-      setSpeedVal(currentMbps);
-    });
+    const downloadData = await measureDownload((currentMbps) => setSpeedVal(currentMbps));
 
     setTestPhase('MEASURING_UPLOAD');
-    const uploadData = await measureUpload((currentMbps) => {
-      setSpeedVal(currentMbps);
-    });
+    const uploadData = await measureUpload((currentMbps) => setSpeedVal(currentMbps));
 
     const finalResult = {
       timestamp: new Date().toISOString(),
@@ -212,7 +237,7 @@ export default function ISPPage() {
         <div className="glass-panel isp-content-card">
           <h2>ℹ️ About {ispInfo.name} Network & Speed Tiers</h2>
           <p>
-            {ispInfo.name} provides broadband and mobile data connectivity across Pakistan. Testing your connection regularly ensures you receive full advertised speeds from your service provider.
+            {ispInfo.name} provides high-speed broadband and mobile data connectivity. Testing your connection regularly ensures you receive full advertised speeds from your service provider.
           </p>
 
           <h3>📦 Common {ispInfo.name} Packages:</h3>

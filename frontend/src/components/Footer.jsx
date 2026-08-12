@@ -11,29 +11,36 @@ export default function Footer() {
             ⚡ Speeda Test <span className="gradient-text">360</span>
           </Link>
           <p className="footer-tagline">
-            Pakistan’s premier 360° Internet Speed Test & Broadband Network Analytics Engine. Measure download, upload, ping, and jitter accurately.
+            Worldwide 360° Internet Speed Test & Broadband Network Analytics Engine. Measure download, upload, ping, and jitter accurately across global edge networks.
           </p>
         </div>
 
         <div className="footer-links-grid">
           <div className="footer-col">
-            <h4>Pakistan Speed Tests</h4>
-            <Link to="/ptcl-speed-test">🔵 PTCL Speed Test</Link>
-            <Link to="/stormfiber-speed-test">⚡ StormFiber Speed Test</Link>
-            <Link to="/nayatel-speed-test">🟢 Nayatel Speed Test</Link>
-            <Link to="/transworld-speed-test">🌍 Transworld Speed Test</Link>
-            <Link to="/jazz-speed-test">📶 Jazz 4G Speed Test</Link>
-            <Link to="/zong-speed-test">🟢 Zong 4G Speed Test</Link>
-            <Link to="/isp-rankings">🏆 ISP Rankings</Link>
+            <h4>Global Speed Tests</h4>
+            <Link to="/xfinity-speed-test">🇺🇸 Xfinity Speed Test</Link>
+            <Link to="/att-speed-test">🇺🇸 AT&T Fiber Test</Link>
+            <Link to="/verizon-speed-test">🇺🇸 Verizon Fios Test</Link>
+            <Link to="/bt-speed-test">🇬🇧 BT Broadband Test</Link>
+            <Link to="/virgin-media-speed-test">🇬🇧 Virgin Media Test</Link>
+            <Link to="/etisalat-speed-test">🇦🇪 Etisalat eLife Test</Link>
+            <Link to="/du-speed-test">🇦🇪 du Home Test</Link>
+            <Link to="/jio-speed-test">🇮🇳 JioFiber Test</Link>
+            <Link to="/ptcl-speed-test">🇵🇰 PTCL Speed Test</Link>
+            <Link to="/stormfiber-speed-test">🇵🇰 StormFiber Test</Link>
+            <Link to="/nayatel-speed-test">🇵🇰 Nayatel Speed Test</Link>
+            <Link to="/isp-rankings">🏆 Global ISP Rankings</Link>
           </div>
 
           <div className="footer-col">
-            <h4>City Speed Tests</h4>
-            <Link to="/internet-speed-test-lahore">📍 Lahore Speed Test</Link>
-            <Link to="/internet-speed-test-karachi">📍 Karachi Speed Test</Link>
-            <Link to="/internet-speed-test-islamabad">📍 Islamabad Speed Test</Link>
-            <Link to="/internet-speed-test-rawalpindi">📍 Rawalpindi Speed Test</Link>
-            <Link to="/internet-speed-test-faisalabad">📍 Faisalabad Speed Test</Link>
+            <h4>Major Cities</h4>
+            <Link to="/internet-speed-test-new-york">📍 New York City</Link>
+            <Link to="/internet-speed-test-london">📍 London</Link>
+            <Link to="/internet-speed-test-dubai">📍 Dubai</Link>
+            <Link to="/internet-speed-test-toronto">📍 Toronto</Link>
+            <Link to="/internet-speed-test-lahore">📍 Lahore</Link>
+            <Link to="/internet-speed-test-karachi">📍 Karachi</Link>
+            <Link to="/internet-speed-test-islamabad">📍 Islamabad</Link>
           </div>
 
           <div className="footer-col">

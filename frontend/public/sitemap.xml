@@ -7,43 +7,97 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://speedatest360.online/speed-test-pakistan</loc>
+    <loc>https://speedatest360.online/global-speed-test</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://speedatest360.online/xfinity-speed-test</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://speedatest360.online/att-speed-test</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://speedatest360.online/verizon-speed-test</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://speedatest360.online/bt-speed-test</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://speedatest360.online/virgin-media-speed-test</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://speedatest360.online/etisalat-speed-test</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://speedatest360.online/du-speed-test</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://speedatest360.online/jio-speed-test</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://speedatest360.online/ptcl-speed-test</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://speedatest360.online/stormfiber-speed-test</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://speedatest360.online/nayatel-speed-test</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://speedatest360.online/transworld-speed-test</loc>
+    <loc>https://speedatest360.online/internet-speed-test-new-york</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://speedatest360.online/jazz-speed-test</loc>
+    <loc>https://speedatest360.online/internet-speed-test-london</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://speedatest360.online/zong-speed-test</loc>
+    <loc>https://speedatest360.online/internet-speed-test-dubai</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://speedatest360.online/internet-speed-test-toronto</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
@@ -52,25 +106,19 @@
     <loc>https://speedatest360.online/internet-speed-test-lahore</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://speedatest360.online/internet-speed-test-karachi</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-  <url>
-    <loc>https://speedatest360.online/internet-speed-test-islamabad</loc>
-    <lastmod>2026-08-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://speedatest360.online/gaming-speed-test</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://speedatest360.online/streaming-speed-test</loc>

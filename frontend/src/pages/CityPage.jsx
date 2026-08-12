@@ -9,53 +9,69 @@ import AdSlot from '../components/AdSlot';
 import { getNetworkInfo, measureLatency, measureDownload, measureUpload } from '../utils/speedEngine';
 import './CityPage.css';
 
-const CITY_DETAILS = {
+const GLOBAL_CITY_DETAILS = {
+  'internet-speed-test-new-york': {
+    cityName: 'New York (USA)',
+    title: 'Internet Speed Test New York — NYC Broadband Speed Check',
+    metaDesc: 'Test internet speed in New York City. Measure download, upload, and ping for Verizon Fios, Spectrum, and AT&T Fiber in NYC.',
+    medianSpeed: '185.4 Mbps',
+    topIsps: ['Verizon Fios (Gigabit)', 'Spectrum Internet', 'Astound Broadband', 'AT&T Fiber'],
+    infraInfo: 'New York City features high-density optical fiber infrastructure across Manhattan, Brooklyn, Queens, and the metro tri-state region.'
+  },
+  'internet-speed-test-london': {
+    cityName: 'London (UK)',
+    title: 'Internet Speed Test London — UK Broadband & Fibre Test',
+    metaDesc: 'Test internet speed in London, UK. Measure download speed, upload speed, and ping for Virgin Media, BT, Community Fibre & Hyperoptic.',
+    medianSpeed: '142.1 Mbps',
+    topIsps: ['Community Fibre (FTTH)', 'Virgin Media Gig1', 'Hyperoptic', 'BT Full Fibre 900'],
+    infraInfo: 'Greater London is served by full-fibre Openreach and alt-net FTTH operators delivering symmetric gigabit broadband.'
+  },
+  'internet-speed-test-dubai': {
+    cityName: 'Dubai (UAE)',
+    title: 'Internet Speed Test Dubai — Etisalat & du Fiber Speed Check',
+    metaDesc: 'Test internet speed in Dubai, UAE. Measure download speed, upload speed, and ping for Etisalat eLife and du Home Fiber.',
+    medianSpeed: '210.5 Mbps',
+    topIsps: ['Etisalat by e& (eLife 1G)', 'du Home Fiber', 'Virgin Mobile UAE 5G'],
+    infraInfo: 'Dubai ranks among the highest median broadband speed cities globally with 100% FTTH fiber coverage across the emirate.'
+  },
+  'internet-speed-test-toronto': {
+    cityName: 'Toronto (Canada)',
+    title: 'Internet Speed Test Toronto — Rogers & Bell Fibe Speed Check',
+    metaDesc: 'Test internet speed in Toronto, Ontario. Measure download speed, upload speed, and ping for Bell Fibe Gigabit and Rogers Ignite.',
+    medianSpeed: '165.2 Mbps',
+    topIsps: ['Bell Fibe (Symmetric FTTH)', 'Rogers Ignite 1.5G', 'TekSavvy Broadband'],
+    infraInfo: 'Toronto features pure FTTH fiber networks across the GTA delivering multi-gigabit speeds.'
+  },
   'internet-speed-test-lahore': {
-    cityName: 'Lahore',
+    cityName: 'Lahore (Pakistan)',
     title: 'Internet Speed Test Lahore — Test PTCL, StormFiber, Nayatel in Lahore',
     metaDesc: 'Test internet speeds in Lahore, Punjab. Measure download speed, upload speed, and ping for PTCL Flash Fiber, StormFiber, Nayatel & Transworld in Lahore.',
     medianSpeed: '48.5 Mbps',
-    topIsps: ['StormFiber (FTTH)', 'Nayatel Lahore', 'PTCL Flash Fiber', 'Transworld Home', 'Cybernet'],
+    topIsps: ['StormFiber (FTTH)', 'Nayatel Lahore', 'PTCL Flash Fiber', 'Transworld Home'],
     infraInfo: 'Lahore features extensive fiber-optic infrastructure across Gulberg, DHA, Model Town, Johar Town, and Bahria Town.'
   },
   'internet-speed-test-karachi': {
-    cityName: 'Karachi',
+    cityName: 'Karachi (Pakistan)',
     title: 'Internet Speed Test Karachi — Fiber & Broadband Speed Check',
     metaDesc: 'Test internet speed in Karachi, Sindh. Real-time speed test for StormFiber, Cybernet, PTCL, Transworld, Jazz & Zong 4G in Karachi.',
     medianSpeed: '52.1 Mbps',
-    topIsps: ['Cybernet / StormFiber', 'Transworld (TW1 Hub)', 'PTCL Flash Fiber', 'Connect Communications', 'StormFiber Clifton/DHA'],
+    topIsps: ['Cybernet / StormFiber', 'Transworld (TW1 Hub)', 'PTCL Flash Fiber', 'Connect Communications'],
     infraInfo: 'Karachi is Pakistan’s primary submarine cable landing hub (TW1, SEA-ME-WE cables), offering low international latency.'
   },
   'internet-speed-test-islamabad': {
-    cityName: 'Islamabad',
+    cityName: 'Islamabad (Pakistan)',
     title: 'Internet Speed Test Islamabad — Nayatel, PTCL & Fiber Speed Check',
-    metaDesc: 'Test internet speed in Islamabad capital territory. Accurate speed test for Nayatel, PTCL Flash Fiber, StormFiber & Special Communication Organization.',
+    metaDesc: 'Test internet speed in Islamabad capital territory. Accurate speed test for Nayatel, PTCL Flash Fiber, StormFiber.',
     medianSpeed: '58.4 Mbps',
-    topIsps: ['Nayatel (HQ City)', 'PTCL Flash Fiber', 'StormFiber Islamabad', 'Transworld', 'Comsats Internet'],
+    topIsps: ['Nayatel (HQ City)', 'PTCL Flash Fiber', 'StormFiber Islamabad', 'Transworld'],
     infraInfo: 'Islamabad boasts one of the highest FTTH fiber penetration rates in Pakistan led by Nayatel and PTCL Flash Fiber.'
-  },
-  'internet-speed-test-rawalpindi': {
-    cityName: 'Rawalpindi',
-    title: 'Internet Speed Test Rawalpindi — Broadband & 4G Network Check',
-    metaDesc: 'Test broadband internet speed in Rawalpindi. Measure download speed, upload speed, and ping for Nayatel, PTCL & StormFiber in Rawalpindi.',
-    medianSpeed: '44.2 Mbps',
-    topIsps: ['Nayatel Rawalpindi', 'PTCL Broadband / Fiber', 'StormFiber Rawalpindi', 'Jazz 4G', 'Zong MBB'],
-    infraInfo: 'Rawalpindi enjoys high-speed fiber connectivity in Bahria Town, Saddar, Satellite Town, and DHA Phase 1-4.'
-  },
-  'internet-speed-test-faisalabad': {
-    cityName: 'Faisalabad',
-    title: 'Internet Speed Test Faisalabad — Broadband Speed Test',
-    metaDesc: 'Test internet speed in Faisalabad, Punjab. Real-time download, upload, and ping test for StormFiber, PTCL, Jazz & Zong in Faisalabad.',
-    medianSpeed: '41.8 Mbps',
-    topIsps: ['StormFiber Faisalabad', 'PTCL Flash Fiber', 'Nayatel Faisalabad', 'Cybernet', 'Jazz 4G LTE'],
-    infraInfo: 'Faisalabad’s industrial hub is served by expanding FTTH fiber networks across Canal Road, People’s Colony, and Madina Town.'
   }
 };
 
 export default function CityPage() {
   const { citySlug } = useParams();
-  const currentSlug = citySlug || 'internet-speed-test-lahore';
-  const cityInfo = CITY_DETAILS[currentSlug] || CITY_DETAILS['internet-speed-test-lahore'];
+  const currentSlug = citySlug || 'internet-speed-test-new-york';
+  const cityInfo = GLOBAL_CITY_DETAILS[currentSlug] || GLOBAL_CITY_DETAILS['internet-speed-test-new-york'];
 
   const [testing, setTesting] = useState(false);
   const [testPhase, setTestPhase] = useState('IDLE');
@@ -97,7 +113,7 @@ export default function CityPage() {
       <SEO 
         title={cityInfo.title}
         description={cityInfo.metaDesc}
-        keywords={`internet speed test ${cityInfo.cityName}, ${cityInfo.cityName} speed test, ptcl ${cityInfo.cityName}, stormfiber ${cityInfo.cityName}`}
+        keywords={`internet speed test ${cityInfo.cityName}, ${cityInfo.cityName} speed test, broadband ${cityInfo.cityName}`}
         canonical={`/${currentSlug}`}
       />
 
@@ -106,7 +122,7 @@ export default function CityPage() {
 
         <div className="page-header">
           <h1>📍 Internet Speed Test <span className="gradient-text">{cityInfo.cityName}</span></h1>
-          <p>Local speed test & ISP benchmarks for internet users in {cityInfo.cityName}, Pakistan</p>
+          <p>Local speed test & ISP benchmarks for internet users in {cityInfo.cityName}</p>
         </div>
 
         {/* Speedometer Tool */}
@@ -153,7 +169,7 @@ export default function CityPage() {
             </div>
             <div className="stat-pill">
               <span className="sp-lbl">Average Local Ping</span>
-              <span className="sp-val mono">12 ms</span>
+              <span className="sp-val mono">8 ms</span>
             </div>
           </div>
 
