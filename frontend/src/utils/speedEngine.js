@@ -5,31 +5,37 @@
 
 // Pakistani & Global ISP Mapping with Logos & Brand Colors
 const ISP_MAP = {
-  'PTCL': { name: 'PTCL', logo: '🔵', color: '#2563eb' },
-  'PAKISTAN TELECOMMUNICATION COMPANY LIMITED': { name: 'PTCL', logo: '🔵', color: '#2563eb' },
-  'PAKISTAN TELECOMMUNICATION COMPANY LTD': { name: 'PTCL', logo: '🔵', color: '#2563eb' },
-  'STORMFIBER': { name: 'StormFiber', logo: '⚡', color: '#f59e0b' },
-  'STORM FIBER': { name: 'StormFiber', logo: '⚡', color: '#f59e0b' },
-  'SUPERNET': { name: 'Supernet', logo: '🟣', color: '#8b5cf6' },
-  'SUPERNET LIMITED': { name: 'Supernet', logo: '🟣', color: '#8b5cf6' },
-  'NAYATEL': { name: 'Nayatel', logo: '🟢', color: '#22c55e' },
-  'CYBERNET': { name: 'Cybernet', logo: '🟠', color: '#f97316' },
-  'CYBER INTERNET SERVICES': { name: 'Cybernet', logo: '🟠', color: '#f97316' },
-  'WORLDCALL': { name: 'WorldCall', logo: '📡', color: '#3b82f6' },
-  'WATEEN': { name: 'Wateen', logo: '📶', color: '#ec4899' },
-  'WATEEN TELECOM': { name: 'Wateen', logo: '📶', color: '#ec4899' },
-  'MULTINET': { name: 'Multinet', logo: '🌐', color: '#14b8a6' },
-  'FIBERLINK': { name: 'Fiberlink', logo: '🔗', color: '#6366f1' },
-  'COMSATS': { name: 'Comsats', logo: '🛰️', color: '#8b5cf6' },
-  'TRANSWORLD': { name: 'Transworld', logo: '🌍', color: '#06b6d4' },
-  'TRANSWORLD ASSOCIATES': { name: 'Transworld', logo: '🌍', color: '#06b6d4' },
-  'DHA CABLE': { name: 'DHA Cable', logo: '📺', color: '#ef4444' },
-  'OPTIX': { name: 'Optix', logo: '💡', color: '#f59e0b' },
-  'BRAIN TEL': { name: 'Brain Tel', logo: '🧠', color: '#8b5cf6' },
-  'ROOT INTERNET': { name: 'Root Internet', logo: '🌱', color: '#22c55e' }
+  'PTCL': { name: 'PTCL', logo: '🔵', color: '#38bdf8' },
+  'PAKISTAN TELECOMMUNICATION COMPANY LIMITED': { name: 'PTCL', logo: '🔵', color: '#38bdf8' },
+  'PAKISTAN TELECOMMUNICATION COMPANY LTD': { name: 'PTCL', logo: '🔵', color: '#38bdf8' },
+  'STORMFIBER': { name: 'StormFiber', logo: '⚡', color: '#fb923c' },
+  'STORM FIBER': { name: 'StormFiber', logo: '⚡', color: '#fb923c' },
+  'SUPERNET': { name: 'Supernet', logo: '🟣', color: '#c084fc' },
+  'SUPERNET LIMITED': { name: 'Supernet', logo: '🟣', color: '#c084fc' },
+  'NAYATEL': { name: 'Nayatel', logo: '🟢', color: '#34d399' },
+  'CYBERNET': { name: 'Cybernet', logo: '🟠', color: '#fb923c' },
+  'CYBER INTERNET SERVICES': { name: 'Cybernet', logo: '🟠', color: '#fb923c' },
+  'WORLDCALL': { name: 'WorldCall', logo: '📡', color: '#38bdf8' },
+  'WATEEN': { name: 'Wateen', logo: '📶', color: '#c084fc' },
+  'WATEEN TELECOM': { name: 'Wateen', logo: '📶', color: '#c084fc' },
+  'MULTINET': { name: 'Multinet', logo: '🌐', color: '#38bdf8' },
+  'FIBERLINK': { name: 'Fiberlink', logo: '🔗', color: '#818cf8' },
+  'COMSATS': { name: 'Comsats', logo: '🛰️', color: '#c084fc' },
+  'TRANSWORLD': { name: 'Transworld', logo: '🌍', color: '#38bdf8' },
+  'TRANSWORLD ASSOCIATES': { name: 'Transworld', logo: '🌍', color: '#38bdf8' },
+  'COMCAST': { name: 'Comcast Xfinity', logo: '🇺🇸', color: '#38bdf8' },
+  'XFINITY': { name: 'Comcast Xfinity', logo: '🇺🇸', color: '#38bdf8' },
+  'AT&T': { name: 'AT&T Fiber', logo: '🇺🇸', color: '#38bdf8' },
+  'VERIZON': { name: 'Verizon Fios', logo: '🇺🇸', color: '#f87171' },
+  'SPECTRUM': { name: 'Spectrum', logo: '🇺🇸', color: '#818cf8' },
+  'VIRGIN': { name: 'Virgin Media', logo: '🇬🇧', color: '#f87171' },
+  'BT': { name: 'BT Broadband', logo: '🇬🇧', color: '#c084fc' },
+  'ETISALAT': { name: 'Etisalat by e&', logo: '🇦🇪', color: '#34d399' },
+  'DU': { name: 'du Home', logo: '🇦🇪', color: '#38bdf8' },
+  'JIO': { name: 'JioFiber', logo: '🇮🇳', color: '#38bdf8' },
+  'AIRTEL': { name: 'Airtel Xstream', logo: '🇮🇳', color: '#f87171' }
 };
 
-// Fast CORS CDN endpoints for accurate speed testing
 const PING_ENDPOINTS = [
   'https://cloudflare.com/cdn-cgi/trace',
   'https://www.google.com/favicon.ico',
@@ -43,6 +49,31 @@ const TEST_FILES = [
 ];
 
 /**
+ * Clean and format raw ISP names to prevent UI overlaps
+ */
+function cleanIspName(rawName) {
+  if (!rawName) return 'Broadband ISP';
+  let cleaned = rawName
+    .replace(/AS\d+/gi, '')
+    .replace(/-AS-AP/gi, '')
+    .replace(/-AS/gi, '')
+    .replace(/LIMITED|LTD|CORPORATION|INC|LLC|NETWORKS/gi, '')
+    .replace(/-/g, ' ')
+    .trim();
+  
+  const parts = cleaned.split(/\s+/).filter(Boolean);
+  if (parts.length > 3) {
+    cleaned = parts.slice(0, 3).join(' ');
+  }
+
+  if (cleaned.length > 18) {
+    cleaned = cleaned.substring(0, 18) + '...';
+  }
+
+  return cleaned || 'Broadband Network';
+}
+
+/**
  * Detect client IP and ISP network details
  */
 export async function getNetworkInfo() {
@@ -51,11 +82,12 @@ export async function getNetworkInfo() {
     const data = await response.json();
 
     if (data.success !== false) {
-      const rawIsp = (data.connection?.isp || data.isp || 'Unknown').toUpperCase();
-      let matchedIsp = { name: data.connection?.isp || data.isp || 'Local Network', logo: '🌐', color: '#00F2FE' };
+      const rawIspStr = data.connection?.isp || data.isp || 'Unknown';
+      const rawIspUpper = rawIspStr.toUpperCase();
+      let matchedIsp = { name: cleanIspName(rawIspStr), logo: '🌐', color: '#38bdf8' };
 
       for (const [key, val] of Object.entries(ISP_MAP)) {
-        if (rawIsp.includes(key)) {
+        if (rawIspUpper.includes(key)) {
           matchedIsp = val;
           break;
         }
@@ -64,7 +96,7 @@ export async function getNetworkInfo() {
       return {
         ip: data.ip || 'Unknown',
         isp: matchedIsp.name,
-        ispRaw: data.connection?.isp || data.isp,
+        ispRaw: rawIspStr,
         organization: data.connection?.org || data.org || matchedIsp.name,
         asn: data.connection?.asn ? `AS${data.connection.asn}` : 'N/A',
         city: data.city || 'Unknown',
@@ -86,7 +118,7 @@ export async function getNetworkInfo() {
     const data = await res.json();
     return {
       ip: data.ip || 'Unknown',
-      isp: data.org || data.asn || 'Local Network',
+      isp: cleanIspName(data.org || data.asn || 'Local Network'),
       ispRaw: data.org,
       organization: data.org || 'Unknown',
       asn: data.asn || 'N/A',
@@ -95,7 +127,7 @@ export async function getNetworkInfo() {
       country: data.country_name || 'Unknown',
       countryFlag: '🌐',
       ispLogo: '🌐',
-      ispColor: '#00F2FE'
+      ispColor: '#38bdf8'
     };
   } catch (fallbackErr) {
     console.error('All IP APIs failed:', fallbackErr);
@@ -108,7 +140,7 @@ export async function getNetworkInfo() {
       country: 'Your Country',
       countryFlag: '🌐',
       ispLogo: '⚡',
-      ispColor: '#00F2FE'
+      ispColor: '#38bdf8'
     };
   }
 }
@@ -146,7 +178,7 @@ export async function measureLatency() {
 }
 
 /**
- * Measure Download Speed with live progress callback
+ * Measure Download Speed
  */
 export async function measureDownload(onProgress) {
   const startTime = performance.now();
@@ -201,7 +233,7 @@ export async function measureDownload(onProgress) {
 }
 
 /**
- * Measure Upload Speed with live progress callback
+ * Measure Upload Speed
  */
 export async function measureUpload(onProgress) {
   const startTime = performance.now();
@@ -262,8 +294,6 @@ export async function measureUpload(onProgress) {
 
 /**
  * 100% REAL & ACCURATE Website Speed & Response Analyzer
- * Measures true HTTP status, real performance timing via performance.now(),
- * Time to First Byte (TTFB), transfer throughput, and SSL security parameters.
  */
 export async function analyzeWebsite(urlInput) {
   let targetUrl = urlInput.trim();
@@ -280,7 +310,6 @@ export async function analyzeWebsite(urlInput) {
   let isHttps = targetUrl.startsWith('https://');
 
   try {
-    // Attempt real HTTP fetch via allorigins JSON endpoint to get true status code & actual HTML body
     const proxyApiUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
     const startFetch = performance.now();
     const res = await fetch(proxyApiUrl);
@@ -292,7 +321,7 @@ export async function analyzeWebsite(urlInput) {
 
       if (data.status && data.status.http_code) {
         statusCode = data.status.http_code;
-        statusText = statusCode === 200 ? 'OK' : statusCode === 403 ? 'Forbidden' : statusCode === 404 ? 'Not Found' : statusCode === 301 || statusCode === 302 ? 'Redirect' : 'Response Received';
+        statusText = statusCode === 200 ? 'OK' : statusCode === 403 ? 'Forbidden' : statusCode === 404 ? 'Not Found' : 'Response Received';
       }
 
       if (data.contents) {
@@ -300,19 +329,14 @@ export async function analyzeWebsite(urlInput) {
       }
     }
   } catch (err) {
-    // Fallback: direct timing fetch
     const directStart = performance.now();
     try {
       await fetch(targetUrl, { mode: 'no-cors', cache: 'no-store' });
       totalDuration = Math.round(performance.now() - directStart);
       ttfbTime = Math.round(totalDuration * 0.45);
-      statusCode = 200;
-      statusText = 'OK';
     } catch (e) {
       totalDuration = Math.round(performance.now() - directStart) || 450;
       ttfbTime = Math.round(totalDuration * 0.4);
-      statusCode = 200;
-      statusText = 'OK';
     }
   }
 
@@ -323,8 +347,6 @@ export async function analyzeWebsite(urlInput) {
   const sizeKB = (realByteLength / 1024).toFixed(2);
   const sizeMB = (realByteLength / (1024 * 1024)).toFixed(2);
 
-  // Speeda 360 Custom Health Index Calculation (0 - 100)
-  // Based on real measured total duration and TTFB latency
   let speedaIndex = 100;
   if (totalDuration > 3000) speedaIndex -= 45;
   else if (totalDuration > 2000) speedaIndex -= 30;
@@ -353,10 +375,8 @@ export async function analyzeWebsite(urlInput) {
     speedRating = '🟢 Very Fast Response';
   }
 
-  // Transfer Rate Calculation (KB/s)
   const transferSpeedKbps = totalDuration > 0 ? ((realByteLength / 1024) / (totalDuration / 1000)).toFixed(1) : '1500';
 
-  // Network Phase Durations (Real calculated proportions)
   const dnsMs = Math.round(Math.min(ttfbTime * 0.15, 35));
   const tcpMs = Math.round(Math.min(ttfbTime * 0.25, 45));
   const sslMs = isHttps ? Math.round(Math.min(ttfbTime * 0.35, 65)) : 0;
@@ -375,12 +395,10 @@ export async function analyzeWebsite(urlInput) {
     transferRateKbps: `${transferSpeedKbps} KB/s`,
     isHttps,
 
-    // Speeda 360 Unique Metrics
     speedaIndex,
     speedGrade,
     speedRating,
 
-    // Real Phase Breakdown
     dnsMs,
     tcpMs,
     sslMs,

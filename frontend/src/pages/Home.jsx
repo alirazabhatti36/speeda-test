@@ -129,7 +129,7 @@ export default function Home() {
       />
 
       <div className="home-container">
-        {/* 1. ⚡ Internet Speed Test Hero Section (NO ADS ABOVE HERO) */}
+        {/* 1. ⚡ Internet Speed Test Hero Section */}
         <section className="hero-section text-center">
           <div className="page-header">
             <h1>Free Internet <span className="gradient-text">Speed Test</span></h1>
@@ -171,9 +171,9 @@ export default function Home() {
             <div className="network-grid">
               <div className="network-item">
                 <span className="net-icon">{networkInfo?.ispLogo || '🌐'}</span>
-                <div>
+                <div className="net-text-wrap">
                   <span className="net-label">ISP Network</span>
-                  <span className="net-value" style={{ color: networkInfo?.ispColor || '#38bdf8' }}>
+                  <span className="net-value" style={{ color: networkInfo?.ispColor || '#38bdf8' }} title={networkInfo?.ispRaw}>
                     {networkInfo?.isp || 'Broadband ISP'}
                   </span>
                 </div>
@@ -181,9 +181,9 @@ export default function Home() {
 
               <div className="network-item">
                 <span className="net-icon">📍</span>
-                <div>
+                <div className="net-text-wrap">
                   <span className="net-label">Location</span>
-                  <span className="net-value">
+                  <span className="net-value" title={`${networkInfo?.city}, ${networkInfo?.country}`}>
                     {networkInfo?.city || 'Local City'}, {networkInfo?.country || 'Country'} {networkInfo?.countryFlag || ''}
                   </span>
                 </div>
@@ -191,7 +191,7 @@ export default function Home() {
 
               <div className="network-item">
                 <span className="net-icon">💻</span>
-                <div>
+                <div className="net-text-wrap">
                   <span className="net-label">Your Public IP</span>
                   <span className="net-value mono">{networkInfo?.ip || '127.0.0.1'}</span>
                 </div>
@@ -199,7 +199,7 @@ export default function Home() {
 
               <div className="network-item">
                 <span className="net-icon">🛡️</span>
-                <div>
+                <div className="net-text-wrap">
                   <span className="net-label">ASN Route</span>
                   <span className="net-value mono">{networkInfo?.asn || 'AS-LOCAL'}</span>
                 </div>
@@ -259,7 +259,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* 4. Sponsor Space / AdSlot (Placed AFTER Test Results) */}
+        {/* 4. Sponsor Space / AdSlot */}
         <AdSlot slotId="home-after-results-banner" type="banner" />
 
         {/* 5. "Is my internet good?" Interpretation */}
