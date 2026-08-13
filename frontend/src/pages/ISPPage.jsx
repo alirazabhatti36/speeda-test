@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Speedometer from '../components/Speedometer';
+import LiveSparkline from '../components/LiveSparkline';
 import SpeedHistory from '../components/SpeedHistory';
 import SpeedInterpretation from '../components/SpeedInterpretation';
 import ComparePackage from '../components/ComparePackage';
 import AdSlot from '../components/AdSlot';
 import { getNetworkInfo, measureLatency, measureDownload, measureUpload } from '../utils/speedEngine';
+import { startEngineSound, stopEngineSound, playCompletionSound } from '../utils/soundEffects';
 import './ISPPage.css';
 
 const GLOBAL_ISP_DETAILS = {
   // Global & US
   'xfinity-speed-test': {
-    name: 'Xfinity (Comcast USA)',
+    name: 'Xfinity (Comcast)',
     title: 'Xfinity Speed Test — Official Comcast Internet Speed Check',
     logo: '🇺🇸',
     metaDesc: 'Test your Comcast Xfinity internet download speed, upload speed, ping, and latency in real-time.',
@@ -35,7 +37,7 @@ const GLOBAL_ISP_DETAILS = {
     faqs: [{ q: 'Is AT&T Fiber symmetric?', a: 'Yes! AT&T Fiber provides equal 100% symmetric download and upload speeds.' }]
   },
   'verizon-speed-test': {
-    name: 'Verizon Fios & 5G Home',
+    name: 'Verizon Fios & 5G',
     title: 'Verizon Fios Speed Test — Fiber & 5G Home Internet Diagnostics',
     logo: '🇺🇸',
     metaDesc: 'Test Verizon Fios Gigabit & 5G Home Internet speed, ping, and jitter live.',
@@ -47,7 +49,7 @@ const GLOBAL_ISP_DETAILS = {
 
   // UK & Europe
   'bt-speed-test': {
-    name: 'BT Broadband (UK)',
+    name: 'BT Broadband',
     title: 'BT Broadband Speed Test — UK Full Fibre Speed Check',
     logo: '🇬🇧',
     metaDesc: 'Test BT Broadband & Full Fibre 100/500/900 download and upload speeds across the UK.',
@@ -57,19 +59,19 @@ const GLOBAL_ISP_DETAILS = {
     faqs: [{ q: 'How to test BT Full Fibre speed?', a: 'Use Speeda Test 360 to measure unthrottled BT Broadband throughput.' }]
   },
   'virgin-media-speed-test': {
-    name: 'Virgin Media (UK)',
+    name: 'Virgin Media',
     title: 'Virgin Media Speed Test — M125 to Gig1 Broadband Diagnostics',
     logo: '🇬🇧',
     metaDesc: 'Test Virgin Media Fibre Broadband speed live. Accurate download and upload test for M125, M250, M500, and Gig1.',
     keywords: 'virgin media speed test, virgin speed check, virgin gig1 test',
     packages: ['M125 Fibre', 'M250 Fibre', 'M500 Fibre', 'Gig1 Fibre Broadband'],
     troubleshoot: ['Check Virgin Media Hub 3/4/5 cable connections.'],
-    faqs: [{ q: 'Why is Virgin Media fast for downloading?', a: 'Virgin Media uses DOCSIS 3.1 coax-fiber hybrid technology delivering up to 1130 Mbps.' }]
+    faqs: [{ q: 'Why is Virgin Media fast for downloading?', a: 'Virgin Media uses DOCSIS 3.1 DOCSIS hybrid technology delivering up to 1130 Mbps.' }]
   },
 
   // UAE & Middle East
   'etisalat-speed-test': {
-    name: 'Etisalat by e& (UAE)',
+    name: 'Etisalat by e&',
     title: 'Etisalat Speed Test — eLife Fiber Speed Check UAE',
     logo: '🇦🇪',
     metaDesc: 'Test Etisalat eLife Fiber internet download and upload speed in Dubai, Abu Dhabi, and across UAE.',
@@ -79,7 +81,7 @@ const GLOBAL_ISP_DETAILS = {
     faqs: [{ q: 'What is average Etisalat ping in UAE?', a: 'Etisalat eLife averages 2ms to 8ms ping locally in Dubai & Abu Dhabi.' }]
   },
   'du-speed-test': {
-    name: 'du Home (UAE)',
+    name: 'du Home',
     title: 'du Home Speed Test — UAE High-Speed Fiber Diagnostics',
     logo: '🇦🇪',
     metaDesc: 'Test du Home Fiber & 5G Home Wireless internet speed live in UAE.',
@@ -91,7 +93,7 @@ const GLOBAL_ISP_DETAILS = {
 
   // India
   'jio-speed-test': {
-    name: 'JioFiber & Jio 5G (India)',
+    name: 'JioFiber & Jio 5G',
     title: 'JioFiber Speed Test — Jio 5G & Fiber Broadband Diagnostics',
     logo: '🇮🇳',
     metaDesc: 'Test JioFiber broadband download, upload, ping, and jitter. Accurate speed test for Jio 30Mbps, 100Mbps, 300Mbps & 1Gbps plans.',
@@ -103,7 +105,7 @@ const GLOBAL_ISP_DETAILS = {
 
   // Pakistan
   'ptcl-speed-test': {
-    name: 'PTCL (Pakistan)',
+    name: 'PTCL Broadband',
     title: 'PTCL Speed Test — Official Broadband & Flash Fiber Test',
     logo: '🇵🇰',
     metaDesc: 'Test your PTCL Broadband, VDSL & Flash Fiber download speed, upload speed, ping, and jitter online.',
@@ -113,7 +115,7 @@ const GLOBAL_ISP_DETAILS = {
     faqs: [{ q: 'How to check PTCL internet speed online?', a: 'Click the "Start Speed Test" button above for instant measurement.' }]
   },
   'stormfiber-speed-test': {
-    name: 'StormFiber (Pakistan)',
+    name: 'StormFiber',
     title: 'StormFiber Speed Test — Ultra-Fast Fiber Broadband Diagnostics',
     logo: '🇵🇰',
     metaDesc: 'Test StormFiber FTTH internet speeds, download, upload, ping, and jitter live.',
@@ -123,7 +125,7 @@ const GLOBAL_ISP_DETAILS = {
     faqs: [{ q: 'What is typical ping on StormFiber for gaming?', a: 'StormFiber typically delivers 5ms to 15ms local ping.' }]
   },
   'nayatel-speed-test': {
-    name: 'Nayatel (Pakistan)',
+    name: 'Nayatel',
     title: 'Nayatel Speed Test — FTTH Fiber Internet & Ping Checker',
     logo: '🇵🇰',
     metaDesc: 'Official Nayatel Fiber internet speed test. Test download, upload, ping latency, and jitter.',
@@ -132,8 +134,38 @@ const GLOBAL_ISP_DETAILS = {
     troubleshoot: ['Ensure the optical patch cord fiber cable is not tightly bent.'],
     faqs: [{ q: 'Is Nayatel upload speed symmetric?', a: 'Yes! Nayatel offers high symmetric upload speeds matching download speeds.' }]
   },
+  'transworld-speed-test': {
+    name: 'Transworld Home',
+    title: 'Transworld Home Speed Test — Fiber Broadband Diagnostics',
+    logo: '🇵🇰',
+    metaDesc: 'Test Transworld Home FTTH fiber download and upload speeds across Pakistan.',
+    keywords: 'transworld speed test, transworld home speed check',
+    packages: ['20 Mbps Fiber', '50 Mbps Fiber', '100 Mbps Fiber'],
+    troubleshoot: ['Restart your Transworld GPON router if latency feels elevated.'],
+    faqs: [{ q: 'Why is Transworld fast for gaming?', a: 'Transworld owns private international submarine cables delivering low latency.' }]
+  },
+  'jazz-speed-test': {
+    name: 'Jazz 4G',
+    title: 'Jazz 4G Speed Test — Pakistan Mobile Internet Test',
+    logo: '🇵🇰',
+    metaDesc: 'Test Jazz 4G LTE mobile data speed, download, upload, ping, and jitter live.',
+    keywords: 'jazz speed test, jazz 4g speed test, jazz internet speed check',
+    packages: ['Jazz 4G Mobile', 'Jazz Super 4G Router'],
+    troubleshoot: ['Ensure your mobile phone is connected to LTE / 4G band.'],
+    faqs: [{ q: 'What is average Jazz 4G speed?', a: 'Jazz 4G averages 15 to 45 Mbps depending on signal strength.' }]
+  },
+  'zong-speed-test': {
+    name: 'Zong 4G',
+    title: 'Zong 4G Speed Test — Pakistan Broadband & Mobile Data Test',
+    logo: '🇵🇰',
+    metaDesc: 'Test Zong 4G LTE & MBB Device download and upload internet speed live.',
+    keywords: 'zong speed test, zong 4g speed test, zong mbb speed check',
+    packages: ['Zong 4G Mobile Data', 'Zong MBB Wi-Fi Device', 'Zong 4G Bolt+'],
+    troubleshoot: ['Place your Zong MBB device near an open window.'],
+    faqs: [{ q: 'Is Zong 4G good for gaming?', a: 'Zong 4G provides low latency for mobile online gaming.' }]
+  },
   'global-speed-test': {
-    name: 'Global Internet Speed Test',
+    name: 'Global Internet',
     title: 'Global Internet Speed Test — Test Any ISP Worldwide',
     logo: '🌍',
     metaDesc: 'Global Internet Speed Test for US, UK, UAE, India, Europe, Canada, Australia & Worldwide ISPs.',
@@ -153,10 +185,14 @@ export default function ISPPage() {
   const [testPhase, setTestPhase] = useState('IDLE');
   const [speedVal, setSpeedVal] = useState(0);
   const [results, setResults] = useState(null);
+  const [sparklineData, setSparklineData] = useState([]);
+  const [activeThemeColor, setActiveThemeColor] = useState('#00f2fe');
 
   const startTest = async () => {
+    startEngineSound();
     setTesting(true);
     setResults(null);
+    setSparklineData([0]);
     setTestPhase('FETCHING_IP');
 
     const networkData = await getNetworkInfo();
@@ -164,10 +200,16 @@ export default function ISPPage() {
     const latencyData = await measureLatency();
 
     setTestPhase('MEASURING_DOWNLOAD');
-    const downloadData = await measureDownload((currentMbps) => setSpeedVal(currentMbps));
+    const downloadData = await measureDownload((currentMbps) => {
+      setSpeedVal(currentMbps);
+      setSparklineData((prev) => [...prev.slice(-35), currentMbps]);
+    });
 
     setTestPhase('MEASURING_UPLOAD');
-    const uploadData = await measureUpload((currentMbps) => setSpeedVal(currentMbps));
+    const uploadData = await measureUpload((currentMbps) => {
+      setSpeedVal(currentMbps);
+      setSparklineData((prev) => [...prev.slice(-35), currentMbps]);
+    });
 
     const finalResult = {
       timestamp: new Date().toISOString(),
@@ -178,6 +220,8 @@ export default function ISPPage() {
       isp: networkData ? networkData.isp : ispInfo.name
     };
 
+    stopEngineSound();
+    playCompletionSound();
     setResults(finalResult);
     setTesting(false);
     setTestPhase('COMPLETED');
@@ -209,14 +253,23 @@ export default function ISPPage() {
             unit="Mbps"
             label={testPhase === 'IDLE' ? 'READY' : testPhase === 'COMPLETED' ? 'TEST COMPLETED' : testPhase.replace('_', ' ')}
             isTesting={testing}
+            onThemeChange={(col) => setActiveThemeColor(col)}
           />
 
           <div className="test-control">
             <button onClick={startTest} disabled={testing} className="btn-primary start-btn">
-              {testing ? '⏳ Testing Connection...' : '▶ Start Speed Test'}
+              {testing ? '⏳ Testing Connection...' : `▶ Start ${ispInfo.name} Speed Test`}
             </button>
           </div>
         </div>
+
+        {/* Live Real-Time Throughput Graph */}
+        <LiveSparkline 
+          dataPoints={sparklineData} 
+          maxVal={200} 
+          color={activeThemeColor}
+          label={`${ispInfo.name} Speed Graph`} 
+        />
 
         {/* Results Interpretation & History */}
         {results && (

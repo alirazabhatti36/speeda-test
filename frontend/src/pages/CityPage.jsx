@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Speedometer from '../components/Speedometer';
+import LiveSparkline from '../components/LiveSparkline';
 import SpeedHistory from '../components/SpeedHistory';
 import SpeedInterpretation from '../components/SpeedInterpretation';
 import ComparePackage from '../components/ComparePackage';
 import AdSlot from '../components/AdSlot';
 import { getNetworkInfo, measureLatency, measureDownload, measureUpload } from '../utils/speedEngine';
+import { startEngineSound, stopEngineSound, playCompletionSound } from '../utils/soundEffects';
 import './CityPage.css';
 
 const GLOBAL_CITY_DETAILS = {
@@ -77,10 +79,14 @@ export default function CityPage() {
   const [testPhase, setTestPhase] = useState('IDLE');
   const [speedVal, setSpeedVal] = useState(0);
   const [results, setResults] = useState(null);
+  const [sparklineData, setSparklineData] = useState([]);
+  const [activeThemeColor, setActiveThemeColor] = useState('#00f2fe');
 
   const startTest = async () => {
+    startEngineSound();
     setTesting(true);
     setResults(null);
+    setSparklineData([0]);
     setTestPhase('FETCHING_IP');
 
     const networkData = await getNetworkInfo();
@@ -88,10 +94,16 @@ export default function CityPage() {
     const latencyData = await measureLatency();
 
     setTestPhase('MEASURING_DOWNLOAD');
-    const downloadData = await measureDownload((currentMbps) => setSpeedVal(currentMbps));
+    const downloadData = await measureDownload((currentMbps) => {
+      setSpeedVal(currentMbps);
+      setSparklineData((prev) => [...prev.slice(-35), currentMbps]);
+    });
 
     setTestPhase('MEASURING_UPLOAD');
-    const uploadData = await measureUpload((currentMbps) => setSpeedVal(currentMbps));
+    const uploadData = await measureUpload((currentMbps) => {
+      setSpeedVal(currentMbps);
+      setSparklineData((prev) => [...prev.slice(-35), currentMbps]);
+    });
 
     const finalResult = {
       timestamp: new Date().toISOString(),
@@ -102,6 +114,8 @@ export default function CityPage() {
       isp: networkData ? networkData.isp : 'Local ISP'
     };
 
+    stopEngineSound();
+    playCompletionSound();
     setResults(finalResult);
     setTesting(false);
     setTestPhase('COMPLETED');
@@ -133,6 +147,7 @@ export default function CityPage() {
             unit="Mbps"
             label={testPhase === 'IDLE' ? 'READY' : testPhase === 'COMPLETED' ? 'TEST COMPLETED' : testPhase.replace('_', ' ')}
             isTesting={testing}
+            onThemeChange={(col) => setActiveThemeColor(col)}
           />
 
           <div className="test-control">
@@ -141,6 +156,14 @@ export default function CityPage() {
             </button>
           </div>
         </div>
+
+        {/* Live Real-Time Throughput Graph */}
+        <LiveSparkline 
+          dataPoints={sparklineData} 
+          maxVal={200} 
+          color={activeThemeColor}
+          label={`${cityInfo.cityName} Speed Graph`} 
+        />
 
         {/* Results Interpretation & History */}
         {results && (
