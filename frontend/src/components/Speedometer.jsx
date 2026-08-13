@@ -80,8 +80,9 @@ export default function Speedometer({ value = 0, max = 200, unit = 'Mbps', label
 
   return (
     <div className={`speedometer-container ${isTesting ? 'active-glow' : ''}`}>
-      {/* 100% Single Straight Horizontal Line Toolbar */}
+      {/* 2 Corner Tabs Toolbar (Top-Left: Sound, Top-Right: Color Theme) */}
       <div className="speedometer-toolbar">
+        {/* Left Side: Sound Button */}
         <button 
           onClick={toggleSound} 
           className={`control-pill sound-pill ${soundOn ? 'active' : ''}`}
@@ -90,16 +91,20 @@ export default function Speedometer({ value = 0, max = 200, unit = 'Mbps', label
           {soundOn ? '🔊 Sound: ON' : '🔇 Muted'}
         </button>
 
-        {Object.values(GAUGE_THEMES).map((t) => (
-          <button
-            key={t.id}
-            onClick={() => switchTheme(t.id)}
-            className={`control-pill theme-pill ${activeThemeKey === t.id ? 'active' : ''}`}
-            style={activeThemeKey === t.id ? { borderColor: t.needle, color: t.textColor } : {}}
-          >
-            {t.label}
-          </button>
-        ))}
+        {/* Right Side: Color Theme Buttons */}
+        <div className="theme-tab-group">
+          <span className="theme-title-tag">🎨 Color:</span>
+          {Object.values(GAUGE_THEMES).map((t) => (
+            <button
+              key={t.id}
+              onClick={() => switchTheme(t.id)}
+              className={`control-pill theme-pill ${activeThemeKey === t.id ? 'active' : ''}`}
+              style={activeThemeKey === t.id ? { borderColor: t.needle, color: t.textColor } : {}}
+            >
+              {t.label}
+            </button>
+          ))}
+        </div>
       </div>
 
       <svg className="speedometer-svg" viewBox="0 0 300 200">
