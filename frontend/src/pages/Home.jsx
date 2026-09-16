@@ -69,12 +69,18 @@ export default function Home() {
 
   useEffect(() => {
     async function loadNetwork() {
-      setNetworkLoading(true);
-      const data = await getNetworkInfo();
-      setNetworkInfo(data);
-      setNetworkLoading(false);
+      try {
+        setNetworkLoading(true);
+        const data = await getNetworkInfo();
+        setNetworkInfo(data);
+      } catch (err) {
+        // Fallback handled inside getNetworkInfo
+      } finally {
+        setNetworkLoading(false);
+      }
     }
-    loadNetwork();
+    const timer = setTimeout(loadNetwork, 600);
+    return () => clearTimeout(timer);
   }, []);
 
   const runFullTest = async () => {

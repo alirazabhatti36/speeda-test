@@ -10,8 +10,16 @@ export default defineConfig({
     cssCodeSplit: true,
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom', 'react-helmet-async']
+        manualChunks(id) {
+          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
+            return 'react-core';
+          }
+          if (id.includes('node_modules/react-router') || id.includes('node_modules/@remix-run')) {
+            return 'react-router';
+          }
+          if (id.includes('node_modules/react-helmet-async')) {
+            return 'react-helmet';
+          }
         }
       }
     }

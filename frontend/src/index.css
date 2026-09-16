@@ -97,6 +97,13 @@ body::after {
   100% { transform: translate(-20px, 30px) scale(0.95); }
 }
 
+@media (max-width: 768px) {
+  body::before,
+  body::after {
+    display: none;
+  }
+}
+
 a {
   color: var(--primary-cyan-light);
   text-decoration: none;
@@ -141,13 +148,19 @@ a:hover {
 
 /* Glassmorphism Card Style (AuraToolkit / 360 Suite Signature) */
 .glass-panel {
-  background: var(--bg-card);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(15, 23, 42, 0.88);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-md);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   transition: transform var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+@media (min-width: 769px) {
+  .glass-panel {
+    background: var(--bg-card);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
 }
 
 .glass-panel:hover {

@@ -7,12 +7,18 @@
   margin: 0 auto;
   padding: 0.65rem 1.5rem;
   border-radius: var(--radius-full);
-  background: rgba(11, 18, 32, 0.9);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(11, 18, 32, 0.96);
   border: 1px solid rgba(56, 189, 248, 0.2);
   box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   transition: all var(--transition-smooth);
+}
+
+@media (min-width: 769px) {
+  .navbar-header {
+    background: rgba(11, 18, 32, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
 }
 
 .navbar-header:hover {
