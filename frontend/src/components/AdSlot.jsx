@@ -1,14 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './AdSlot.css';
 
 export default function AdSlot({ slotId = '1234567890', format = 'auto', type = 'banner', label = 'Advertisement' }) {
+  const adRef = useRef(null);
+  const pushedRef = useRef(false);
+
   useEffect(() => {
+    if (pushedRef.current) return;
     try {
-      if (window.adsbygoogle) {
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
-      }
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+      pushedRef.current = true;
     } catch (e) {
-      console.warn('AdSense load error:', e);
+      // Deferred load safe fallback
     }
   }, []);
 

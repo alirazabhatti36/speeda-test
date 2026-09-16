@@ -178,7 +178,36 @@ export default function Home() {
         {/* Network & ISP Info Bar */}
         <div className="glass-panel network-panel">
           {networkLoading ? (
-            <div className="network-skeleton">⏳ Detecting your broadband provider & local IP...</div>
+            <div className="network-grid network-skeleton-grid">
+              <div className="network-item">
+                <span className="net-icon">🌐</span>
+                <div className="net-text-wrap">
+                  <span className="net-label">ISP Network</span>
+                  <span className="net-value skeleton-pulse">Detecting ISP...</span>
+                </div>
+              </div>
+              <div className="network-item">
+                <span className="net-icon">📍</span>
+                <div className="net-text-wrap">
+                  <span className="net-label">Location</span>
+                  <span className="net-value skeleton-pulse">Detecting City...</span>
+                </div>
+              </div>
+              <div className="network-item">
+                <span className="net-icon">💻</span>
+                <div className="net-text-wrap">
+                  <span className="net-label">Your Public IP</span>
+                  <span className="net-value mono skeleton-pulse">Detecting IP...</span>
+                </div>
+              </div>
+              <div className="network-item">
+                <span className="net-icon">🛡️</span>
+                <div className="net-text-wrap">
+                  <span className="net-label">ASN Route</span>
+                  <span className="net-value mono skeleton-pulse">Detecting Route...</span>
+                </div>
+              </div>
+            </div>
           ) : (
             <div className="network-grid">
               <div className="network-item">
