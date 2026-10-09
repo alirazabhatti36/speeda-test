@@ -98,6 +98,37 @@ export default function MobileSpeedTest() {
 
         <SpeedHistory currentResult={results} />
 
+        {/* 4G LTE vs 5G Cellular Speed Guide */}
+        <div className="glass-panel mobile-guide-card" style={{ marginTop: '2.5rem', padding: '2rem' }}>
+          <h2>📱 Mobile Broadband: Understanding 4G LTE & 5G Performance Factors</h2>
+          <p style={{ color: 'var(--text-muted)', lineHeight: '1.7', marginBottom: '1.5rem' }}>
+            Cellular internet speeds depend heavily on environmental conditions, cellular carrier spectrum bands, tower congestion, and distance from the mobile basestation.
+          </p>
+
+          <div className="mobile-tips-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.4rem' }}>
+            <div style={{ background: 'rgba(11, 15, 25, 0.5)', padding: '1.4rem', borderRadius: '16px', border: '1px solid var(--glass-border)' }}>
+              <h3 style={{ color: 'var(--primary-cyan)', fontSize: '1.1rem', marginBottom: '0.5rem' }}>📶 4G LTE vs. 5G NR</h3>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                4G LTE typically delivers 15 to 60 Mbps with 25–45ms latency. 5G Sub-6GHz networks increase throughput to 150–500 Mbps, while mmWave 5G can exceed 1000 Mbps line-of-sight.
+              </p>
+            </div>
+
+            <div style={{ background: 'rgba(11, 15, 25, 0.5)', padding: '1.4rem', borderRadius: '16px', border: '1px solid var(--glass-border)' }}>
+              <h3 style={{ color: 'var(--neon-green)', fontSize: '1.1rem', marginBottom: '0.5rem' }}>🏢 Indoor Obstacles & Signal Penetration</h3>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                Concrete walls, metallic insulation, and double-glazed windows attenuate cellular radio frequencies. Positioning 4G/5G mobile routers near exterior windows boosts speed.
+              </p>
+            </div>
+
+            <div style={{ background: 'rgba(11, 15, 25, 0.5)', padding: '1.4rem', borderRadius: '16px', border: '1px solid var(--glass-border)' }}>
+              <h3 style={{ color: 'var(--sunset-orange)', fontSize: '1.1rem', marginBottom: '0.5rem' }}>👥 Tower Load & Cell Congestion</h3>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                Unlike fiber optics, cellular towers share total radio frequency bandwidth among all actively connected smartphones in that geographical cell sector.
+              </p>
+            </div>
+          </div>
+        </div>
+
         <AdSlot slotId="mobile-bottom-banner" type="banner" />
       </div>
     </>

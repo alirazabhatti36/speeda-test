@@ -144,6 +144,37 @@ export default function GamingSpeedTest() {
 
         <SpeedHistory currentResult={results} />
 
+        {/* Esports Ping Optimization & Bufferbloat Guide */}
+        <div className="glass-panel gaming-guide-card" style={{ marginTop: '2.5rem', padding: '2rem' }}>
+          <h2>🎮 Pro Esports Gaming: How to Eliminate Ping Spikes & Packet Loss</h2>
+          <p style={{ color: 'var(--text-muted)', lineHeight: '1.7', marginBottom: '1.5rem' }}>
+            In competitive first-person shooters (Valorant, CS2, Rainbow Six Siege) and battle royales (PUBG, Apex Legends, Fortnite), high ping and jitter directly cause hit-registration delays and rubber-banding.
+          </p>
+
+          <div className="game-tips-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.4rem' }}>
+            <div style={{ background: 'rgba(11, 15, 25, 0.5)', padding: '1.4rem', borderRadius: '16px', border: '1px solid var(--glass-border)' }}>
+              <h3 style={{ color: 'var(--primary-cyan)', fontSize: '1.1rem', marginBottom: '0.5rem' }}>🔌 Switch from Wi-Fi to Ethernet</h3>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                Wi-Fi is vulnerable to radio interference, wall attenuation, and packet collisions. A Cat6 Ethernet cable delivers a rock-solid, jitter-free connection with consistent sub-1ms router latency.
+              </p>
+            </div>
+
+            <div style={{ background: 'rgba(11, 15, 25, 0.5)', padding: '1.4rem', borderRadius: '16px', border: '1px solid var(--glass-border)' }}>
+              <h3 style={{ color: 'var(--neon-green)', fontSize: '1.1rem', marginBottom: '0.5rem' }}>📉 Fix Bufferbloat with Smart Queuing</h3>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                Bufferbloat occurs when background downloads saturate your router queue, causing ping spikes from 20ms to 200ms. Enable SQM (Smart Queue Management) or Cake QoS in your router settings.
+              </p>
+            </div>
+
+            <div style={{ background: 'rgba(11, 15, 25, 0.5)', padding: '1.4rem', borderRadius: '16px', border: '1px solid var(--glass-border)' }}>
+              <h3 style={{ color: 'var(--sunset-orange)', fontSize: '1.1rem', marginBottom: '0.5rem' }}>🎯 Choose Regional Matchmaking Servers</h3>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                Connect to game servers geographically closest to your physical location (e.g. Middle East Bahrain/Dubai, Singapore, or Frankfurt) to minimize light-in-fiber transit distance.
+              </p>
+            </div>
+          </div>
+        </div>
+
         <AdSlot slotId="gaming-bottom-banner" type="banner" />
       </div>
     </>

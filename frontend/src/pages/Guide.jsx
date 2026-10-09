@@ -22,7 +22,7 @@ export default function Guide() {
         </div>
 
         <div className="glass-panel guide-card">
-          <article className="guide-article">
+          <article className="guide-article" id="mbps">
             <h2>1. Understanding Mbps vs MBps</h2>
             <p>
               One of the most common points of confusion for internet users is the difference between <strong>Mbps</strong> (Megabits per second) and <strong>MB/s</strong> (Megabytes per second).
@@ -35,7 +35,7 @@ export default function Guide() {
             </ul>
           </article>
 
-          <article className="guide-article">
+          <article className="guide-article" id="wifi">
             <h2>2. 2.4 GHz vs 5 GHz Wi-Fi Bands</h2>
             <p>
               Modern Wi-Fi routers transmit on two distinct frequency bands. Choosing the right band can significantly improve your Speeda Test 360 results:
@@ -75,7 +75,7 @@ export default function Guide() {
             </div>
           </article>
 
-          <article className="guide-article">
+          <article className="guide-article" id="ping">
             <h2>3. How to Reduce Gaming Ping & Jitter</h2>
             <p>
               High ping and jitter cause input delay and rubber-banding in competitive multiplayer games (Valorant, CS:GO, PUBG, Fortnite, Call of Duty). Follow these steps to lower your ping:
@@ -88,7 +88,7 @@ export default function Guide() {
             </ol>
           </article>
 
-          <article className="guide-article">
+          <article className="guide-article" id="slow">
             <h2>4. Troubleshooting Slow Internet Speeds</h2>
             <p>
               If your Speeda Test 360 result is significantly lower than your subscribed plan:

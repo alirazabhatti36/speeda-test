@@ -1,20 +1,92 @@
 .rankings-container {
-  max-width: 950px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
+.filter-panel {
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.filter-controls-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.country-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.tab-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  color: var(--text-muted);
+  padding: 0.55rem 1.1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.tab-btn:hover {
+  background: rgba(0, 242, 254, 0.1);
+  color: #ffffff;
+  border-color: rgba(0, 242, 254, 0.3);
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.25), rgba(99, 102, 241, 0.25));
+  color: var(--primary-cyan);
+  border-color: var(--primary-cyan);
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+}
+
+.search-box {
+  width: 100%;
+}
+
+.isp-search-input {
+  width: 100%;
+  padding: 0.85rem 1.2rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--glass-border);
+  background: rgba(11, 15, 25, 0.6);
+  color: var(--text-main);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.isp-search-input:focus {
+  border-color: var(--primary-cyan);
+  box-shadow: 0 0 12px rgba(0, 242, 254, 0.2);
+}
+
 .rankings-card {
-  padding: 1.8rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .rankings-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
+  min-width: 800px;
 }
 
 .rankings-table th, .rankings-table td {
-  padding: 1rem 1.2rem;
+  padding: 1rem 1.1rem;
   text-align: left;
   border-bottom: 1px solid var(--glass-border);
 }
@@ -23,21 +95,95 @@
   background: rgba(255, 255, 255, 0.04);
   color: #ffffff;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .rank-num {
   color: var(--primary-cyan);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
 }
 
 .isp-name-cell {
   color: #ffffff;
+  white-space: nowrap;
+}
+
+.isp-flag-inline {
+  margin-right: 0.4rem;
+  font-size: 1.1rem;
 }
 
 .tech-badge {
   background: rgba(255, 255, 255, 0.08);
-  padding: 0.2rem 0.6rem;
+  padding: 0.25rem 0.65rem;
   border-radius: var(--radius-full);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.best-for-cell {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.ranking-guide-card {
+  padding: 2.2rem 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.ranking-guide-card h2 {
+  font-size: 1.6rem;
+  color: #ffffff;
+  margin-bottom: 0.8rem;
+}
+
+.ranking-guide-card > p {
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 1.8rem;
+}
+
+.guide-insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.4rem;
+}
+
+.insight-box {
+  background: rgba(11, 15, 25, 0.5);
+  border: 1px solid var(--glass-border);
+  padding: 1.4rem;
+  border-radius: var(--radius-md);
+}
+
+.insight-box h3 {
+  font-size: 1.1rem;
+  color: var(--primary-cyan);
+  margin-bottom: 0.6rem;
+}
+
+.insight-box p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .filter-panel {
+    padding: 1rem;
+  }
+  .rankings-card {
+    padding: 0.8rem;
+  }
+  .ranking-guide-card {
+    padding: 1.5rem 1.2rem;
+  }
+  .country-tabs {
+    gap: 0.4rem;
+  }
+  .tab-btn {
+    padding: 0.45rem 0.85rem;
+    font-size: 0.82rem;
+  }
 }

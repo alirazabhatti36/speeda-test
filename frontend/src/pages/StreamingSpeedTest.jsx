@@ -124,6 +124,37 @@ export default function StreamingSpeedTest() {
 
         <SpeedHistory currentResult={results} />
 
+        {/* 4K Ultra HD Streaming & Bitrate Guide */}
+        <div className="glass-panel stream-guide-card" style={{ marginTop: '2.5rem', padding: '2rem' }}>
+          <h2>📺 4K Video Streaming Requirements: Netflix, YouTube & Live Broadcasting</h2>
+          <p style={{ color: 'var(--text-muted)', lineHeight: '1.7', marginBottom: '1.5rem' }}>
+            Streaming video at high resolutions requires constant, sustained download throughput without packet drops. If bandwidth drops below the video bitrate buffer threshold, media players downscale resolution or trigger buffering wheels.
+          </p>
+
+          <div className="stream-tips-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.4rem' }}>
+            <div style={{ background: 'rgba(11, 15, 25, 0.5)', padding: '1.4rem', borderRadius: '16px', border: '1px solid var(--glass-border)' }}>
+              <h3 style={{ color: 'var(--neon-green)', fontSize: '1.1rem', marginBottom: '0.5rem' }}>🎬 Netflix 4K Ultra HD (25 Mbps)</h3>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                Netflix recommends a steady 25 Mbps connection per stream for 4K UHD content with Dolby Vision and Dolby Atmos audio streams.
+              </p>
+            </div>
+
+            <div style={{ background: 'rgba(11, 15, 25, 0.5)', padding: '1.4rem', borderRadius: '16px', border: '1px solid var(--glass-border)' }}>
+              <h3 style={{ color: 'var(--primary-cyan)', fontSize: '1.1rem', marginBottom: '0.5rem' }}>▶️ YouTube 4K 60fps (20 Mbps)</h3>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                YouTube uses efficient VP9 and AV1 compression codecs. A stable 20 Mbps download stream prevents stutter and keeps video at crisp 2160p 60fps.
+              </p>
+            </div>
+
+            <div style={{ background: 'rgba(11, 15, 25, 0.5)', padding: '1.4rem', borderRadius: '16px', border: '1px solid var(--glass-border)' }}>
+              <h3 style={{ color: 'var(--neon-purple)', fontSize: '1.1rem', marginBottom: '0.5rem' }}>📡 Twitch / YouTube Live Upload (8 Mbps)</h3>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                For live creators broadcasting 1080p 60fps at a 6000–8000 Kbps video bitrate, a consistent upload speed of at least 15 Mbps ensures head-room against frame drops.
+              </p>
+            </div>
+          </div>
+        </div>
+
         <AdSlot slotId="stream-bottom-banner" type="banner" />
       </div>
     </>

@@ -16,43 +16,33 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Col 2: Global Speed Tests */}
+        {/* Col 2: Diagnostic Tools */}
         <div className="footer-col">
-          <h4>Global Speed Tests</h4>
-          <Link to="/xfinity-speed-test">🇺🇸 Xfinity Speed Test</Link>
-          <Link to="/att-speed-test">🇺🇸 AT&T Fiber Test</Link>
-          <Link to="/verizon-speed-test">🇺🇸 Verizon Fios Test</Link>
-          <Link to="/bt-speed-test">🇬🇧 BT Broadband Test</Link>
-          <Link to="/virgin-media-speed-test">🇬🇧 Virgin Media Test</Link>
-          <Link to="/etisalat-speed-test">🇦🇪 Etisalat eLife Test</Link>
-          <Link to="/jio-speed-test">🇮🇳 JioFiber Test</Link>
-          <Link to="/ptcl-speed-test">🇵🇰 PTCL Speed Test</Link>
-          <Link to="/stormfiber-speed-test">🇵🇰 StormFiber Test</Link>
-          <Link to="/nayatel-speed-test">🇵🇰 Nayatel Speed Test</Link>
-          <Link to="/isp-rankings">🏆 Global ISP Rankings</Link>
+          <h4>Speed & Diagnostic Tools</h4>
+          <Link to="/">⚡ Core Internet Speed Test</Link>
+          <Link to="/gaming-speed-test">🎮 Gaming Ping & Latency</Link>
+          <Link to="/streaming-speed-test">📺 4K Video Streaming Test</Link>
+          <Link to="/mobile-speed-test">📱 Mobile 4G & 5G Test</Link>
+          <Link to="/website-test">🌐 Website Speed & TTFB</Link>
+          <Link to="/ping-test">🛰️ Live Multi-Server Ping</Link>
+          <Link to="/ip-lookup">🔍 Public IP & ISP Lookup</Link>
+          <Link to="/isp-rankings">🏆 ISP Speed Rankings</Link>
         </div>
 
-        {/* Col 3: Cities & Special Tests */}
+        {/* Col 3: Guides & Technical Specs */}
         <div className="footer-col">
-          <h4>Cities & Special Tests</h4>
-          <Link to="/internet-speed-test-new-york">📍 New York City</Link>
-          <Link to="/internet-speed-test-london">📍 London</Link>
-          <Link to="/internet-speed-test-dubai">📍 Dubai</Link>
-          <Link to="/internet-speed-test-toronto">📍 Toronto</Link>
-          <Link to="/internet-speed-test-lahore">📍 Lahore</Link>
-          <Link to="/gaming-speed-test">🎮 Gaming Speed Test</Link>
-          <Link to="/streaming-speed-test">📺 Streaming Speed Test</Link>
-          <Link to="/mobile-speed-test">📱 Mobile Speed Test</Link>
-          <Link to="/website-test">🌐 Website Analyzer</Link>
+          <h4>Guides & Technology</h4>
+          <Link to="/guide">📖 Speed Optimization Guide</Link>
+          <Link to="/how-speed-test-works">🔬 Testing Methodology</Link>
+          <Link to="/isp-rankings">📊 Global ISP Comparison</Link>
+          <Link to="/guide#ping">🕹️ How to Lower Gaming Ping</Link>
+          <Link to="/guide#wifi">📶 2.4 GHz vs 5 GHz Wi-Fi</Link>
+          <Link to="/guide#mbps">💡 Mbps vs MB/s Explained</Link>
         </div>
 
-        {/* Col 4: Tools & Legal */}
+        {/* Col 4: Trust, Company & Legal */}
         <div className="footer-col">
-          <h4>Tools & Legal</h4>
-          <Link to="/ping-test">🛰️ Live Ping Test</Link>
-          <Link to="/ip-lookup">🔍 Public IP Lookup</Link>
-          <Link to="/how-speed-test-works">🔬 How It Works</Link>
-          <Link to="/guide">📖 Speed Guide</Link>
+          <h4>Company & Legal</h4>
           <Link to="/about">ℹ️ About Us</Link>
           <Link to="/contact">📞 Contact Us</Link>
           <Link to="/privacy">🔒 Privacy Policy</Link>

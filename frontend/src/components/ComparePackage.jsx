@@ -1,25 +1,33 @@
 import React, { useState } from 'react';
 import './ComparePackage.css';
 
-const PAK_ISPS = [
-  { name: 'StormFiber', tiers: [20, 30, 40, 50, 100, 200] },
+const POPULAR_ISPS = [
+  // International
+  { name: 'AT&T Fiber', tiers: [300, 500, 1000, 2000, 5000] },
+  { name: 'Verizon Fios', tiers: [300, 500, 1000] },
+  { name: 'Comcast Xfinity', tiers: [75, 200, 400, 800, 1200] },
+  { name: 'Charter Spectrum', tiers: [300, 500, 1000] },
+  { name: 'BT Full Fibre (UK)', tiers: [100, 500, 900] },
+  { name: 'Virgin Media (UK)', tiers: [125, 250, 500, 1000] },
+  { name: 'Etisalat eLife (UAE)', tiers: [250, 500, 1000] },
+  { name: 'JioFiber (India)', tiers: [30, 100, 300, 1000] },
+
+  // Pakistan
   { name: 'Nayatel', tiers: [15, 25, 50, 70, 100] },
-  { name: 'PTCL Fiber Flash Fiber', tiers: [10, 20, 30, 50, 100] },
-  { name: 'PTCL VDSL / Broadband', tiers: [6, 8, 15, 25] },
+  { name: 'StormFiber', tiers: [20, 30, 40, 50, 100, 200] },
+  { name: 'PTCL Flash Fiber', tiers: [10, 20, 30, 50, 100, 250] },
   { name: 'Transworld Home', tiers: [20, 30, 50, 100] },
-  { name: 'Cybernet Broadband', tiers: [20, 50, 100] },
+  { name: 'PTCL VDSL Broadband', tiers: [6, 8, 15, 25] },
   { name: 'Jazz 4G / Device', tiers: [15, 25, 40] },
-  { name: 'Zong 4G / MBB', tiers: [20, 35, 50] },
-  { name: 'Telenor 4G', tiers: [10, 20, 30] },
-  { name: 'Ufone 4G', tiers: [10, 20, 30] }
+  { name: 'Zong 4G MBB', tiers: [20, 35, 50] }
 ];
 
 export default function ComparePackage({ currentDownload = 0, currentIsp = '' }) {
-  const [selectedIsp, setSelectedIsp] = useState(PAK_ISPS[0].name);
+  const [selectedIsp, setSelectedIsp] = useState(POPULAR_ISPS[0].name);
   const [selectedTier, setSelectedTier] = useState(50);
   const [compared, setCompared] = useState(false);
 
-  const activeIspObj = PAK_ISPS.find(i => i.name === selectedIsp) || PAK_ISPS[0];
+  const activeIspObj = POPULAR_ISPS.find(i => i.name === selectedIsp) || POPULAR_ISPS[0];
 
   const handleCompare = (e) => {
     e.preventDefault();
@@ -54,12 +62,12 @@ export default function ComparePackage({ currentDownload = 0, currentIsp = '' })
             value={selectedIsp} 
             onChange={(e) => {
               setSelectedIsp(e.target.value);
-              const newObj = PAK_ISPS.find(i => i.name === e.target.value);
+              const newObj = POPULAR_ISPS.find(i => i.name === e.target.value);
               if (newObj) setSelectedTier(newObj.tiers[0]);
             }}
             className="compare-select"
           >
-            {PAK_ISPS.map(isp => (
+            {POPULAR_ISPS.map(isp => (
               <option key={isp.name} value={isp.name}>{isp.name}</option>
             ))}
           </select>

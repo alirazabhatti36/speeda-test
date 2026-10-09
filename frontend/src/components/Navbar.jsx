@@ -60,7 +60,7 @@ export default function Navbar() {
             📺 Streaming Speed Test
           </NavLink>
           <NavLink to="/isp-rankings" className="mobile-item" onClick={() => setMobileOpen(false)}>
-            🏆 Pakistan ISP Rankings
+            🏆 ISP Rankings
           </NavLink>
           <NavLink to="/website-test" className="mobile-item" onClick={() => setMobileOpen(false)}>
             🌐 Website Tester

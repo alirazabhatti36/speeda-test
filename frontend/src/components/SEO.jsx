@@ -46,9 +46,21 @@ export default function SEO({
       'name': 'Speeda Test 360',
       'url': baseUrl,
       'logo': `${baseUrl}/favicon.svg`,
+      'founder': {
+        '@type': 'Person',
+        'name': 'Ali Raza Bhatti',
+        'jobTitle': 'Lead Network Software Engineer'
+      },
       'sameAs': [
         'https://github.com/alirazabhatti36/speeda-test'
       ]
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      'name': 'Ali Raza Bhatti',
+      'jobTitle': 'Lead Network Software Engineer',
+      'url': `${baseUrl}/about`
     },
     {
       '@context': 'https://schema.org',

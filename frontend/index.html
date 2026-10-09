@@ -38,50 +38,17 @@
     <link rel="dns-prefetch" href="https://ipwho.is">
     <link rel="dns-prefetch" href="https://speed.cloudflare.com">
 
-    <!-- Google AdSense Account & Auto Ads -->
+    <!-- Google AdSense Account & Verification Script -->
     <meta name="google-adsense-account" content="ca-pub-1373118680696037">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1373118680696037" crossorigin="anonymous"></script>
 
-    <!-- Deferred AdSense & Google Analytics Loader (Guarantees 90+ Mobile Score & 0 TBT) -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1X0ZFRJFTF"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-1X0ZFRJFTF');
-
-      (function() {
-        var thirdPartyLoaded = false;
-        function loadThirdPartyScripts() {
-          if (thirdPartyLoaded) return;
-          thirdPartyLoaded = true;
-
-          var events = ['scroll', 'mousemove', 'touchstart', 'touchend', 'keydown', 'click'];
-          events.forEach(function(evt) {
-            window.removeEventListener(evt, loadThirdPartyScripts, { passive: true });
-          });
-
-          // 1. Deferred AdSense Script
-          var adsScript = document.createElement('script');
-          adsScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1373118680696037';
-          adsScript.async = true;
-          adsScript.crossOrigin = 'anonymous';
-          document.head.appendChild(adsScript);
-
-          // 2. Deferred Google Tag Manager / Analytics Script
-          var gtagScript = document.createElement('script');
-          gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-1X0ZFRJFTF';
-          gtagScript.async = true;
-          document.head.appendChild(gtagScript);
-        }
-
-        // Trigger immediately on ANY user interaction
-        var events = ['scroll', 'mousemove', 'touchstart', 'touchend', 'keydown', 'click'];
-        events.forEach(function(evt) {
-          window.addEventListener(evt, loadThirdPartyScripts, { once: true, passive: true });
-        });
-
-        // 8-second fallback only for inactive human visitors (allows PageSpeed bots to get 95+ without TBT)
-        setTimeout(loadThirdPartyScripts, 8000);
-      })();
     </script>
 
     <!-- Primary Meta Tags -->

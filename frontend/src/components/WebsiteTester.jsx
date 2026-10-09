@@ -161,6 +161,44 @@ export default function WebsiteTester() {
         </div>
       )}
 
+      {/* Website Speed Optimization & Core Web Vitals Guide */}
+      <div className="glass-panel web-guide-card" style={{ marginTop: '2.5rem', padding: '2rem' }}>
+        <h2>⚡ Understanding Website Speed & Core Web Vitals</h2>
+        <p style={{ color: 'var(--text-muted)', lineHeight: '1.7', marginBottom: '1.5rem' }}>
+          Website loading speed directly impacts bounce rates, conversion rates, and Google organic search rankings. Google utilizes page experience metrics as confirmed ranking signals.
+        </p>
+
+        <div className="web-tips-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.5rem' }}>
+          <div className="web-tip-box" style={{ background: 'rgba(11, 15, 25, 0.5)', padding: '1.4rem', borderRadius: '16px', border: '1px solid var(--glass-border)' }}>
+            <h3 style={{ color: 'var(--primary-cyan)', fontSize: '1.1rem', marginBottom: '0.6rem' }}>⏱️ Time to First Byte (TTFB)</h3>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', lineHeight: '1.6' }}>
+              TTFB measures the duration between a visitor requesting a URL and the arrival of the first response byte from the web server. Good TTFB should remain under <strong>200 milliseconds</strong>.
+            </p>
+          </div>
+
+          <div className="web-tip-box" style={{ background: 'rgba(11, 15, 25, 0.5)', padding: '1.4rem', borderRadius: '16px', border: '1px solid var(--glass-border)' }}>
+            <h3 style={{ color: 'var(--primary-cyan)', fontSize: '1.1rem', marginBottom: '0.6rem' }}>🌐 Content Delivery Networks (CDNs)</h3>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', lineHeight: '1.6' }}>
+              Deploying a global edge CDN (such as Cloudflare, Fastly, or CloudFront) caches static assets within milliseconds of global visitors, slashing DNS resolution and SSL handshake overhead.
+            </p>
+          </div>
+
+          <div className="web-tip-box" style={{ background: 'rgba(11, 15, 25, 0.5)', padding: '1.4rem', borderRadius: '16px', border: '1px solid var(--glass-border)' }}>
+            <h3 style={{ color: 'var(--primary-cyan)', fontSize: '1.1rem', marginBottom: '0.6rem' }}>📦 Asset Compression (Brotli & Gzip)</h3>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', lineHeight: '1.6' }}>
+              Enabling modern Brotli or Gzip compression reduces HTML, CSS, and JavaScript payload sizes by up to 70%, accelerating cellular downloads.
+            </p>
+          </div>
+
+          <div className="web-tip-box" style={{ background: 'rgba(11, 15, 25, 0.5)', padding: '1.4rem', borderRadius: '16px', border: '1px solid var(--glass-border)' }}>
+            <h3 style={{ color: 'var(--primary-cyan)', fontSize: '1.1rem', marginBottom: '0.6rem' }}>🖼️ Next-Gen Image Formats</h3>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', lineHeight: '1.6' }}>
+              Converting traditional PNG/JPEG images into modern AVIF or WebP formats dramatically reduces page weight without visible loss in visual fidelity.
+            </p>
+          </div>
+        </div>
+      </div>
+
       <AdSlot slotId="web-test-bottom" type="banner" />
     </div>
   );

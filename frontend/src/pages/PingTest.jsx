@@ -83,6 +83,44 @@ export default function PingTest() {
           </div>
         </div>
 
+        {/* Latency & Ping Diagnostics Guide */}
+        <div className="glass-panel ping-guide-card" style={{ marginTop: '2.5rem', padding: '2rem' }}>
+          <h2>🛰️ What is Ping & How Does Latency Impact Online Performance?</h2>
+          <p style={{ color: 'var(--text-muted)', lineHeight: '1.7', marginBottom: '1.5rem' }}>
+            Ping measures the round-trip latency (in milliseconds) required for a data packet to travel from your device to a remote server and return. Lower ping numbers indicate a faster, more responsive connection.
+          </p>
+
+          <div className="ping-info-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.4rem' }}>
+            <div style={{ background: 'rgba(11, 15, 25, 0.5)', padding: '1.4rem', borderRadius: '16px', border: '1px solid var(--glass-border)' }}>
+              <h3 style={{ color: 'var(--neon-green)', fontSize: '1.1rem', marginBottom: '0.5rem' }}>🟢 Under 30 ms (Ultra Fast)</h3>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                Ideal for competitive esports (Valorant, CS2, Fortnite), crystal-clear VoIP calls, and instant cloud gaming without perceived delay.
+              </p>
+            </div>
+
+            <div style={{ background: 'rgba(11, 15, 25, 0.5)', padding: '1.4rem', borderRadius: '16px', border: '1px solid var(--glass-border)' }}>
+              <h3 style={{ color: 'var(--primary-cyan)', fontSize: '1.1rem', marginBottom: '0.5rem' }}>🔵 30 - 70 ms (Moderate / Good)</h3>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                Standard latency for web browsing, streaming 4K video, and casual multiplayer gaming on continental regional servers.
+              </p>
+            </div>
+
+            <div style={{ background: 'rgba(11, 15, 25, 0.5)', padding: '1.4rem', borderRadius: '16px', border: '1px solid var(--glass-border)' }}>
+              <h3 style={{ color: 'var(--sunset-orange)', fontSize: '1.1rem', marginBottom: '0.5rem' }}>🟠 70 - 150 ms (Fair / Noticeable)</h3>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                Typical for intercontinental routing (e.g. connecting from Asia or Middle East to European or US servers). Slight input delay in fast-paced games.
+              </p>
+            </div>
+
+            <div style={{ background: 'rgba(11, 15, 25, 0.5)', padding: '1.4rem', borderRadius: '16px', border: '1px solid var(--glass-border)' }}>
+              <h3 style={{ color: 'var(--danger-red)', fontSize: '1.1rem', marginBottom: '0.5rem' }}>🔴 Above 150 ms (High Latency)</h3>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6' }}>
+                Noticeable lag, audio stutter in video calls, and potential rubber-banding during online multiplayer sessions. Check background torrents or switch to Ethernet.
+              </p>
+            </div>
+          </div>
+        </div>
+
         <AdSlot slotId="ping-bottom-banner" type="banner" />
       </div>
     </>
