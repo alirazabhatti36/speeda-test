@@ -139,10 +139,11 @@ export default function Home() {
   return (
     <>
       <SEO 
-        title="Speeda Test 360 — Free Internet Speed Test & Global ISP Analytics"
-        description="Free internet speed test. Measure real download speed, upload speed, ping, and jitter worldwide. Compare speeds for Xfinity, AT&T, Verizon, BT, Etisalat, PTCL, StormFiber & Nayatel."
-        keywords="speed test, internet speed test, free speed test, wifi speed test, global speed test, comcast speed test, att speed test, ptcl speed test, stormfiber speed test, Speeda Test 360"
+        title="Speeda Test 360 — Free Internet Speed Test, Ping & Global ISP Analytics"
+        description="Free real-time internet speed test. Measure download speed, upload throughput, ping latency, and jitter. Compare broadband performance for AT&T, Verizon, Xfinity, PTCL, StormFiber, and Nayatel."
+        keywords="speed test, internet speed test, wifi speed test, broadband test, ping test, download speed, upload speed, latency test, jitter test, bufferbloat test, ptcl speed test, stormfiber speed test, nayatel speed test, Speeda Test 360"
         canonical="/"
+        faqs={FAQS_LIST}
       />
 
       <div className="home-container">

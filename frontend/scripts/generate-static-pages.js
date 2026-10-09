@@ -337,6 +337,23 @@ for (const page of PAGES) {
         "name": page.title,
         "url": canonicalUrl,
         "description": page.description
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://speedatest360.online"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": page.heading,
+            "item": canonicalUrl
+          }
+        ]
       }
     ]
   };

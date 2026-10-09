@@ -84,6 +84,66 @@ export default function SEO({
     }
   ];
 
+  // Inject HowTo Schema on homepage for rich tutorial cards
+  if (canonical === '/') {
+    schemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      'name': 'How to Test Your Internet Speed Accurately',
+      'description': 'Simple 4-step guide to accurately test your broadband download speed, upload throughput, ping latency, and jitter in real-time.',
+      'totalTime': 'PT30S',
+      'step': [
+        {
+          '@type': 'HowToStep',
+          'position': 1,
+          'name': 'Connect to Network',
+          'text': 'Connect your PC, laptop, or smartphone to your primary 5 GHz Wi-Fi band or connect directly via Ethernet cable.'
+        },
+        {
+          '@type': 'HowToStep',
+          'position': 2,
+          'name': 'Close Background Apps',
+          'text': 'Pause ongoing video downloads, torrents, cloud syncing (Google Drive/OneDrive), and heavy background tabs.'
+        },
+        {
+          '@type': 'HowToStep',
+          'position': 3,
+          'name': 'Start Speed Test',
+          'text': 'Click the START SPEED TEST button on Speeda Test 360 to initiate real-time multi-stream throughput testing.'
+        },
+        {
+          '@type': 'HowToStep',
+          'position': 4,
+          'name': 'Analyze Your Metrics',
+          'text': 'Review your real-time Download (Mbps), Upload (Mbps), Ping latency (ms), and Jitter network stability.'
+        }
+      ]
+    });
+  }
+
+  // Inject BreadcrumbList Schema on secondary pages for enhanced SERP breadcrumbs
+  if (canonical && canonical !== '/') {
+    const pageLabel = title ? title.split('—')[0].trim() : canonical.replace('/', '').replace(/-/g, ' ');
+    schemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      'itemListElement': [
+        {
+          '@type': 'ListItem',
+          'position': 1,
+          'name': 'Home',
+          'item': baseUrl
+        },
+        {
+          '@type': 'ListItem',
+          'position': 2,
+          'name': pageLabel,
+          'item': canonicalUrl
+        }
+      ]
+    });
+  }
+
   // Inject FAQPage Schema if faqs provided
   if (faqs && faqs.length > 0) {
     schemas.push({
@@ -99,6 +159,8 @@ export default function SEO({
       }))
     });
   }
+
+  const ogImageUrl = `${baseUrl}/og-image.svg`;
 
   return (
     <Helmet>
@@ -118,12 +180,17 @@ export default function SEO({
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={fullDescription} />
       <meta property="og:url" content={canonicalUrl} />
+      <meta property="og:image" content={ogImageUrl} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content="Speeda Test 360 — Real-Time Internet Speed Test" />
       <meta property="og:locale" content="en_US" />
 
       {/* Twitter Cards */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={fullDescription} />
+      <meta name="twitter:image" content={ogImageUrl} />
 
       {/* JSON-LD Schemas */}
       {schemas.map((s, idx) => (
