@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Speedometer from '../components/Speedometer';
 import LiveSparkline from '../components/LiveSparkline';
-import ShareResultCard from '../components/ShareResultCard';
-import SpeedInterpretation from '../components/SpeedInterpretation';
-import ComparePackage from '../components/ComparePackage';
-import SpeedHistory from '../components/SpeedHistory';
 import AdSlot from '../components/AdSlot';
-import FAQSection from '../components/FAQSection';
 import { getNetworkInfo, measureLatency, measureDownload, measureUpload } from '../utils/speedEngine';
 import { startEngineSound, stopEngineSound, playCompletionSound } from '../utils/soundEffects';
 import './Home.css';
+
+// Lazy load below-the-fold and post-test components for blazing fast Mobile FCP & LCP
+const ShareResultCard = lazy(() => import('../components/ShareResultCard'));
+const SpeedInterpretation = lazy(() => import('../components/SpeedInterpretation'));
+const ComparePackage = lazy(() => import('../components/ComparePackage'));
+const SpeedHistory = lazy(() => import('../components/SpeedHistory'));
+const FAQSection = lazy(() => import('../components/FAQSection'));
 
 const FAQS_LIST = [
   {
@@ -317,32 +319,34 @@ export default function Home() {
 
         {/* Shareable Speed Result Card */}
         {currentResultObj && (
-          <ShareResultCard result={currentResultObj} networkInfo={networkInfo} />
+          <Suspense fallback={null}>
+            <ShareResultCard result={currentResultObj} networkInfo={networkInfo} />
+          </Suspense>
         )}
 
         {/* 4. Sponsor Space / AdSlot */}
         <AdSlot slotId="home-after-results-banner" type="banner" />
 
-        {/* 5. "Is my internet good?" Interpretation */}
+        {/* 5. "Is my internet good?" Interpretation & Package Calculator */}
         {currentResultObj && (
-          <SpeedInterpretation 
-            download={currentResultObj.downloadMbps}
-            upload={currentResultObj.uploadMbps}
-            ping={currentResultObj.ping}
-            jitter={currentResultObj.jitter}
-          />
-        )}
-
-        {/* 6. Package Delivery Calculator */}
-        {currentResultObj && (
-          <ComparePackage 
-            currentDownload={currentResultObj.downloadMbps} 
-            currentIsp={networkInfo?.isp || ''} 
-          />
+          <Suspense fallback={null}>
+            <SpeedInterpretation 
+              download={currentResultObj.downloadMbps}
+              upload={currentResultObj.uploadMbps}
+              ping={currentResultObj.ping}
+              jitter={currentResultObj.jitter}
+            />
+            <ComparePackage 
+              currentDownload={currentResultObj.downloadMbps} 
+              currentIsp={networkInfo?.isp || ''} 
+            />
+          </Suspense>
         )}
 
         {/* 7. Speed History */}
-        <SpeedHistory currentResult={currentResultObj} />
+        <Suspense fallback={null}>
+          <SpeedHistory currentResult={currentResultObj} />
+        </Suspense>
 
         {/* 8. Gaming / Streaming / Mobile Quick Tests Grid */}
         <div className="glass-panel section-card">
@@ -501,7 +505,9 @@ export default function Home() {
           </div>
         </div>
 
-        <FAQSection faqs={FAQS_LIST} />
+        <Suspense fallback={null}>
+          <FAQSection faqs={FAQS_LIST} />
+        </Suspense>
 
         <AdSlot slotId="home-bottom-banner" type="banner" />
       </div>
