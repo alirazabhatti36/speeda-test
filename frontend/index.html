@@ -84,8 +84,8 @@
           window.addEventListener(triggerEvents[i], initThirdParty, { passive: true, once: true });
         }
 
-        // Fallback timer when user is idle or on desktop
-        setTimeout(initThirdParty, 4000);
+        // Fallback timer after 8.5s for non-interactive visitors
+        setTimeout(initThirdParty, 8500);
       })();
     </script>
 
@@ -113,10 +113,17 @@
     <meta property="twitter:description" content="Accurate real-time broadband speed test, ping analyzer, and ISP rankings." />
     <meta property="twitter:image" content="https://speedatest360.online/og-image.svg" />
 
-    <!-- Preconnect & Fast Optional Google Fonts -->
+    <!-- Fast System Fonts First with Deferred Google Fonts for Instant Mobile LCP -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@700&display=optional">
+    <script>
+      window.addEventListener('load', function() {
+        var fontLink = document.createElement('link');
+        fontLink.rel = 'stylesheet';
+        fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@700&display=swap';
+        document.head.appendChild(fontLink);
+      });
+    </script>
 
     <!-- Critical CSS for Instant 0.5s Mobile FCP & LCP -->
     <style>
