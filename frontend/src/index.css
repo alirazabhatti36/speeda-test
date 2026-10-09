@@ -38,12 +38,23 @@
   box-sizing: border-box;
 }
 
-html, body, #root {
+html {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+body {
   width: 100%;
   min-height: 100vh;
   background-color: var(--bg-dark) !important;
   color: var(--text-main);
-  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
 }
 
 body {

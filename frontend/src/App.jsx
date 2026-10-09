@@ -1,9 +1,20 @@
-import React, { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import React, { Suspense, lazy, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import CookieBanner from './components/CookieBanner';
+
+// Automatically scroll window to top on route change
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [pathname]);
+
+  return null;
+}
 
 // Eager load Home for instant LCP on the main landing page
 import Home from './pages/Home';
@@ -30,6 +41,7 @@ export default function App() {
   return (
     <HelmetProvider>
       <Router>
+        <ScrollToTop />
         <div className="app-wrapper">
           <Navbar />
           <main className="main-content">

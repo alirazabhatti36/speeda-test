@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import './Navbar.css';
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 15);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className="navbar-header glass-panel">
+    <header className={`navbar-header glass-panel ${scrolled ? 'is-scrolled' : ''}`}>
       <div className="navbar-container">
         <Link to="/" className="brand-logo" onClick={() => setMobileOpen(false)}>
           <span className="brand-icon">⚡</span>
