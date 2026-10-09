@@ -193,6 +193,8 @@
   max-width: 900px;
   padding: 2rem;
   margin-top: 2rem;
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 400px;
 }
 
 .sec-head-row {
@@ -313,6 +315,8 @@
   line-height: 1.8;
   background: rgba(15, 23, 42, 0.78);
   border: 1px solid var(--glass-border);
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 600px;
 }
 
 .seo-content-section h2 {
