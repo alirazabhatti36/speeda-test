@@ -72,7 +72,46 @@
   font-weight: 800;
 }
 
+.speed-arena {
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto 2rem auto;
+  padding: 2.2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background: radial-gradient(circle at 50% 30%, rgba(0, 242, 254, 0.15) 0%, rgba(99, 102, 241, 0.08) 50%, rgba(11, 15, 25, 0.88) 85%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-xl);
+}
+
+.test-control {
+  margin-top: 1.4rem;
+  display: flex;
+  justify-content: center;
+}
+
+.start-btn {
+  font-size: 1.1rem;
+  padding: 0.85rem 2.2rem;
+}
+
 @media (max-width: 768px) {
+  .speed-arena {
+    padding: 1.6rem 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .test-control {
+    margin-top: 1rem;
+  }
+  .start-btn {
+    font-size: 0.95rem;
+    padding: 0.72rem 1.6rem;
+    width: auto;
+    max-width: 90%;
+  }
   .gaming-scorecard {
     flex-direction: column;
     text-align: center;
@@ -80,5 +119,15 @@
   .game-status-grid {
     grid-template-columns: 1fr;
     width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .speed-arena {
+    padding: 1.4rem 0.75rem;
+  }
+  .start-btn {
+    font-size: 0.9rem;
+    padding: 0.65rem 1.35rem;
   }
 }

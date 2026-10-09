@@ -96,7 +96,7 @@ export default function GamingSpeedTest() {
 
           <div className="test-control">
             <button onClick={startTest} disabled={testing} className="btn-primary start-btn">
-              {testing ? '⏳ Analyzing Gaming Latency...' : '🎮 Start Gaming Speed Test'}
+              {testing ? '⏳ Analyzing Gaming Latency...' : '🎮 Start Gaming Test'}
             </button>
           </div>
         </div>

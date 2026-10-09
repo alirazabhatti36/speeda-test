@@ -111,8 +111,8 @@
 }
 
 .start-btn {
-  font-size: 1.25rem;
-  padding: 1.1rem 3.2rem;
+  font-size: 1.15rem;
+  padding: 0.95rem 2.6rem;
 }
 
 .metrics-grid {
@@ -354,6 +354,16 @@
 }
 
 @media (max-width: 868px) {
+  .speed-arena {
+    padding: 2rem 1.2rem;
+    margin-bottom: 1.8rem;
+  }
+  .start-btn {
+    font-size: 0.98rem;
+    padding: 0.78rem 1.8rem;
+    width: auto;
+    max-width: 90%;
+  }
   .network-panel {
     min-height: 140px;
   }
@@ -380,6 +390,13 @@
 }
 
 @media (max-width: 520px) {
+  .speed-arena {
+    padding: 1.5rem 0.8rem;
+  }
+  .start-btn {
+    font-size: 0.9rem;
+    padding: 0.68rem 1.35rem;
+  }
   .network-panel {
     min-height: 240px;
   }

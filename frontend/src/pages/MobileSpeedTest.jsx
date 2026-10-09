@@ -84,7 +84,7 @@ export default function MobileSpeedTest() {
 
           <div className="test-control">
             <button onClick={startTest} disabled={testing} className="btn-primary start-btn">
-              {testing ? '⏳ Testing Mobile Network...' : '📱 Start Mobile Speed Test'}
+              {testing ? '⏳ Testing Mobile Network...' : '📱 Start Mobile Test'}
             </button>
           </div>
         </div>
