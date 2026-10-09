@@ -28,7 +28,7 @@ const PAGES = [
         <div class="speed-placeholder-unit">Mbps</div>
         <div class="speed-placeholder-label">READY FOR GAMING SPEED TEST</div>
         <div class="test-control">
-          <button class="btn-primary start-btn">🎮 Start Gaming Speed Test</button>
+          <button class="btn-primary start-btn">🎮 Start Gaming Test</button>
         </div>
       </div>
       <div class="glass-panel gaming-guide-card" style="margin-top: 2rem; padding: 2rem;">
@@ -72,7 +72,7 @@ const PAGES = [
         <div class="speed-placeholder-unit">Mbps</div>
         <div class="speed-placeholder-label">READY FOR MOBILE SPEED TEST</div>
         <div class="test-control">
-          <button class="btn-primary start-btn">📱 Start Mobile Speed Test</button>
+          <button class="btn-primary start-btn">📱 Start Mobile Test</button>
         </div>
       </div>
       <div class="glass-panel mobile-guide-card" style="margin-top: 2rem; padding: 2rem;">
