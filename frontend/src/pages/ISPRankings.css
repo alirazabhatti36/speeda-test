@@ -72,26 +72,83 @@
   overflow: hidden;
 }
 
-.table-responsive {
+.table-responsive,
+.table-wrapper {
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
+  padding-bottom: 0.85rem;
+  scrollbar-width: thin;
+  scrollbar-color: #00f2fe rgba(15, 23, 42, 0.85);
 }
 
-.rankings-table {
+.table-responsive::-webkit-scrollbar,
+.table-wrapper::-webkit-scrollbar {
+  height: 9px;
+}
+
+.table-responsive::-webkit-scrollbar-track,
+.table-wrapper::-webkit-scrollbar-track {
+  background: rgba(11, 15, 25, 0.95);
+  border-radius: 9999px;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+}
+
+.table-responsive::-webkit-scrollbar-thumb,
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #00f2fe 0%, #38bdf8 50%, #6366f1 100%);
+  border-radius: 9999px;
+  box-shadow: 0 0 12px rgba(0, 242, 254, 0.5);
+  cursor: grab;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover,
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #00f2fe 0%, #60a5fa 100%);
+}
+
+.mobile-scroll-hint {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1rem;
+  margin-bottom: 0.85rem;
+  background: rgba(0, 242, 254, 0.08);
+  border: 1px dashed rgba(0, 242, 254, 0.45);
+  border-radius: var(--radius-full);
+  color: var(--primary-cyan);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-align: center;
+  user-select: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-scroll-hint {
+    display: flex;
+  }
+}
+
+.rankings-table,
+.isp-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.92rem;
-  min-width: 800px;
+  min-width: 680px;
 }
 
-.rankings-table th, .rankings-table td {
-  padding: 1rem 1.1rem;
+.rankings-table th, .rankings-table td,
+.isp-table th, .isp-table td {
+  padding: 0.95rem 1.1rem;
   text-align: left;
   border-bottom: 1px solid var(--glass-border);
+  white-space: nowrap;
 }
 
-.rankings-table th {
+.rankings-table th,
+.isp-table th {
   background: rgba(255, 255, 255, 0.04);
   color: #ffffff;
   font-weight: 700;
@@ -169,11 +226,17 @@
   line-height: 1.6;
 }
 
+.city-benchmarks-card {
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
 @media (max-width: 768px) {
   .filter-panel {
     padding: 1rem;
   }
-  .rankings-card {
+  .rankings-card,
+  .city-benchmarks-card {
     padding: 0.8rem;
   }
   .ranking-guide-card {

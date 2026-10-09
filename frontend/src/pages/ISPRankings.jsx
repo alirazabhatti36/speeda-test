@@ -167,6 +167,9 @@ export default function ISPRankings() {
 
         {/* Table of Rankings */}
         <div className="glass-panel rankings-card">
+          <div className="mobile-scroll-hint">
+            <span>↔️ Swipe / Drag sideways to view full metrics (Download, Upload, Ping, Rating)</span>
+          </div>
           <div className="table-responsive">
             <table className="rankings-table">
               <thead>
@@ -250,13 +253,16 @@ export default function ISPRankings() {
         </div>
 
         {/* Local & Global City Speed Benchmarks */}
-        <div className="glass-panel" style={{ padding: '2rem', marginTop: '2rem' }}>
+        <div className="glass-panel city-benchmarks-card">
           <h2>🏙️ Local & Global City Internet Speed Benchmarks</h2>
           <p style={{ color: 'var(--text-muted)', marginBottom: '1.5rem' }}>
             Real-world internet throughput and lowest gaming ping recorded across major metropolitan areas in Pakistan, United States, United Kingdom, UAE, and India.
           </p>
-          <div className="table-wrapper">
-            <table className="isp-table">
+          <div className="mobile-scroll-hint">
+            <span>↔️ Swipe / Drag sideways to view Download & Ping metrics</span>
+          </div>
+          <div className="table-responsive">
+            <table className="rankings-table">
               <thead>
                 <tr>
                   <th>City / Metro</th>
