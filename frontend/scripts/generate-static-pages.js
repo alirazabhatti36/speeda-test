@@ -135,14 +135,14 @@ const PAGES = [
   },
   {
     route: 'isp-rankings',
-    title: 'Global ISP Speed Rankings 2026 — Fastest Broadband & Fiber Networks | Speeda Test 360',
-    description: 'Official broadband and ISP speed rankings. Compare AT&T Fiber, Verizon Fios, Comcast, Virgin Media, BT, Etisalat, Nayatel, StormFiber, Transworld, and JioFiber.',
-    keywords: 'isp rankings, broadband speed rankings, fastest isp in the world, fastest internet in pakistan, stormfiber vs nayatel, att fiber vs verizon, jiofiber ranking',
-    heading: 'Global Broadband & ISP Rankings',
+    title: 'Global & Local ISP Speed Rankings 2026 — Fastest Broadband, Fiber & 4G/5G Networks | Speeda Test 360',
+    description: 'Official broadband & ISP speed rankings. Compare AT&T Fiber, Verizon Fios, Comcast, Virgin Media, BT, Etisalat, Nayatel, StormFiber, PTCL, Transworld, Jazz, Zong, and JioFiber.',
+    keywords: 'isp rankings, broadband speed rankings, fastest isp in pakistan, ptcl speed test, stormfiber speed test, nayatel speed test, transworld speed test, jazz 4g speed, zong 4g speed, ufone 4g speed, internet speed test karachi, lahore broadband speeds, islamabad fiber test, rawalpindi internet, faisalabad speed test, peshawar fiber, multan wifi test, att fiber speed test, verizon fios test, xfinity speed test, virgin media speed test, etisalat speed test dubai, du fiber uae, jiofiber speed test, airtel xstream test, starlink speed test, fastest internet in the world',
+    heading: 'Global & Local Broadband & ISP Rankings',
     subheading: 'Real performance benchmarks, median throughput & latency metrics for top global and regional ISPs',
     content: `
       <div class="glass-panel" style="padding: 2rem; text-align: center; margin: 1.5rem 0;">
-        <p style="font-size: 1.1rem; color: #00f2fe; font-weight: 700;">🏆 Aggregating real-time broadband benchmarks across 50+ providers...</p>
+        <p style="font-size: 1.1rem; color: #00f2fe; font-weight: 700;">🏆 Aggregating real-time broadband benchmarks across 50+ providers & cities...</p>
       </div>
       <div class="glass-panel ranking-guide-card" style="margin-top: 2rem; padding: 2rem;">
         <h2>Broadband Speed Benchmarking & Technology Insights</h2>
@@ -309,6 +309,15 @@ for (const page of PAGES) {
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "All",
         "description": page.description,
+        "keywords": page.keywords,
+        "areaServed": [
+          { "@type": "Country", "name": "Worldwide" },
+          { "@type": "Country", "name": "Pakistan" },
+          { "@type": "Country", "name": "United States" },
+          { "@type": "Country", "name": "United Kingdom" },
+          { "@type": "Country", "name": "United Arab Emirates" },
+          { "@type": "Country", "name": "India" }
+        ],
         "browserRequirements": "Requires JavaScript & HTML5",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       },

@@ -16,7 +16,7 @@ export default function SEO({
   const fullDescription = description || 
     'Test your internet download speed, upload speed, ping latency, and jitter in real-time with Speeda Test 360. Free, accurate, and 100% client-side broadband diagnostics.';
 
-  const defaultKeywords = 'speed test, internet speed test, wifi speed test, broadband test, ping test, download speed, upload speed, jitter test, ISP speed test, Speeda Test 360, PTCL speed test, StormFiber speed test, Nayatel speed test, Cybernet speed test, website speed tester';
+  const defaultKeywords = 'speed test, internet speed test, wifi speed test, broadband test, ping test, download speed, upload speed, jitter test, latency test, bufferbloat test, 5g speed test, 4g lte speed test, fiber speed test, website speed tester, ISP speed test, Speeda Test 360, PTCL speed test, StormFiber speed test, Nayatel speed test, Transworld speed test, Jazz 4G speed test, Zong 4G speed test, internet speed test Karachi, Lahore broadband speed, Islamabad fiber test, Rawalpindi speed test, Faisalabad internet, ATT fiber speed test, Verizon Fios speed test, Xfinity speed test, Spectrum speed test, Virgin Media speed test, BT broadband test, Etisalat speed test Dubai, du fiber UAE, JioFiber speed test, Airtel Xstream speed test, Starlink speed test';
 
   const fullKeywords = keywords ? `${keywords}, ${defaultKeywords}` : defaultKeywords;
   const baseUrl = 'https://speedatest360.online';
@@ -32,6 +32,15 @@ export default function SEO({
       'applicationCategory': 'UtilitiesApplication',
       'operatingSystem': 'All',
       'description': fullDescription,
+      'keywords': fullKeywords,
+      'areaServed': [
+        { '@type': 'Country', 'name': 'Worldwide' },
+        { '@type': 'Country', 'name': 'Pakistan' },
+        { '@type': 'Country', 'name': 'United States' },
+        { '@type': 'Country', 'name': 'United Kingdom' },
+        { '@type': 'Country', 'name': 'United Arab Emirates' },
+        { '@type': 'Country', 'name': 'India' }
+      ],
       'browserRequirements': 'Requires JavaScript & HTML5',
       'softwareVersion': '360.2.0',
       'offers': {
