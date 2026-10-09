@@ -8,7 +8,8 @@ export default function CookieBanner() {
   useEffect(() => {
     const consent = localStorage.getItem('speeda360_cookie_consent');
     if (!consent) {
-      setAccepted(false);
+      const timer = setTimeout(() => setAccepted(false), 2000);
+      return () => clearTimeout(timer);
     }
   }, []);
 

@@ -81,7 +81,7 @@ export default function Home() {
         setNetworkLoading(false);
       }
     }
-    const timer = setTimeout(loadNetwork, 600);
+    const timer = setTimeout(loadNetwork, 2200);
     return () => clearTimeout(timer);
   }, []);
 
