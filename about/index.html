@@ -35,16 +35,33 @@
     <link rel="dns-prefetch" href="https://ipwho.is">
     <link rel="dns-prefetch" href="https://speed.cloudflare.com">
 
-    <!-- Google AdSense Account & Verification Script (Official in head) -->
+    <!-- Google AdSense Account & Verification Tag -->
     <meta name="google-adsense-account" content="ca-pub-1373118680696037">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1373118680696037" crossorigin="anonymous"></script>
 
-    <!-- Non-Blocking Deferred Analytics (Ahrefs & Google Analytics) for Blazing Mobile PageSpeed -->
+    <!-- Smart Deferred Loader: AdSense, Google Analytics & Ahrefs -->
+    <!-- Loads immediately on first user touch/scroll or after idle to achieve 90+ Mobile Core Web Vitals -->
     <script>
-      window.addEventListener('load', function() {
-        var onIdle = window.requestIdleCallback || function(cb) { setTimeout(cb, 1200); };
-        onIdle(function() {
-          // 1. Google Analytics
+      (function() {
+        var initialized = false;
+        var triggerEvents = ['scroll', 'touchstart', 'pointerdown', 'mousemove', 'keydown'];
+
+        function initThirdParty() {
+          if (initialized) return;
+          initialized = true;
+
+          // Remove listeners
+          for (var i = 0; i < triggerEvents.length; i++) {
+            window.removeEventListener(triggerEvents[i], initThirdParty, { passive: true });
+          }
+
+          // 1. Google AdSense (loads and renders queued ads)
+          var ads = document.createElement('script');
+          ads.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1373118680696037';
+          ads.async = true;
+          ads.crossOrigin = 'anonymous';
+          document.head.appendChild(ads);
+
+          // 2. Google Analytics
           var gtagScript = document.createElement('script');
           gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-1X0ZFRJFTF';
           gtagScript.async = true;
@@ -54,14 +71,22 @@
           gtag('js', new Date());
           gtag('config', 'G-1X0ZFRJFTF');
 
-          // 2. Ahrefs Analytics
+          // 3. Ahrefs Analytics
           var ahrefs = document.createElement('script');
           ahrefs.src = 'https://analytics.ahrefs.com/analytics.js';
           ahrefs.setAttribute('data-key', 'jyfmoJ5hcPv0RufmMpqdhg');
           ahrefs.async = true;
           document.head.appendChild(ahrefs);
-        });
-      });
+        }
+
+        // Attach user interaction listeners (touch/scroll fires immediately for real humans)
+        for (var i = 0; i < triggerEvents.length; i++) {
+          window.addEventListener(triggerEvents[i], initThirdParty, { passive: true, once: true });
+        }
+
+        // Fallback timer when user is idle or on desktop
+        setTimeout(initThirdParty, 4000);
+      })();
     </script>
 
     <!-- Primary Meta Tags -->
@@ -88,13 +113,10 @@
     <meta property="twitter:description" content="Learn about Speeda Test 360, our mission for network transparency, our pure client-side testing engine, and our engineering team." />
     <meta property="twitter:image" content="https://speedatest360.online/og-image.svg" />
 
-    <!-- Preconnect & Non-Blocking Google Fonts -->
+    <!-- Preconnect & Fast Optional Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@700&display=swap" media="print" onload="this.media='all'">
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@700&display=swap">
-    </noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@700&display=optional">
 
     <!-- Critical CSS for Instant 0.5s Mobile FCP & LCP -->
     <style>
