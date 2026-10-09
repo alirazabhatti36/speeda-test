@@ -84,8 +84,8 @@
           window.addEventListener(triggerEvents[i], initThirdParty, { passive: true, once: true });
         }
 
-        // Fallback timer when user is idle or on desktop
-        setTimeout(initThirdParty, 4000);
+        // Fallback timer after 8.5s for non-interactive visitors
+        setTimeout(initThirdParty, 8500);
       })();
     </script>
 
@@ -113,10 +113,17 @@
     <meta property="twitter:description" content="Check your public IP address, broadband ISP provider, Autonomous System Number (ASN), city, and geolocation details." />
     <meta property="twitter:image" content="https://speedatest360.online/og-image.svg" />
 
-    <!-- Preconnect & Fast Optional Google Fonts -->
+    <!-- Fast System Fonts First with Deferred Google Fonts for Instant Mobile LCP -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@700&display=optional">
+    <script>
+      window.addEventListener('load', function() {
+        var fontLink = document.createElement('link');
+        fontLink.rel = 'stylesheet';
+        fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@700&display=swap';
+        document.head.appendChild(fontLink);
+      });
+    </script>
 
     <!-- Critical CSS for Instant 0.5s Mobile FCP & LCP -->
     <style>
@@ -144,11 +151,11 @@
       .speed-placeholder-label { font-size: 0.85rem; font-weight: 700; color: #94a3b8; letter-spacing: 0.1em; margin-top: 0.5rem; text-transform: uppercase; }
       .start-btn { margin-top: 2rem; background: linear-gradient(135deg, #00f2fe, #6366f1); border: none; padding: 1rem 2.8rem; border-radius: 9999px; font-size: 1.1rem; font-weight: 800; color: #0b0f19; cursor: pointer; box-shadow: 0 0 25px rgba(0, 242, 254, 0.35); }
     </style>
-    <script type="module" crossorigin src="/assets/index-CfAT3HuN.js"></script>
+    <script type="module" crossorigin src="/assets/index-CByBEdHO.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/react-core-CLxJDDMW.js">
     <link rel="modulepreload" crossorigin href="/assets/react-helmet-wnDd3-4R.js">
     <link rel="modulepreload" crossorigin href="/assets/react-router-FpJLvw2U.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-BoOhH4-3.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-CcjmboNP.css">
     <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Speeda Test 360","url":"https://speedatest360.online","applicationCategory":"UtilitiesApplication","operatingSystem":"All","description":"Check your public IP address, broadband ISP provider, Autonomous System Number (ASN), city, and geolocation details.","keywords":"my ip, ip lookup, whats my ip, isp lookup, ip geolocation, asn lookup","areaServed":[{"@type":"Country","name":"Worldwide"},{"@type":"Country","name":"Pakistan"},{"@type":"Country","name":"United States"},{"@type":"Country","name":"United Kingdom"},{"@type":"Country","name":"United Arab Emirates"},{"@type":"Country","name":"India"}],"browserRequirements":"Requires JavaScript & HTML5","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"Organization","name":"Speeda Test 360","url":"https://speedatest360.online","logo":"https://speedatest360.online/favicon.svg","founder":{"@type":"Person","name":"Ali Raza Bhatti","jobTitle":"Lead Network Software Engineer"}},{"@type":"WebPage","name":"Public IP Address & Network ISP Lookup Tool | Speeda Test 360","url":"https://speedatest360.online/ip-lookup","description":"Check your public IP address, broadband ISP provider, Autonomous System Number (ASN), city, and geolocation details."},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://speedatest360.online"},{"@type":"ListItem","position":2,"name":"Public IP & Network Lookup","item":"https://speedatest360.online/ip-lookup"}]}]}</script>
 </head>
   <body>
